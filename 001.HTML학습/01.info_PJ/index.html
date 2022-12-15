@@ -46,6 +46,8 @@
               ex. div.on{} header.on{} -> 같은 클래스인데 다른 디자인 적용 가능
               5. 그룹선택자 : ,(콤마)
               ex. hi,div,a {}
+              6. 자손선택자 : 띄어쓰기 
+              ex. div a {} -> div 하위의 모든 a 요소들
             */
             /* 기본 마진, 패딩 없애기 */
 
@@ -58,7 +60,6 @@
 
             /* 박스 공통 클래스 */
             .bx {
-                background-color: skyblue;
                 /* 1.가로 크기 w 
                    아무 값도 안쓰면 auto -> 블록은 부모요소 끝까지 차지
                 */
@@ -75,7 +76,7 @@
                    - border-radius brod: 둥근 모서리 보더
                      -> 값을 50% 주면 원이 생김
                 */
-                border: 5px outset #65c3e9;
+                border: 3px double #65c3e9;
                 border-radius: 15px;
 
 
@@ -96,9 +97,15 @@
                 margin: 0 auto;
                 /* 마진탑 덮어쓰기 mt */
                 margin-top: 30px;
+            }
 
+            /* 메인 영역 이미지 */
 
-
+            .cont img {
+                width: 100%;
+                /* 한 쪽만 크기를 주면 이미지는 자동으로 비율 유지를 하면서 변경됨
+                   100%는 부모 박스를 채움
+                */
             }
 
 
