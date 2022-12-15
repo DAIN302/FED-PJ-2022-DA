@@ -44,16 +44,69 @@
               -> 특정요소에 특정이름을 밝혀야 할 경우
               -> 클래스 적용 시 같은 이름으로 다른 디자인을 줄 때
               ex. div.on{} header.on{} -> 같은 클래스인데 다른 디자인 적용 가능
-
-              
+              5. 그룹선택자 : ,(콤마)
+              ex. hi,div,a {}
             */
+            /* 기본 마진, 패딩 없애기 */
 
-            
+            html, body {
+                margin : 0;
+                padding : 0;
+                /* 실제는 body에만 마진 8px이 있지만 사용자가 별도로 적용한 마진 등 초기화할 때
+                   한꺼번에 최상위 요소인 html, body를 마진, 패딩 초기화값 0으로 세팅 */
+            }
+
+            /* 박스 공통 클래스 */
+            .bx {
+                background-color: skyblue;
+                /* 1.가로 크기 w 
+                   아무 값도 안쓰면 auto -> 블록은 부모요소 끝까지 차지
+                */
+                width : 750px;
+                /* 2.세로 크기 h 
+                   아무 값도 안쓰면 auto -> 블록은 내용만큼 늘어남 
+                */
+                /* height: 150px; */
+                /* 3.경계선(보더) bd 
+                   border : 두께 종류 색상 
+                   - border-width : 두께
+                   - border-style : 종류
+                   - border-color : 색상
+                   - border-radius brod: 둥근 모서리 보더
+                     -> 값을 50% 주면 원이 생김
+                */
+                border: 5px outset #65c3e9;
+                border-radius: 15px;
+
+
+                /* 4.안쪽여백(패딩) p 
+                   padding : 1개(4방향-상하좌우)
+                   padding : 1개 2개 (상하 좌우)
+                   padiing : 1개 2개 3개 (상 좌우 아래)
+                   padding : 1개 2개 3개 4개 (상 우 하 좌)
+                   -> margin도 동일함
+                */
+                padding : 20px;
+                /* 5.바깥여백(마진) m */
+                /* margin : 30px; */
+                /* 마영오?
+                   - 일반적인 블록요소가 가로크기를 가질 때 이를 중앙정렬하려면
+                     양쪽 마진을 auto로 설정, 이 때 상하 0 좌우 auto -> 줄여서 마영오
+                */
+                margin: 0 auto;
+                /* 마진탑 덮어쓰기 mt */
+                margin-top: 30px;
+
+
+
+            }
+
+
         </style>
     </head>
     <body>
         <!-- 1. 상단 영역 -->
-        <header class="top">
+        <header class="top bx">
             <!-- 1-1. 제목 -->
             <h1>네이버 요약 뉴스</h1>
             <!-- 1-2. GNB메뉴 -->
@@ -73,12 +126,12 @@
 
         </header>
         <!-- 2. 메인 영역 -->
-        <main class="cont">
+        <main class="cont bx">
             <!-- 메인 이미지 -->
             <img src="images/news.jpg" alt="뉴스 메인이미지">
         </main>
         <!-- 3. 하단 영역 -->
-        <footer class="info">
+        <footer class="info bx">
             <!-- 주소블록요소 -->
             <address>
                 서울시 강남구 역삼동 119 대호B 8F <br>
