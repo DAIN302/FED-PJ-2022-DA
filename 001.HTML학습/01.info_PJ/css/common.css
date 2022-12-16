@@ -3,9 +3,11 @@
 /* 외부 CSS 상단엔 @charset 필수 */
 /* info PJ 공통 CSS - common.css */
 
-
 /* 웹폰트 CDN */
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap');
+
+@import "sub.css";
+
 /* 
     [ 스타일 시트 문법 영역
     기본문법 ]
@@ -177,15 +179,20 @@ body {
 }
 
 /* 2. 메인 영역 */
-/* 메인 영역 이미지 */
+/* 메인 영역 이미지 
+    -> 메인의 .cont 직계자식 img 만 적용되게함
+*/
 
-.cont img {
+.cont > img {
     width: 100%;
     /* 한 쪽만 크기를 주면 이미지는 자동으로 비율 유지를 하면서 변경됨
         100%는 부모 박스를 채움
     */  
-    border-radius: 15px;
 } 
+
+#news_mainimg {
+    border-radius: 15px;
+}
 
 /* 3. 하단 영역 */
 
