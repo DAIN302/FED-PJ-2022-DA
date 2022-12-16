@@ -6,12 +6,10 @@
         <!-- meta : charset 필수 인코딩 설정-->
         <meta charset="UTF-8">
         <!--title : 탭에 표시-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
         <title>네이버 요약 뉴스</title>
         <!-- 인터널 스타일시트 -->
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap');
             /* 
              [ 스타일 시트 문법 영역
               기본문법 ]
@@ -113,12 +111,12 @@
             }
 
             /* 타이틀  */
-
+            
             .top > h1 {
                 /* 1.글자 스타일 : font-style (fs)
                     italic : 이탤릭체
                     normal : 이탤릭해제(기본값) */
-                font-style: italic;
+                /*font-style: italic;/*
                 /* 2.글자 두께 : font-weight (fw) 
                     normal : 두께 없음
                     bold : 두껍게  */
@@ -134,7 +132,19 @@
                 /* 5. 글자체 : font-family (ff) 
                        - 콤마로 여러 개를 쓰면 대체채를 설정*/
                 font-family: 'Jua', sans-serif;
+                /* 6.글자색 : color (c) 
+                     color : 해시코드(#ffffff)/RGB/HSL/웹색상명 */
+                color : rgb(0, 84, 117);
+            }
 
+            #gnb > a {
+                font-family: 'Jua', sans-serif;
+                /* a 요소는 기본적으로 설정된 밑줄과 글자색이 있다.
+                   반드시 a에서 변경해야 적용됨(부모에서는 안된다) */
+                color :rgb(0, 9, 12);
+                /*밑줄 없앰 - text decoration*/
+                text-decoration: none; /* tdn */
+                
             }
 
             /* 2. 메인 영역 */
@@ -154,6 +164,14 @@
                 background-color :rgba(204, 221, 224, 0.5);
                 /* 글자중앙정령 */
                 text-align: center;
+
+            }
+
+            .info > address {
+                font-family: 'Nanum Pen Script', cursive;
+                font-size: 23px;
+                
+                color : gray
             }
 
 
