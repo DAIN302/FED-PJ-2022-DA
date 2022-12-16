@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+/* 외부 CSS 상단엔 @charset 필수 */
+/* info PJ 공통 CSS - common.css */
+
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap');
+/* 
+    [ 스타일 시트 문법 영역
+    기본문법 ]
+
+    선택자 {
+    속성 : 값;
+    }
+
+    [ CSS 박스 모델 ]
+    - 모든 요소는 박스형태로 디자인을 설정
+    - 5가지 속성 세팅
+    1. width : 가로크기 
+    2. height : 세로크기
+    3. padding : 안쪽여백
+    4. border : 경계선
+    5. margin : 바깥여백
+    -> 박스 모델의 적용은 블록요소를 기본으로 한다.
+        (div 태그는 적용되지만 span 태그에는 적용 X)
+
+    [ CSS 선택자 (Seclector) ]
+    1. 타입선택자 : 요소명으로 선택
+    ex. h1{}, div{}, a{}
+    2. ID선택자 : #id명으로 선택
+    ex. #id1{}, #id2{} 
+    3. class선택자 : .class명으로 선택
+    ex. .class1{}, .class2{}
+    4. 종속선택자 : 요소명#id명 / 요소명.class명
+    요소명#아이디명.클래스명
+    ex. div#id{} -> div 요소인데 아이디가 id다
+    ex. a.class{} -> a 요소인데 클래스가 class다
+    -> 기본적으로 종속선택자는 요소분석기에 사용
+    -> 특정요소에 특정이름을 밝혀야 할 경우
+    -> 클래스 적용 시 같은 이름으로 다른 디자인을 줄 때
+    ex. div.on{} header.on{} -> 같은 클래스인데 다른 디자인 적용 가능
+    5. 그룹선택자 : ,(콤마)
+    ex. hi,div,a {}
+    6. 자손선택자 : 띄어쓰기 
+    ex. div a {} -> div 하위의 모든 a 요소들
+    7. 직계자식 선택자 : > (왼쪽 꺽쇠 사용)
+    ex. header > a {}
+    8. 형제 선택자 : +
+    ex. div+div{} -> 앞에 형제 div 가 있는 div 선택
+    ex. a+a{} -> 앞에 a 가 있는 a 선택
+        -> 첫번째를 제외한 나머지 형제요소들을 선택할 때 사용
+
+
+*/
+/* 기본 마진, 패딩 없애기 */
+
+html, body {
+    margin : 0;
+    padding : 0;
+    /* 실제는 body에만 마진 8px이 있지만 사용자가 별도로 적용한 마진 등 초기화할 때
+        한꺼번에 최상위 요소인 html, body를 마진, 패딩 초기화값 0으로 세팅 */
+}
+
+body {
+    /* 하단패딩 pb */
+    padding-bottom: 30px;
+}
+
+/* 박스 공통 클래스 */
+.bx {
+    /* 1.가로 크기 w 
+        아무 값도 안쓰면 auto -> 블록은 부모요소 끝까지 차지
+    */
+    width : 750px;
+    /* 2.세로 크기 h 
+        아무 값도 안쓰면 auto -> 블록은 내용만큼 늘어남 
+    */
+    /* height: 150px; */
+    /* 3.경계선(보더) bd 
+        border : 두께 종류 색상 
+        - border-width : 두께
+        - border-style : 종류
+        - border-color : 색상
+        - border-radius brod: 둥근 모서리 보더
+            -> 값을 50% 주면 원이 생김
+    */
+    border: 3px double #65c3e9;
+    border-radius: 15px;
+
+
+    /* 4.안쪽여백(패딩) p 
+        padding : 1개(4방향-상하좌우)
+        padding : 1개 2개 (상하 좌우)
+        padiing : 1개 2개 3개 (상 좌우 아래)
+        padding : 1개 2개 3개 4개 (상 우 하 좌)
+        -> margin도 동일함
+    */
+    padding : 20px;
+    /* 5.바깥여백(마진) m */
+    /* margin : 30px; */
+    /* 마영오?
+        - 일반적인 블록요소가 가로크기를 가질 때 이를 중앙정렬하려면
+            양쪽 마진을 auto로 설정, 이 때 상하 0 좌우 auto -> 줄여서 마영오
+    */
+    margin: 0 auto;
+    /* 마진탑 덮어쓰기 mt */
+    margin-top: 30px;
+}
+
+/* 1. 상단 영역 */
+
+.top {
+    /* 배경색 : bgc (background-color) */
+    background-color: rgba(168, 213, 231, 0.6);
+    /* 글자중앙정렬 tac (text-align center) */
+    text-align: center;
+}
+
+/* 타이틀  */
+
+.top > h1 {
+    /* 1.글자 스타일 : font-style (fs)
+        italic : 이탤릭체
+        normal : 이탤릭해제(기본값) */
+    /*font-style: italic;/*
+    /* 2.글자 두께 : font-weight (fw) 
+        normal : 두께 없음
+        bold : 두껍게  */
+    font-weight: normal;  
+    /* 3.글자 크기 : font-size (fz) 
+            글자 단위 : pt, px, em, rem, vw, vh */
+    font-size: 40px;
+    /* 4. 글자 줄 간격 : line-height (lh)
+            (글이 여러 줄일때 사이 간격용 또는 
+            글자 박스에서 세로 중앙 정렬 시 사용)
+            - 단위 없으면 배수로 적용됨(2쓰면 자기 글자 크기의 2배 ) */
+    /* line-height: 1.7; */
+    /* 5. 글자체 : font-family (ff) 
+            - 콤마로 여러 개를 쓰면 대체채를 설정*/
+    font-family: 'Jua', sans-serif;
+    /* 6.글자색 : color (c) 
+            color : 해시코드(#ffffff)/RGB/HSL/웹색상명 */
+    color : rgb(0, 84, 117);
+}
+
+/* GNB 메뉴 */
+
+#gnb a {
+    /* 글자 크기 fz */
+    font-size: 20px;
+    /* 글자체 */
+    font-family: 'Jua', sans-serif;
+    /* a 요소는 기본적으로 설정된 밑줄과 글자색이 있다.
+        반드시 a에서 변경해야 적용됨(부모에서는 안된다) */
+    color :rgb(0, 52, 70);
+    /*밑줄 없앰 - text decoration*/
+    text-decoration: none; /* tdn */
+}
+
+/* a 요소 오버시 */
+/* :hover 가상 클래스
+    -> 마우스 오버된 상태에 대한 디자인 세팅 */
+
+#gnb a+a:hover {
+    background-color: lightgreen;
+    color : green;
+    /* 글자 데코레이션 : text-decoration
+        underline(밑줄)/overline(윗줄)/line-through(중간줄)/none(없음) */
+    text-decoration: overline;
+}
+/* 로고 이미지 */
+#gnb img {
+    /* 인라인 요소 간 세로정렬(진행방향) : vertical-align(va)
+        - 값 : top, botton, middle, 수치(5, -3 etc.) */
+    vertical-align: -3px;
+}
+
+/* 2. 메인 영역 */
+/* 메인 영역 이미지 */
+
+.cont img {
+    width: 100%;
+    /* 한 쪽만 크기를 주면 이미지는 자동으로 비율 유지를 하면서 변경됨
+        100%는 부모 박스를 채움
+    */  
+    border-radius: 15px;
+} 
+
+/* 3. 하단 영역 */
+
+.info {
+    /* 배경색 */
+    background-color :rgba(204, 221, 224, 0.5);
+    /* 글자중앙정령 */
+    text-align: center;
+}
+
+/* 하단 주소 */
+
+.info address {
+    /* address는 이탤릭설정이 기본이므로 해제 필요 */
+    font-style: normal;
+    /* 글자체 */
+    font-family: 'Nanum Pen Script', cursive;
+    /* 글자 크기 */
+    font-size: 23px;
+    /* 글자색 */
+    color : gray
+}
+
