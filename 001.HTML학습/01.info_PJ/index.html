@@ -137,13 +137,17 @@
                 color : rgb(0, 84, 117);
             }
 
+            /* GNB 메뉴 */
+
             #gnb > a {
+                /* 글자체 */
                 font-family: 'Jua', sans-serif;
                 /* a 요소는 기본적으로 설정된 밑줄과 글자색이 있다.
                    반드시 a에서 변경해야 적용됨(부모에서는 안된다) */
-                color :rgb(0, 9, 12);
+                color :rgb(0, 52, 70);
                 /*밑줄 없앰 - text decoration*/
                 text-decoration: none; /* tdn */
+                
                 
             }
 
@@ -155,6 +159,7 @@
                 /* 한 쪽만 크기를 주면 이미지는 자동으로 비율 유지를 하면서 변경됨
                    100%는 부모 박스를 채움
                 */  
+                border-radius: 15px;
             } 
             
             /* 3. 하단 영역 */
@@ -167,10 +172,16 @@
 
             }
 
+            /* 하단 주소 */
+
             .info > address {
+                /* address는 이탤릭설정이 기본이므로 해제 필요 */
+                font-style: normal;
+                /* 글자체 */
                 font-family: 'Nanum Pen Script', cursive;
+                /* 글자 크기 */
                 font-size: 23px;
-                
+                /* 글자색 */
                 color : gray
             }
 
