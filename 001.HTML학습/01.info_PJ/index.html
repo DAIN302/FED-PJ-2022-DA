@@ -9,6 +9,7 @@
         <title>네이버 요약 뉴스</title>
         <!-- 인터널 스타일시트 -->
         <style>
+            /* 웹폰트 CDN */
             @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap');
             /* 
              [ 스타일 시트 문법 영역
@@ -50,6 +51,12 @@
               ex. div a {} -> div 하위의 모든 a 요소들
               7. 직계자식 선택자 : > (왼쪽 꺽쇠 사용)
               ex. header > a {}
+              8. 형제 선택자 : +
+              ex. div+div{} -> 앞에 형제 div 가 있는 div 선택
+              ex. a+a{} -> 앞에 a 가 있는 a 선택
+                  -> 첫번째를 제외한 나머지 형제요소들을 선택할 때 사용
+
+
             */
             /* 기본 마진, 패딩 없애기 */
 
@@ -128,7 +135,7 @@
                       (글이 여러 줄일때 사이 간격용 또는 
                        글자 박스에서 세로 중앙 정렬 시 사용)
                       - 단위 없으면 배수로 적용됨(2쓰면 자기 글자 크기의 2배 ) */
-                line-height: 1.7;
+                /* line-height: 1.7; */
                 /* 5. 글자체 : font-family (ff) 
                        - 콤마로 여러 개를 쓰면 대체채를 설정*/
                 font-family: 'Jua', sans-serif;
@@ -139,7 +146,9 @@
 
             /* GNB 메뉴 */
 
-            #gnb > a {
+            #gnb a {
+                /* 글자 크기 */
+                font-size: 20px;
                 /* 글자체 */
                 font-family: 'Jua', sans-serif;
                 /* a 요소는 기본적으로 설정된 밑줄과 글자색이 있다.
@@ -147,8 +156,19 @@
                 color :rgb(0, 52, 70);
                 /*밑줄 없앰 - text decoration*/
                 text-decoration: none; /* tdn */
-                
-                
+            }
+
+            /* a 요소 오버시 */
+            /* :hover 가상 클래스
+                -> 마우스 오버된 상태에 대한 디자인 세팅 */
+            
+            #gnb a+a:hover {
+                background-color: lightgreen;
+                color : green;
+                /* 글자 데코레이션 : text-decoration
+                   underline(밑줄)/overline(윗줄)/line-through(중간줄)/none(없음) */
+                text-decoration: overline;
+
             }
 
             /* 2. 메인 영역 */
@@ -174,7 +194,7 @@
 
             /* 하단 주소 */
 
-            .info > address {
+            .info address {
                 /* address는 이탤릭설정이 기본이므로 해제 필요 */
                 font-style: normal;
                 /* 글자체 */
@@ -199,8 +219,7 @@
             <nav id="gnb">
                 <a href="#">
                     <img src="images/logo.png" alt="네이버로고" 
-                     style="width: 20px;"/>
-                </a>
+                     style="width: 20px;"/></a>
                 <a href="">정치</a> |
                 <a href="">경제</a> |
                 <a href="">사회</a> |

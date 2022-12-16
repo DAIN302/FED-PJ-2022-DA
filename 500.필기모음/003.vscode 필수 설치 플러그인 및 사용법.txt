@@ -24,6 +24,11 @@
 
 -> vscode에서는 emmet 단축코딩툴 기본설치
     minimap이 기본설치(소스코드지도)
+8) Material Icon Theme : 폴더 아이콘 세팅
+9) book mark : 소스 코드 위치 북마크
+ -> 라인설정 토글 : ctrl+alt+K
+ -> 이전북마크 : ctrl+alt+J
+ -> 다음북마크 : ctrl+alt+L
 
 (참고) 브라우저에서 vscode를 사용할 수 있도록
 온라인 브라우저 버전을 제공하고 있음!
