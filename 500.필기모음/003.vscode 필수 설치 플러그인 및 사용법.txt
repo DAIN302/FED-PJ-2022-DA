@@ -13,10 +13,11 @@
    : 이미지 미리보기 기능 지원
  3) Live Server
    : 브라우저 실시간 미리보기
- 4) Beautify : 자동줄맞춤
+ 4) prettier : 자동줄맞춤
   -> 단축키 지정하기
-  -> 자동줄맞춤 추가 플러그인 : prettier
     (단축키설정: ctrl+alt+p)
+    prettier print width 수치 변경하면 과도 줄바꿈 해결됨
+    prettier tab width 기본값 2에서 4로 변경
  5) CSS PEEK : CSS 미리보기/연결하기
  6) HTML to CSS autocompletion
  : html의 아이디, 클래스명을 읽어서 제시해줌
