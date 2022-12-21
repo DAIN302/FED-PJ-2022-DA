@@ -77,6 +77,14 @@ body {
     padding-bottom: 30px;
 }
 
+/* 전체 a 요소 공통 스타일 셋팅 */
+a {
+    /* 글자색 */
+    color : #222;
+    /* 밑줄 제거 */
+    text-decoration: none;
+}
+
 /* 박스 공통 클래스 */
 .bx {
     /* 1.가로 크기 w 
