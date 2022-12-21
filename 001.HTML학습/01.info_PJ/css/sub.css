@@ -38,14 +38,44 @@
     font-weight: normal;
     /* 글자간격(자간) letter-spacing : ls
        기본값 0, 양수는 멀어짐 음수는 가까워짐 */
-    /* letter-spacing : 0px; */
+    letter-spacing : 1px;
     /* 단어간격 word-spacing : ws
        기본값 0, 양수는 멀어짐 음수는 가까워짐 */
-
-
+    /* 줄바꿈 방지 : white-space 
+       값 -> nowrap 줄바꿈 되지 않고 끝까지 간다. 
+             normal(기본값) 박스 끝에서 줄바꿈
+      [ 쓰이는 용도 ]
+        줄바꿈이 되면 안될 때 사용함
+        ex. 한줄에 오는 버튼 글자, 한 줄에 말줄임표      
+    */
+       
 }
 
 /* 2-3. 기사 사진(설명 포함)   */
+.afig {
+    /* 마진 m : 2개값 -> 상하 좌우 */
+    margin: 15px 0;
+    /* 인라인 가롲ㅇ앙 : text-align center(tac)  */
+    text-align: center;
+}
+
+/* 기사이미지 */
+.afig img {
+    width: 100%;
+}
+
+/* 기사이미지 설명 */
+.afig small {
+    /* 글자체 */
+    font-family: 'Jua', sans-serif;
+    /* 글자 크기 최저 한계는 10px */
+    font-size: 10px;
+    /* 글자색 */
+    color: gray;
+}
+
+
+
 /* 2-4. 기사 내용 */
 /* 2-5. 기자 정보 */
 /* 2-6. 기사 원문 */
