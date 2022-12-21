@@ -145,8 +145,15 @@
 /* 별도의 이름 없이 구조로만 기사원문 선택 (직계 자식 선택자) > */
 
 .cont > h5 {
+    /* 내부의 인라인 요소 오른쪽 정렬 */
+    text-align: right;
+}
+
+.cont > h5 > a {
+    /* 디자인 적용 위해 display 변경 */
+    display: inline-block;
     /* 기본없애기 */
-    margin: 0;
+    margin: 20px 0;
     padding: 0;
     /* 가로, 세로 지정 */
     width: 70px;
@@ -166,7 +173,7 @@
 
 /* 가상 선택자로 오버시 박스 그림자 넣기 */
 
-.cont > h5:hover {
+.cont > h5 > a:hover {
     /* 박스 그림자 : box-shadow (bsh) 
        값 : x y blur spread 색
        (내부그림자 : inset)
