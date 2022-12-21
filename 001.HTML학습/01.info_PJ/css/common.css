@@ -5,8 +5,16 @@
 
 /* 웹폰트 CDN */
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css');
 
-@import "sub.css";
+/* 
+   1. 큰 제목
+      jua체
+   2. content 
+      나눔스퀘어
+   3. footer 
+      나눔손글씨      
+*/
 
 /* 
     [ 스타일 시트 문법 영역
