@@ -5,6 +5,96 @@
     <meta charset="UTF-8">
     <title>001.배경연습</title>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* 
+              기본 높이 값을 주지 않으면 height 가 auto 이므로 내용만큼 늘어남
+              보이는 화면을 기준하여 높이값을 세팅할 때 많이 사용
+              최상위 html 요소가 보이는 화면(window)을 기준하여 높이를 채우고
+              그것을 기준하여 body가 100%로 높이를 채움
+            */
+        }
+
+        h1 {
+            margin: 0;
+            /* 
+              블록 요소안에 첫번째 블록 자식요소의 
+              margin-top & margin-bottom 은 부모 요소 바깥으로 나가서 표현됨
+              body > div.wrap > h1 자식의 자식인데도 
+              margin-top 이 바깥으로 나가서 body 가 위로부터 밀려나 있어서
+              스크롤바가 생김
+              따라서 내부 여백은 일반적으로 부묘 요소의 padding 으로 주도록 하기
+              (>>>유아차 아이가 유아차 바깥으로 손을 내밀면 부모도 같이 밀림)
+            */
+            padding: 50px;
+            /* padding으로 여백을 주면 부모 요소가 바깥으로 안밀려나네? -> 스크롤이 안생김 */
+            text-align: center;
+        }
+
+        /* body 요소 안에 배경 넣기 */
+        body {
+            /* html 에 배경을 넣지 않기 -> 전체 배경은 body 에 넣어주기 */
+
+            /* 1. 배경색 bgc */
+            background-color: pink;
+            /* 2. 배경이미지 bgi -> 기본값 : repeat(반복)*/
+            background-image: url(./imgs/bg_logo_a_01.png);
+            /* 3. 배경 반복 여부 bgr
+               repeat : 반복(기본값)
+               repeat-x : 가로방향(x축)으로 반복
+               repeat-y : 세로방향(y축)으로 반복
+               no-repeat : 반복하지 않음 */
+            background-repeat: no-repeat;
+             /* 4. 배경 고정 bga(background-attachment) 
+                   fixed : 고정(스크롤을 움직여도 자리 고정)
+                           - 기준은 보이는 화면에 고정 */
+             background-attachment: fixed;
+             /* 5. 배경 위치 bgp(background-position) 
+                   background-position: 300px 100px; (가로 세로) 
+                   한 번에 가는 기준값
+                   1. 가로방향 : left, center, right
+                   2. 세로방향 : top, center, bottom 
+                   수치 : px, %, em 등 여러 단위 사용 가능
+            */
+             /* 정중앙은 center center 이지만 세로는 기본값이 center 이므로 
+                한 번만 써도 중앙으로 옴 
+                background-position: center; */
+            /* 가로 세로 각각 따로 사용 가능
+                background-position-x: ; 
+                background-position-y: ; */
+            background-position: right bottom;    
+            /* 6. 배경이미지 크기 : bgz (가로 세로)
+                  하나만 쓰면 가로 값만 주고 세로는 자동으로 비율로 맞춰짐(auto)
+                  세로값만 주고 가로값 비율유지는 : auto 200px; */
+            background-size: 200px 350px;
+            /* 특이한 크기 세팅 -> cover 
+               background-size : cover; */
+            /* [ 배경 한 번에 세팅하기 ]
+               background: 색 이미지 반복 고정위치/크기;(색이반고윙/크)
+               background: pink url(./imgs/bg_mainvisual.jpg) no-repeat fixed center/cover; */         
+        }
+
+        /* body 아래 .wrap 박스 */
+        .wrap {
+            height: 100%;
+            /* body 크기에 맞춤 */
+            /* background :색이반고윙/크 로 다중이미지를 세팅 
+               중간에 ,(콤마)로 구분하여 여러 이미지 세팅 */
+            background: 
+            url(./imgs/dc1.png) no-repeat center/400px,
+            url(./imgs/dc2.png) no-repeat right top/auto 150px,
+            url(./imgs/dc3.png) no-repeat left bottom/300px,
+            url(./imgs/dc4.png) no-repeat right/250px,
+            url(./imgs/bg_mainvisual.jpg) no-repeat 0/50%
+            ;   
+        }
+        /* 배경 위치는 먼저 쓴 것이 위에 온다 */
+        /* 배경 위치값 0을 쓰면 left center 로 온다 */
+
+
+
         
     </style>
 </head>
