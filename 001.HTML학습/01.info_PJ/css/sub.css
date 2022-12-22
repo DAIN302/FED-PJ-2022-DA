@@ -178,7 +178,7 @@
     /* 패딩 */
     padding: 5px;
     /* 마진 */
-    margin : 5px 0;
+    margin : 5px 20px;
 }
 /* 2-6. 기사 원문 */
 /* 별도의 이름 없이 구조로만 기사원문 선택 (직계 자식 선택자) > */
@@ -265,6 +265,10 @@
        3. content box -> 내용 영역만 적용
     */
     background-clip: content-box;
+}
+
+.work h3::before {
+    content: '🎨';
 }
 
 /* 작품명 */
@@ -433,8 +437,22 @@
     margin-left: 90px;
 }
 
+/* 사진뉴스 타이틀 */
 
+.pnews h3 {
+    text-align: center;
+}
+
+/* 사진뉴스 타이틀 가상 요소 아이콘 넣기 */
+/* 맨 앞 가상요소 ::before -> 태그를 넣지 않고 요소를 넣는 방법 */
+.pnews h3::before {
+    /* content : '' -> html의 span 요소와 같은 역할 */
+    content: '📸';
+    
+}
 /* 사진뉴스 테이블박스 */
+
+
 .pnews table {
     /* 가로 중앙이동 : 마영오 -> 블록요소 또는 table 요소에 적용됨 */
     margin: 0 auto;
