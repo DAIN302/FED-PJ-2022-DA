@@ -60,10 +60,18 @@ https://youtu.be/EKFM5yeXdck
 [1차 주제 정하기]
 
 https://www.banyantreehaeundaebusan.com/
+전체적인 형태 구현
 https://oakvalley.co.kr/
+액티비티 부분
+마우스 올리면 설명 나오는거 구현
 https://hotelillua.com/
+상단 메뉴 및 reservation
+
 컨셉은 3개 적절히 맘에 드는 부분 섞어서 만들고 싶다,.
-https://corp.joycity.com/ko/main -> 게임 바뀌는 횡스크롤? 부분 참고 예정
+
+https://www.cookierun-kingdom.com/ko/
+캐릭터 소개 부분 구현
+
 
 
 

@@ -361,3 +361,63 @@
      ex. #my(id) < .cont > .my(부모요소 업고 있음)
 
 */
+
+/* 분야별 뉴스 */
+/* 각 분야명 dt 공통 디자인 */
+.secnews dt {
+    /* 글자체 */
+    font-family: 'Jua', sans-serif;
+    /* 글자 크기 만큼 디자인 적용 위해  dib */
+    display: inline-block;
+    /* border bd*/
+    border: 3px dashed rgb(2, 182, 182);
+    /* padding */
+    padding: 10px;
+    /* 원 50% bodder-radius */
+    border-radius: 50%;
+    /* 박스 그림자 bsh
+        (inset) x y blur spread color */
+    box-shadow: 0px 0px 5px 2px rgba(0, 139, 139, 0.6);
+    /* 글자 크기 */
+    font-size: 18px;
+    /* 왼쪽 마진으로 이동 */
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+/* 앞에 dd가 있는 dt 만 마진탑 밀기  */
+.secnews dd+dt {
+    /* 마진탑 밀기 */
+    margin-top: 20px;
+}
+
+
+/* 
+   [여러 종류의 요소가 섞여 있는 경우 형제 선택하기 ]
+    요소 : first-of-type -> 같은 요소 중 첫번째
+    요소 : nth-of-type -> 같은 요소 중 n번째
+    요소 : last-of-type -> 같은 요소 중 마지막
+
+*/
+/* dt 별 글자색 다르게 하기 */
+/* dt는 형제 중 dd가 섞여 있으므로 -of-type 사용 */
+.secnews dl dt:first-of-type {
+    color : orange;
+}
+
+.secnews dl dt:nth-of-type(2) {
+    color : lightcoral;
+}
+
+.secnews dl dt:last-of-type {
+    color : lightgreen;
+}
+
+
+/* dd 공통 */
+
+.secnews dd {
+    /* 왼쪽 마진 */
+    margin-left: 90px;
+}
+
