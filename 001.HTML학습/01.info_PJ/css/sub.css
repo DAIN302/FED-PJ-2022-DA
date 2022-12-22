@@ -266,3 +266,17 @@
     */
     background-clip: content-box;
 }
+
+/* 작품명 */
+.work figcaption {
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 20px;
+}
+
+.work figcaption cite {
+    font-style: normal;
+}
+
+.work figcaption sub {
+    color : rgb(184, 184, 184)
+}
