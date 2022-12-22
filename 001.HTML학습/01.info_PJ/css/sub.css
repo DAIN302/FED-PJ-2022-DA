@@ -372,7 +372,7 @@
     /* border bd*/
     border: 3px dashed rgb(2, 182, 182);
     /* padding */
-    padding: 10px;
+    padding: 12px;
     /* 원 50% bodder-radius */
     border-radius: 50%;
     /* 박스 그림자 bsh
@@ -410,7 +410,7 @@
 }
 
 .secnews dl dt:last-of-type {
-    color : lightgreen;
+    color : rgb(105, 180, 105);
 }
 
 
