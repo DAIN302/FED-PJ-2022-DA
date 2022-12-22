@@ -526,3 +526,17 @@
     /* 줄간격 */
     line-height: 1.5;
 }
+
+/* 말줄임표 세팅 */
+ul a, ol a, dl a{
+    /* 1. 디자인 적용위해 block로 변경 */
+    display: block;
+    /* 2. 가로 크기 한계주기 */
+    width: 360px;
+    /* 3. 줄바꿈 방지(한줄로 표현) */
+    white-space: nowrap;
+    /* 4. 가로 크기가 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+    /* 5. 넘치는 text 말줄임표 표시 */
+    text-overflow: ellipsis;
+}
