@@ -215,7 +215,11 @@
              </article>
              <!-- 
                 [ 테이블 요소 : table ]
-                  table > tr > td
+                  table > tbody > tr > td
+
+                  -> tbody 는 기입하지 않아도 브라우저가 입력해줌
+                  -> table > tr 형태로 직계자식으로 선택할 경우
+                     적용되지 않는 이유(주의사항)
                   ___________________________
                   table : 테이블 박스 부모 요소
                   tr : 테이블 행요소 (table row)
@@ -224,7 +228,7 @@
               <!-- 사진 뉴스 : table -->
               <article class="pnews">
                 <h3>사진뉴스</h3>
-                <table border="1">
+                <table>
                     <tr>
                         <td>1</td>
                         <td>

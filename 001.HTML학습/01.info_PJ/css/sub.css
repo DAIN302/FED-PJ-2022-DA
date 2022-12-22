@@ -291,7 +291,7 @@
 /* 파트별 a링크 요소 공통 디자인 */
 .cont article a {
     /* 글자 크기 */
-    font-size: 16px;
+    font-size: 15px;
     /* 줄간격 */
     line-height: 2.5;
     /* 자간 */
@@ -351,6 +351,18 @@
 .cont article ol li {
     /* padding-left : 블릿 뒤쪽이 적용됨 */
     padding-left: 10px;
+}
+
+.cont article ol li:first-child a {
+    color : rgb(245, 193, 98)
+}
+
+.cont article ol li:nth-child(2) a {
+    color : orange
+}
+
+.cont article ol li:last-child a {
+    color : rgb(255, 115, 63)
 }
 
 
@@ -421,3 +433,78 @@
     margin-left: 90px;
 }
 
+
+/* 사진뉴스 테이블박스 */
+.pnews table {
+    /* 가로 중앙이동 : 마영오 -> 블록요소 또는 table 요소에 적용됨 */
+    margin: 0 auto;
+    border: 2px solid lightskyblue;
+    /* 테이블 기본 사이간격 없애기 border-collapse : collapse 
+       seperate 가 기본값 */
+    border-collapse: collapse;
+}
+
+/* 
+   tr이나 td에 child 선택자 사용가능
+   -> 같은 종류의 요소만 올 수 있으므로
+      (tr및 td는 형제 요소로 각 요소만 올 수 있다)
+*/
+
+
+/* 첫번째 td : 숫자 부분 */
+.pnews td:first-child {
+    /* 가로크기 */
+    width: 50px;
+    /* 세로크기 */
+    height: 70px;
+    /* 인라인 가로 중앙 */
+    text-align: center;
+    /* 배경색 */
+    background-color: rgb(187, 228, 253);
+}
+
+/* 두번째 td : 타이틀 */
+
+.pnews td:nth-child(2) {
+    /* 배경색 */
+    background-color: rgb(215, 240, 255);
+    /* 양쪽패딩 */
+    padding: 0 20px;
+    width: 300px;
+}
+
+/* 세번째 td : 사진뉴스 이미지 */
+.pnews td:last-child {
+    /* 배경색 */
+    background-color: rgb(235, 247, 255);
+    /* 양쪽패딩 */
+    padding: 0 20px;
+}
+
+.pnews img {
+    height: 90px;
+    width: 140px;
+    /* 이미지는 한쪽만 크기줘도 나머지 자동 비율 유지됨 */
+    object-fit: cover;
+    /* 세로 정렬 
+       vertical-align : td 에서만 세로정렬 적용
+       일반적으로는 인라인 요소 간 세로방향 정렬
+    */
+    vertical-align: middle;
+}
+
+/* 앞에 tr 아 았눈  tr만 하위 td에 디자인 */
+
+.pnews tr+tr td {
+    /* border-top bdt*/
+    border-top: 2px dotted lightskyblue;
+}
+
+/* 테이블 a 요소 */
+/* 기존 .cont article a 로 세팅된 것이 더 우선순위라서
+   여기서 윗 부모를 같은 레벨로 넣어서(.cont) 선택하면 하위에 클래스가
+    요소(타입)보다 더 우선순위가 높아서 우선 적용됨 */
+.cont .pnews a {
+    /* 줄간격 */
+    line-height: 1.5;
+}

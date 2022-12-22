@@ -60,12 +60,11 @@ https://youtu.be/EKFM5yeXdck
 [1차 주제 정하기]
 
 https://www.banyantreehaeundaebusan.com/
-전체적인 형태 구현
+전체적인 형태 구현 -> 스크롤 시 하단 페이지로 이동하며 배경 바뀌는 것
 https://oakvalley.co.kr/
-액티비티 부분
-마우스 올리면 설명 나오는거 구현
+액티비티 부분 마우스 오버시 설명 나오는거 구현
 https://hotelillua.com/
-상단 메뉴 및 reservation
+상단 메뉴 및 reservation 구현
 
 컨셉은 3개 적절히 맘에 드는 부분 섞어서 만들고 싶다,.
 
