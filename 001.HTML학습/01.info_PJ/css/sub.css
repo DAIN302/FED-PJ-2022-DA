@@ -527,7 +527,7 @@
     line-height: 1.5;
 }
 
-/* 말줄임표 세팅 */
+/************* 말줄임표 세팅 *************/
 ul a, ol a, dl a{
     /* 1. 디자인 적용위해 block로 변경 */
     display: block;
@@ -539,4 +539,15 @@ ul a, ol a, dl a{
     overflow: hidden;
     /* 5. 넘치는 text 말줄임표 표시 */
     text-overflow: ellipsis;
+}
+
+/* 테이블 요소 a 링크에 말줄임표 세팅 */
+
+tr td:nth-child(2) a {
+    display: block;
+    width : 310px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
