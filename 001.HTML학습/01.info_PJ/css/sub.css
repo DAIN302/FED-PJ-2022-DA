@@ -85,6 +85,9 @@
     /* 글자 들여쓰기 : text-indent (ti)
        값 양수는 들여쓰기 음수는 내어쓰기 */
     /* text-indent: 20px; */
+    /* 양쪽 정렬 : taj */
+    text-align: justify;
+
 }
 
 /* p 요소 아래 mark 요소 변경하기 */
@@ -123,8 +126,44 @@
 .qb, .desc {
     letter-spacing: 1px;
     line-height: 1.3;
-    font-size: 15px;
+    font-size: 14px;
+    text-align: justify;
 }
+
+/* .cont > h5 와 구분위해 중간경로 article 사용 */
+.cont article h5 {
+    font-size : 16px;
+    background-color: rgb(233, 233, 233);
+    /* 내용만큼 자동크기로 설정하기 위해 inline-block 활용 */
+    display: inline-block;
+    padding : 8px 20px;
+    /* border: 1px dotted #555; */
+    border-radius: 20px;
+    /* 내부 그림자 설정 inset */
+    box-shadow: inset 0 0 5px rgba(10, 10, 10, 0.3);
+    margin : 0;
+}
+
+/* 주해 박스 */
+
+.desc div {
+    /* margin-top : 15px; */
+    /* 패딩 */
+    padding: 15px 5px 0;   
+    
+}
+
+/* 인용 박스 */
+
+.qb blockquote {
+    /* 기본 마진 제거 */
+    margin : 0;
+    /* 패딩 */
+    padding: 15px 10px;
+}
+
+
+
 
 /* 2-5. 기자 정보 */
 .rpt {
@@ -180,4 +219,50 @@
        * spread 빅스그림자 크기(필요 시 사용)
     */
     box-shadow: 2px 0px 8px rgb(128, 209, 241);
+}
+
+/* 메인 공통 article 박스 디자인 */
+.cont article {
+    /* 구분선 : 보더 위(border-top) bdt*/
+    border-top: 1px dashed #ccc;
+    /* 마진 위(margin-top) mt */
+    margin-top: 40px;
+    /* 패딩(padding) p */
+    padding : 15px 
+}
+
+/* 각 파트별 공통 타이틀 */
+.cont h3 {
+    /* 글자체 : 웹폰트 */
+    font-family: 'Jua', sans-serif;
+    /* 글자 두께 : 얇게 fwn*/
+    font-weight: normal;
+    /* 글자 크기 fz */
+    font-size: 24px;
+    /* 글자 들여쓰기 ti */
+    text-indent: 10px;
+    /* 글자색 */
+    color: rgb(28, 66, 88);
+}
+
+/* 오늘의 작품 */
+.work {
+    /* 글자중앙 */
+    text-align: center;
+    /* background-color: lightblue; */
+    /* 그라데이션 -> 이미지로 bgi 
+       linear-gradient(방향, 색1 %, 색2 %, ...)
+       방향 : to top, to bottom, to left, to right
+       (방향에 각도(deg, ex. 45deg)를 쓰면 그라데이션 각도가 표현됨)
+       * 색상을 콤마로 나열하면 등분할 하여 그라데이션 표현됨
+       * 색상뒤에 %쓰면 특정 비율을 나타낼 수 있음.
+    */
+    background-image: linear-gradient(to bottom, lightblue 5%, white 95%);
+    /* 배경옵션 추가 
+       background-clip : 배경이 적용되는 범위 설정
+       1. border-box -> border 까지 적용(기본값)
+       2. padding box -> padding 까지 적용
+       3. content box -> 내용 영역만 적용
+    */
+    background-clip: content-box;
 }
