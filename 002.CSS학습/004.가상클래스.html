@@ -71,6 +71,132 @@
 
     */
 
+    /* 타이틀 중앙 정렬 : 그룹 선택자(,) */
+    h1, h2 {
+        text-align: center;
+    }
+    /* a 요소 가상클래스 주기 */
+
+    /* :link 링크 최초상태 */
+    h2 a:link {
+        /* 글자색 */
+        color: pink;
+        /* 밑줄없앰 */
+        text-decoration: none;
+        background-color: hotpink;
+    }
+    /* :hover 마우스 오버시 */
+    h2 a:hover {
+        /* 글자색 */
+        color: hotpink;
+        /* 글자 데코 - 윗줄 tdo */
+        text-decoration: overline;
+        /* 글자 데코 스타일 tdst */
+        text-decoration-style: wavy;
+        background-color: pink;
+    }
+
+    /* :visited 클릭 후(방문 후) 상태 */
+    /* h2 a:visited {
+        글자색
+        color: lavender;
+    } */
+
+    /* :active 왼쪽 클릭 버튼을 누른 상태 */
+    h2 a:active {
+        color: blueviolet;
+        text-shadow: 2px 2px 2px rgb(126, 18, 228)
+    }
+
+    /* 요즘은 a요소에 바로 스타일 적용 :hover 정도만 변경해줌
+       (:link 잘 안쓴다) */
+
+    h2 a {
+        color: rgb(245, 227, 227);
+        background-color: salmon;
+    }   
+
+    /* :focus 요소를 클릭/탭하여 초점이 올때 */
+    h2 a:focus {
+        /* 외곽선 : outline (ol) 
+           값 : 두께 종류 색상(border와 유사) 
+           -> border와 차이점 : 주변에 영향을 주지 않는다. 박스 기본 구성 속성이 아님 
+           -> 입력창 포커스갈때 outline 표시 등 */
+        outline: 10px dotted red;
+    }
+
+    h3 {
+        /* 가로 크기 */
+        width : 800px;
+        /* 부모 박스보다 작은 크기를 가지는 블록 요소에 적용된다. */
+        margin: 0 auto;
+        /* 내부 인라인 요소 오른쪽 정렬 */
+        text-align: right;
+    }
+
+    /* 
+       요소명.클래스명 / 요소명#아이디명
+       [ 종속 선택자를 쓰는 경우 ]
+       1. 개발자가  요소를 밝히고 싶을 때
+       2. 같은 클래스를 다르게 세팅할 때
+    
+    */
+
+    /* ul, ol 기본 세팅 초기화 */
+    ul, ol {
+        /* 3가지 없애기 3無 */
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul.part1 {
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        /* 둥근 모서리 */
+        border-radius: 20px;
+        /* border 와 padding 설정 크긱 내부로 포함시키는 속성 
+           -> box-sizing : border-box;(bxb) */
+        box-sizing: border-box;
+        /* 글자 중앙 */
+        text-align: center;
+    }
+
+    /* 
+       [ font 한 번에 세팅하기 ]
+         font : 스타일 두께 크기/줄간격 글자체(스두크/줄체) -> 색은 따로 지정해야함
+    */
+
+    /* 1번 li */
+    .part1 li:first-child {
+        /* 글자 크기 40px  
+           글자체 "궁서" 
+           글자색 "red" */
+        font : 40px "궁서";
+        color : red;   
+    }
+
+    /* 마우스 오버시 */
+    .part1 li:first-child:hover {
+        /* 글자 크기 50px  
+           글자색 "blueviolet" */
+        font-size : 50px;
+        color : blueviolet;   
+    }
+
+    /* 2번 li */
+    .part1 li:nth-child(2) {
+        /* 글자 크기 30px  
+           글자체 "굴림", bold 
+           글자색 "lightcoral" */
+        font : bold 30px "굴림";
+        color : lightcoral;   
+    }
+
+    
+
 
 
         /* 
