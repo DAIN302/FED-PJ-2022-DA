@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배경연습 - 배경 크기 세팅</title>
+    <style>
+        .tit {
+            text-align: center;
+        }
+
+        /* 부모 박스 */
+        .wrap {
+            padding: 20px;
+        }
+        /* 하위 div */
+        .wrap > div {
+            /* 공통배경셋팅 */
+            background-image: url(./imgs/bg_mainvisual.jpg);
+            /* 배경반복여부 */
+            background-repeat: no-repeat;
+            /* 배경위치중앙 */
+            background-position: center;
+            width: 50%;
+            height: 400px;
+            border: 3px dashed hotpink;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+        }
+        /* 요소 종류가 섞여 있는 div 순서대로 선택하기 
+           -> :nth-of-type(n) n은 순번(1부터)*/
+
+        /* 1. 가로 채움 : 세로 부분 auto 생략가능 -> 비율유지(공백이 생길 수 있음) */
+        .wrap >div:nth-of-type(1) {
+            background-size: 100%;
+        } 
+        /* 2. 세로 채움 -> 비율유지(공백이 생길 수 있음, 이미지 짤릴 수 있음) */
+        .wrap >div:nth-of-type(2) {
+            background-size: auto 100%;
+        }   
+        /* 3. 가로, 세로 채움 -> 이미지 변형됨(공백은 안생김, 비율이 깨짐) */
+        .wrap >div:nth-of-type(3) {
+            background-size: 100% 100%;
+        }   
+        /* 4. contain -> 배경이미지가 항상 모두 보임(공백이 생길 수 있음), 비율유지함 */
+        .wrap >div:nth-of-type(4) {
+            background-size: contain;
+        }   
+        /* 5. cover -> 배경이미지가 공백없이 박스를 채우며 비율을 유지함(많이 사용됨) */
+        .wrap >div:nth-of-type(5) {
+            background-size: cover;
+        }   
+
+
+    </style>
+</head>
+<body>
+    <h1 class="tit">배경연습 - background-size</h1>
+    <div class="wrap">
+        <h2 class="tit">background-size : 100% auto</h2>
+        <div></div>
+        <h2 class="tit">background-size : auto 100%</h2>
+        <div></div>
+        <h2 class="tit">background-size : 100% 100%</h2>
+        <div></div>
+        <h2 class="tit">background-size : contain</h2>
+        <div></div>
+        <h2 class="tit">background-size : cover</h2>
+        <div></div>
+    </div>
+</body>
+</html>
