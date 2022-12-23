@@ -132,6 +132,8 @@
         margin: 0 auto;
         /* 내부 인라인 요소 오른쪽 정렬 */
         text-align: right;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     /* 
@@ -150,9 +152,10 @@
         list-style: none;
     }
 
-    ul.part1 {
+    /* 부모 박스 세팅 */
+    ul.part1, div.part2 {
         width: 800px;
-        margin: 0 auto;
+        margin: 30px auto;
         padding: 20px;
         border: 1px solid #ccc;
         /* 둥근 모서리 */
@@ -169,7 +172,10 @@
          font : 스타일 두께 크기/줄간격 글자체(스두크/줄체) 
          -> 색은 따로 지정해야함
          -> 값을 지정하지 않으면 초기화가 됨
+         -> font 한 번에 쓰기 할때 글씨체 필수
     */
+
+    /* 첫번째 파트 */
 
     /* 모든 li 오버시 손가락 모양 */
     .part1 li:hover {
@@ -281,6 +287,35 @@
         이것의 우선순위를 쉽게 변경하려면 상위요소를 써주면 됨 
         (!important는 되도록 사용하지 말 것)
     */
+
+    /* 두번째 파트 
+        -> 여러 종류의 요소가 섞여 있으면 nth-of-type(n)을 사용 */
+
+    /* 두번째 div 
+       font - 30px 궁서
+       글자색 - blueviolet */
+    .part2 div:nth-of-type(2) {
+        font : 30px "궁서";
+        color : blueviolet
+    }   
+    
+    /* 첫번째 i
+    font - bold 20px
+    글자색 - palevioletred */
+    .part2 i:first-of-type {
+        
+        font-weight: bold;
+        font-size: 20px;
+        color : palevioletred
+    }   
+
+    /* 세번째 div 이후 div 형제 요소 모두
+       font - 궁서체
+       글자색 - red */
+    .part2 div:nth-of-type(3) ~ div {
+        font-family: "궁서";
+        color: red;
+    }  
     
     
     /* 
