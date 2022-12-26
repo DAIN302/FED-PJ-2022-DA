@@ -72,6 +72,10 @@ body {
 .ci figcaption {
     /* 글자중앙정렬(인라인 요소 모두 적용) */
     text-align: center;
+    /* 포지션 세팅 없이 박스를 일반적으로 이동하는 방법은 마진한 이용한 이동
+       %단위일 경우 margin-top 은 height, margin-left는 width값을 기준하여
+       상대적인 단위를 잡는다 */
+    margin-top: -21%;
 }
 
 /* 캐릭터 이름 이미지 */
