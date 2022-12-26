@@ -29,6 +29,8 @@ body {
 /************* 메인 영역 *************/
 /* 메인 영역 속박스 */
 .cont {
+    overflow: hidden;
+    /* 자식요소 위아래 마진 포함 */
 
 }
 
@@ -38,10 +40,12 @@ body {
     width: 90%;
     /* 중앙정렬 */
     margin : 0 auto;
+    /* 상단마진 -> 부모박스(cont)에 oh(overflow:hidden) 설정 */
+    margin-top: 470px;
 }
 
 /* 자식 요소의 float 해제 clear 설정 가상요소로 하기*/
-/* clear 설정안되면 부모 박스의 height가 0이 되어 페이지가 망가짐 */
+/* clear:both 설정이 없으면 부모 박스의 height가 0이 되어 페이지가 망가짐 */
 .cbx::after {
     content: '';
     display: block;
@@ -58,7 +62,7 @@ body {
 
 /* 캐릭터 이미지 */
 
-.cat img {
+.ci > img {
     /* 이미지 가로 크기 */
     width: 100%;
     /* 이미지 높이값은 자동(비율유지) */
