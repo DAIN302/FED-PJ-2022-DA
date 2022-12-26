@@ -68,17 +68,21 @@
             overflow 속성은 넘치는 컨텐츠를 어떻게 
             보이게 할 것인가를 지정하는 속성
           */
-          /* overflow:visible */
+          /* overflow:visible (ovv)*/
           .ov1{
+            overflow:visible;
               /* 
                 visible 은 기본값 - 박스보다 내용이 많으면
                 나간상태 그대로 보임!
               */
           }
-          /* overflow:hidden */
+          /* overflow:hidden (oh)*/
           .ov2{
+            overflow:hidden;
               /* 
                 hidden은 넘치는 자식요소 숨기기
+                -> 추가적으로 자식 요소의 위아램 마진이 부모박스 바깥에 나가는 것을
+                   막고 부모박스 안쪽에 마진이 적용되게 할 때도 사용
               */
           }
           /* overflow-y:scroll */
@@ -89,12 +93,14 @@
                 (유의: overflow: scroll 할경우 가로스크롤바
                 가 같이 생성되어 불편함!)
               */
+              overflow-y:scroll
           }
 
           /* overflow:auto */
           .ov4{
               /* 내용이 넘칠경우에 자동으로 스크롤바 트랙과
-              스크롤바가 생성됨! */              
+              스크롤바가 생성됨! */     
+              overflow:auto         
           }
 
     </style>
