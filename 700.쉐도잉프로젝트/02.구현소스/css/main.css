@@ -60,10 +60,38 @@ body {
     float: left;
 }
 
-/* 캐릭터 이미지 */
+/* 캐릭터 이미지 (.ci 직계 img 만 적용) */
 
 .ci > img {
     /* 이미지 가로 크기 */
     width: 100%;
     /* 이미지 높이값은 자동(비율유지) */
+}
+
+/* 캐릭터 이름 이미지 박스 */
+.ci figcaption {
+    /* 글자중앙정렬(인라인 요소 모두 적용) */
+    text-align: center;
+}
+
+/* 캐릭터 이름 이미지 */
+.ci figcaption img {
+    width : 40%;
+    /* 단위가 %면 무엇을 기준한 % 인지 질문해라 
+       -> 싸고 있는 부모박스가 기준 (figcaption 태그 가로 크기의 40%) */
+}
+
+/* 캐릭터 이름 이미지 중 첫번째 이미지 처음에 숨기기 */
+.ci figcaption img:first-child{
+    display: none;
+}
+
+/* .cat 박스에 마우스 오버시 진한 이름 이미지 보이기 */
+.cat:hover .ci figcaption img:first-child{
+    display: inline;
+}
+
+/* .cat 박스에 마우스 오버시 흐린 이름 이미지 숨기기 */
+.cat:hover .ci figcaption img:nth-child(2){
+    display: none;
 }
