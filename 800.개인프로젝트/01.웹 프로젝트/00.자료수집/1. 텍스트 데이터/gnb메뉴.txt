@@ -1,0 +1,35 @@
+ROOMS
+	Luxury
+	Magnifique
+	Luxury Lake
+	Club Luxury
+	Magnifique Family
+	Prestige Suite
+	Prestige Family Suite
+	Opera Suite
+	Presidential Suite
+_______________________
+DINING & BAR
+	Fait Maison
+	MIO
+	Jardin D’Hiver
+	L’Espace
+	Latitude32
+_______________________
+PROGRAMS
+	Candle Ritual
+	Sofitel Vélo
+	Sofitel Seoul Art Tour
+	French Bouquet Class
+_______________________
+FACILITIES
+	Club Millésime(라운지)
+	Business Corner
+	Kids Lounge
+	Pool
+	Fitness
+	Sofitel Spa By Beauté BR
+_______________________ 
+ABOUT
+	Notice
+	Contact(Location)
