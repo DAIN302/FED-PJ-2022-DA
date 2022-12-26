@@ -6,3 +6,19 @@
 @import url(reset.css);
 @import url(core.css);
 @import url(common.css);
+
+/* 공사중 표시 */
+body * {
+    outline : 1px dotted gray;
+}
+
+/* 컨텐츠 파트 최상위 부모 */
+body {
+    /* 한 번에 배경주기 + 여러개 주기 */
+    /* backgrounk : 색이반고윙/크 */
+    /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고 먼저 쓴 이미지가 위에 온다 */
+    background: 
+    url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
+    /* 외부 CSS에서 이미지 경로를 잡을 때 주의사항
+       -> CSS 파일 위치에서 이미지를 찾아가야함 */
+}
