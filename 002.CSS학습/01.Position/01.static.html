@@ -29,6 +29,7 @@
             /* 적용안됨 */
             margin-top: 10px;
             margin-left: 50px;
+            /* 마진을 이용해서 위치이동 */
             /* 
                  [1. static 포지션 ]
                  1. 설정하지 않아도 기본값(디폴트)
@@ -38,10 +39,27 @@
                     특징 : margin으로 위치를 이동시키면 아래 또는 옆의 다른 static 요소가
                           영향을 받아 같이 이동됨
                           마이너스 margin 을 주면 박스가 겹쳐질 수 있음
+                          
+                 [ 위치이동속성 ]         
+                   - 선택요소의 위치를 이동시켜주는 설정 속성
+                   - 포지션에 따라서 다르게 적용됨
+                   - 종류 : top, bottom, left, right(4가지)
             */
 
 
             background-color: aquamarine;
+        }
+
+        #s2 {
+            background-color: lightpink;
+            margin-top: -20px;
+
+        }
+
+        #s3 {
+            background-color: lightblue;
+            margin-top: -10px;
+            margin-left: 30px;
         }
         
     </style>
