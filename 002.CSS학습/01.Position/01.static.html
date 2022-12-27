@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>01. static 포지션</title>
+    <style>
+        .bx {
+            width : 100px;
+            height: 100px;
+            border: 2px solid blue;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            /* 글자 세로 중앙 */
+            line-height: 100px;
+        }
+
+        /* 
+            [ CSS 의 포지션 ]
+            위치를 효과적으로 배치하기 위한 코딩법을 제공하는 속성
+        */
+
+        /* 첫번째 박스에 포지션 체크 */
+        #s1 {
+            position: static;    
+
+            top : 100px;
+            left : 100px;
+            /* 적용안됨 */
+            margin-top: 10px;
+            margin-left: 50px;
+            /* 
+                 [1. static 포지션 ]
+                 1. 설정하지 않아도 기본값(디폴트)
+                 2. 위치이동속성(top, left, right, bottom)이 적용되지 않음
+                    top : 100px 이나 left : 100px ->이런거 적용안됨
+                 3. static의 위치 이동은 margin을 이용한다. 
+                    특징 : margin으로 위치를 이동시키면 아래 또는 옆의 다른 static 요소가
+                          영향을 받아 같이 이동됨
+                          마이너스 margin 을 주면 박스가 겹쳐질 수 있음
+            */
+
+
+            background-color: aquamarine;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="bx" id="s1">메롱1</div>
+    <div class="bx" id="s2">메롱2</div>
+    <div class="bx" id="s3">메롱3</div>
+    <!--
+        [ 젠코딩(에밋코딩) ]
+        .bx#s${메롱$}*3
+        _______________________________________________________
+        . : 클래스
+        # : 아이디
+        $ : 증가숫자자리
+        *숫자 : 반복횟수(*3-> 3번 반복=>3개의 태그가 만들어짐)
+        {} : 데이터출력(안에 들어가는 컨텐츠내용)
+        [] : 속성값 세탕(a href의 href 같은거)
+        > : 하위자식 (a>img a요소 밑에 하위자식 img)
+        + : 형제요소
+        () : 요소구분
+     -->
+</body>
+</html>
