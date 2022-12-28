@@ -42,11 +42,53 @@
                            되는 부모는 static이 아닌 요소
                          - 일반적으로 부모 요소가 싸고 있는 요소지만 앱솔루트가 위치를 잡기 위한 
                            기준이 되는 부모는 static이 아닌 요소
-                           (싸고 있는 애들중에 포지션이 없다면 보이는 화면이 기준)
                          -> static 이 아닌 포지션
                            relative / absolute / fixed /sticky    
-                         -> 위치 이동값을 쓰지 않은 부분에 대해서는 부모를 찾지 않음  
-                         
+                         -> 위치 이동값을 쓰지 않은 부분에 대해서는 부모를 찾지 않음
+                         -> 부모 자격이 있는 부모 요소들 중 가장 가까운 것이 부모
+                         -> 만약 부모 자격이 모두 없으면 보이는 화면(window)이 기준  
+                            (보이는 화면은 body가 아님, 스크롤이 생겨도 스크롤 위쪽에 보이는
+                             화면만을 지칭함)
+                         ->>>>>>>> 또한
+                          width 나 height 값을 %로 줄 경우 부모 자격이 있는 요소를 기준하여 
+                          크기를 잡음(일반적으로는 바로 싸고 있는 직계 부모 박스를 기준함)    
+                  2. 앱솔루트의 가로, 세로크기를 주지 않은 경우
+                     일반적으로 block 요소이므로 width : auto 로써 부모끝까지 차지
+                     앱솔루트는 내용만큼만 그 크기가 자동으로 설정됨      
+                  3. 블록이 아닌 요소(inline) 에 앱솔루트를 준 경우
+                     자동으로 display : block 로 설정됨
+                     자동크기를 설정할 경우 블록이 아니면 크기 설정이 안되므로 자동 전환됨
+                     ->일반적으로 모든 absolute는 block임!!!!
+                  4. 앱솔루트에 마진을 설정할 경우 
+                     설정이 반영되는 경우는 위치설정과 같은 방향의 마진만 적용됨
+                     ex. top을 적용했으면 margin-top   
+                         bottom을 적용했으면 margin-bottom   
+                         left을 적용했으면 margin-left   
+                         right을 적용했으면 margin-right 
+                     -> 단, 위치설정이 없을 경우엔 top, left 가 기준
+                        마진도 margin-top, margin-left만 적용됨
+                  5. 위치 이동값의 초기화
+                     -> auto 값을 준다
+                        ex. top : auto 
+                     -> 초기화 할 때 : 기존에 이미 설정된 하나의 위치 값을 반대방향으로 위치 값
+                        변경 시에 사용
+                        (미디어쿼리나 JS 코딩 시 발생할 수 있음)
+                        ex. 기존 -> top : 50px;
+                            변경 -> top : auto; bottom: 50px;  
+                  6. 위치 이동값을 전부 다 쓰는 경우도 있음
+                     -> 부모박스를 가득 채우거나 일정 위치를 잡고 크기가 유동적이어야 할때 사용
+                     ex. 부모박스를 채우는 앱솔루트
+                         position : absolute;
+                         top : 0;
+                         bottom : 0;
+                         left : 0;
+                         right: 0;
+                         (단, width와 height는 설정안함)
+                  7. 앱솔루트끼리는 서로 겹친다
+                  8. 앱솔루트는 부모자격 박스가 overflow : hidden 으로 세팅되어 넘치는 
+                     자식요소를 숨길 때 부모자격이 아닌 박스가 overflow : hidden 이어도
+                     숨겨지지 않고 부모 자격 박스만 숨겨짐        
+                     
                    
             *******************************************************************/
 
@@ -133,8 +175,40 @@
             top: 0;
             left: 0;
             /* 나의 부모는? */
-
+            width: 20%;
+            height: 40%;
+            /* 앱솔루트인데 %로 가로, 세로 크기를 줄 경우 
+               부모 자격 박스를 기준으로 함 */
         }
+
+        /* 앱솔루트 : 판타롱 스타킹 */
+        .a5 {
+            position: absolute;
+            /* 크기를 안주면 내용만큼 늘어남 */
+            top: 20%;
+            right: 10%;
+
+            outline: 2px solid red;
+        }
+
+        .a5 img {
+            vertical-align: top;
+            /* 
+               박스(block, inline 다)에 단일한 이미지를 넣을 경우 하단에 자연스런 간극이 존재한다 (4px)
+               -> 이것을 없애려면 vertical-align 인라인 요소간 세로정렬 속성의 값으로 
+                  top/bottom/left/right 중 어느것이든 쓰면 이것이 사라짐
+            */
+        }
+
+        /* span을 앱솔루트로 -> 자동 display : block 으로 전환 */
+        .spabs {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            /* 부모는 .s8 */
+            border: 4px dotted red;
+        }
+
         
     </style>
 </head>
@@ -146,6 +220,14 @@
     <div class="bx" id="s2">메롱2</div>
     <div class="bx" id="a2">메2</div>
 
+    <!-- 앱솔루트 : 판타롱 스타킹 -->
+    <div class="a5">
+        <img src="./images/ab2.jpg" alt="타노스">
+    </div>
+
+
+
+
     <!-- 부모를 찾는 앱솔루트 -->.
     <div class="bx2 s5">s5
         <div class="bx2 s6">s6
@@ -153,6 +235,9 @@
                 <div class="bx2 s8">s8
                     <div class="abs a3">a3</div>
                     <div class="abs a4">a4</div>
+                    <span class="spabs">
+                        나는 span 앱솔루트
+                    </span>
                 </div>
             </div>
         </div>
