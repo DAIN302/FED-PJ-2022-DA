@@ -8,13 +8,19 @@ ROOMS
 	Prestige Family Suite
 	Opera Suite
 	Presidential Suite
+	Studio
+	1 Bedroom Signature Suite
+	2 Bedroom Executive Suite
 _______________________
-DINING & BAR
+DINING
 	Fait Maison
 	MIO
 	Jardin D’Hiver
 	L’Espace
 	Latitude32
+_______________________
+OFFERS
+
 _______________________
 PROGRAMS
 	Candle Ritual
