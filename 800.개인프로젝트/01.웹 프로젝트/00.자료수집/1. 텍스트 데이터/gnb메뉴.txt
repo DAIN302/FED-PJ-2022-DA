@@ -20,6 +20,8 @@ DINING
 	Latitude32
 _______________________
 OFFERS
+            Room Packages
+            Dining offers
 
 _______________________
 PROGRAMS
