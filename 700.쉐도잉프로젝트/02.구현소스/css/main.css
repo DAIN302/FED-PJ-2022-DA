@@ -149,9 +149,13 @@ body {
     display: inline-block;
     width: 20px;
     height: 35px;
+    /* 인라인 요소 간 세로정렬 */
     vertical-align: -6px;
     margin-right: 5px;
-    background-color: rebeccapurple;
+    background: url(../images/bg_logo_a_01.png) no-repeat -144px -181px;
+    /* 배경 이미지 위치값은 본 이미지를 그림판으로 열어서 마우스 커서 위치에 따라
+       표시되는 x,y축 좌표값을 마이너스 기호를 붙여서 가로, 세로 순으로 써주면
+       정확한 위치가 된다 */
 }
 
 /* 캐릭터 설명 문단 */
@@ -162,6 +166,26 @@ body {
     padding: 10px;
     /* 양쪽 정렬 justify - taj */
     text-align: justify;
+}
 
+/* 캐릭터 첫번째 문단 첫글자 가상요소로 디자인 변경 */
 
+.cd p:first-child::first-letter {
+    font-size: 45px;
+    color: turquoise;
+    /* 블러없는 그림자로 글자 테두리 주기 
+       블러없는 그림자 4개 사용 -> 콤마로 그림자 여러개 둘 수 있음 */
+    text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;  
+}
+
+/* 각 캐릭터 박스별 첫글자 색 변경 */
+
+.cat:nth-child(2) .cd p:first-child::first-letter {
+    color : pink;
+}
+.cat:nth-child(3) .cd p:first-child::first-letter {
+    color : aquamarine;
+}
+.cat:last-child .cd p:first-child::first-letter {
+    color : lightcoral;
 }
