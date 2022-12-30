@@ -108,15 +108,15 @@ body {
 }
 /* 두번째 페이지 박스 배경변경 */
 .mbx2 {
-    background-image: url(../imgs/2587614.jpg);
+    background: url(../imgs/2587614.jpg) no-repeat fixed center/cover;
 }
 /* 세번째 페이지 박스 배경변경 */
 .mbx3 {
-    background-image: url(../imgs/whales.jpg);
+    background: url(../imgs/whales.jpg) no-repeat fixed center/cover;
 }
 /* 네번째 페이지 박스 배경변경 */
 .mbx4 {
-    background-image: url(../imgs/whales2.jpg);
+    background: url(../imgs/whales2.jpg) no-repeat fixed center/cover;
 }
 
 
