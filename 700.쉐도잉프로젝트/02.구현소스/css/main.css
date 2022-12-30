@@ -143,6 +143,17 @@ body {
     letter-spacing: -1px;
 }
 
+/* 캐릭터 타이틀 앞 아이콘 가상요소로 넣기 */
+.cd h3::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 35px;
+    vertical-align: -6px;
+    margin-right: 5px;
+    background-color: rebeccapurple;
+}
+
 /* 캐릭터 설명 문단 */
 .cd p {
     font-family: 'Single Day','ZCOOL KuaiLe', cursive;
