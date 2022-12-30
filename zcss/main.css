@@ -5,6 +5,12 @@
    font-family: 'NanumHeuinGgoRiSuRi'; */
 @import url('https://hangeul.pstatic.net/hangeul_static/css/NanumHeuinGgoRiSuRi.css');
 
+html {
+    scroll-behavior: smooth;
+    /* #아이디명 스크롤 이동 시 부드럽게 애니메이션 이동함 */
+}
+
+
 html, body {
     height: 100%;
     /* 보이는 화면에 기준하여 높이값을 설정함
@@ -16,6 +22,71 @@ body {
     /* 패딩탑 */
     /* padding-top: 50px; */
     font-family: 'NanumHeuinGgoRiSuRi';
+}
+
+/* 상단영역 */
+#top {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    height: 300px;
+    z-index: 9999;
+}
+
+/* h1 요소 */
+.tit {
+    /* 기본 마진 제거 */
+    margin: 0;
+    /* 패딩 */
+    padding: 20px;
+    /* 글자 중앙 정렬 */
+    text-align: center;
+    font-size: 40px;
+}
+
+/* GNB 메뉴 */
+.gnb {
+    width: 600px;
+    margin: 0 auto;
+}
+/* ul초기화 */
+.gnb ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+/* li 옆으로 흐르게 */
+.gnb li {
+    float: left;
+    text-align: center;
+    width: 150px;
+
+
+}
+
+/* ul 박스 가상요소로 clear 처리 */
+
+.gnb ul::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* GNB a요소 */
+.gnb a {
+    color: lightseagreen;
+    background-color: rgba(255, 255, 255, 0.658);
+    border-radius: 40px;
+    display: block;
+    height: 35px;
+    margin : 0 5px;
+    padding: 5px 10px;
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+
 }
 
 
@@ -39,6 +110,16 @@ body {
 .mbx2 {
     background-image: url(../imgs/2587614.jpg);
 }
+/* 세번째 페이지 박스 배경변경 */
+.mbx3 {
+    background-image: url(../imgs/whales.jpg);
+}
+/* 네번째 페이지 박스 배경변경 */
+.mbx4 {
+    background-image: url(../imgs/whales2.jpg);
+}
+
+
 
 
 /* 페이지별 컨텐츠 박스 */
@@ -48,15 +129,12 @@ body {
     border-radius: 20px;
     /* 가로 중앙 */
     margin : 0 auto;
-    /* 양쪽 마진이 auto 면 양쪽을 등분해서 가로 중앙이 됨 */  
+    /* 양쪽 마진이 auto 면 양쪽을 등분해서 가로 중앙이 됨 */
+    position: relative;
+    top:300px;
+    height: calc(100% - 350px);
+    /* 부모 높이값보다 300px 만큼 조금 더 그 크기를 뺀 높이값은 cal로 계산 */
+
+
 }
 
-/* h1 요소 */
-.tit {
-    /* 기본 마진 제거 */
-    margin: 0;
-    /* 패딩 */
-    padding: 20px;
-    /* 글자 중앙 정렬 */
-    text-align: center;
-}
