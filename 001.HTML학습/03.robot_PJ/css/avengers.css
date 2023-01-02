@@ -188,6 +188,11 @@ body:hover .cbx:last-child {
     /* 부모 - .cbx */
     /* 박스세팅 */
     width: 300px;
+
+    /* 처음에 height 값 0로 박스 숨기기 -> 투명상태로 오버되는 경우를 없애기 위해 */
+    height: 0;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
     
     /* 글자세팅 */
     font-family: 'Single Day', cursive;
@@ -217,6 +222,11 @@ body:hover .cbx:last-child {
 .cbx:hover .cd {
     opacity: 1;
     top:0;
+    height: auto;
+    /* 전체적으로 트랜지션 설정되어 있으나 height 값이 특정값(px, %)으로 설정되지 않고
+       auto 일 경우 애니메이션 되지 않는다
+       애니메이션 안되는게 목적이라 잘된거임~
+       만약 적용되는 것을 안되게 하려면 transition에서 개별세팅해줘야함 */
 }
 
 
