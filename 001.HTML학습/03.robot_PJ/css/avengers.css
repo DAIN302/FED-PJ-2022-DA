@@ -24,6 +24,8 @@ a {
 body {
     /* 배경이미지 */
     background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
+    /* 전체 body 스크롤바 숨기기 */
+    overflow: hidden;
 }
 /* body 의 높이값을 보이는 화면에 맞추기 */
 
