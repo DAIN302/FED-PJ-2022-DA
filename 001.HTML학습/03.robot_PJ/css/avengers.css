@@ -97,7 +97,8 @@ html, body {
     width: 150px;
     height: 150px;
 
-    /* 처음에 투명 */
+    /* 처음에 투명 
+       display : none을 하면 뒤에 트랜지션이 안먹힌다 */
     opacity: 0;
 
     /* 트랜지션 */
@@ -187,11 +188,7 @@ body:hover .cbx:last-child {
     /* 부모 - .cbx */
     /* 박스세팅 */
     width: 300px;
-    border: 2px solid #fff;
-    padding: 15px;
-    border-radius: 20px;
-    background-color: rgba(255,255,255,0.4);
-
+    
     /* 글자세팅 */
     font-family: 'Single Day', cursive;
     color: white;
@@ -203,6 +200,18 @@ body:hover .cbx:last-child {
     /* 트랜지션 */
     transition: .4s ease-out;
 }
+
+/* .cd 직계 하위 div 로 디자인 이전하기 
+   -> 생성이유 : height 값을 0으로 숨기려는데 padding 과 border 때문에 숨겨지지 않음
+      따라서 이것을 직계하위박스(div)로 이전 */
+.cd > div {
+    background-color: rgba(255,255,255,0.4);
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
+}    
+
+
 
 /* .cbx 에 오버 시 글자박스 보이기 */
 .cbx:hover .cd {
