@@ -288,10 +288,19 @@ body:hover .cbx:nth-child(2) {
     top: 2%;
 }
 
-/* 오버시 a 변경 */
-.gobtn:hover{
-    color :lime;
-    text-decoration: underline;
-    text-decoration-style: wavy;
+.gobtn > img {
+    width: 100px;
 }
+
+.gobtn img:nth-child(2){
+    display: none;
+}
+
+.gobtn:hover img:first-child {
+    display: none;
+} 
+.gobtn:hover img:nth-child(2) {
+    display: inline;
+} 
+
 
