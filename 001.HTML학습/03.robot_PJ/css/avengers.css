@@ -58,5 +58,28 @@ body {
        위치값 주기 전 상태 : 모두 겹침, 싸고있는 박스에 그대로 있음, 크기는 내용만큼 자동
                            나중것이 기본 위 */
     position: absolute;
+
+    /* 박스크기 설정 */
+    width: 150px;
+    height: 150px;
+    
+}
+/* 캐릭터 이미지 */
+.cbx img {
+    /* 크기를 박스에 맞춤 - 단점 : 이미지가 왜곡됨 => object-fit:cover 사용*/
+    width: 100%;
+    height: 100%;
+    /* 
+       object-fit 속성 -> 이미지나 동영상를 박스에 맞출 때 옵션을 설정해 주는 속성
+       1. fill : 설정값에 강제적용(기본값)
+       2. contain : 박스에 모두 보임
+       3. cover : 박스를 비율에 맞게 채움(빈틈없이 채운다 -> 배경 cover 와 유사한 효과)
+    */
+    object-fit: cover;
+    /* 이미지 둥글게 */
+    border-radius: 50%;
+    /* 글로우효과 */
+    box-shadow: 0 0 30px lightgreen;
+
 }
 
