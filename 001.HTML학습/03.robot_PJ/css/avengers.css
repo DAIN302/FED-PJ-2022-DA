@@ -38,6 +38,8 @@ body {
 
 /* 2. 메인 캐릭터 박스 */
 .abx {
+    position: relative;
+    /* 부모자격 - .cbx의 부모 */
     width: 300px;
     height: 400px;
     /* 배경이미지 */
@@ -58,10 +60,22 @@ body {
        위치값 주기 전 상태 : 모두 겹침, 싸고있는 박스에 그대로 있음, 크기는 내용만큼 자동
                            나중것이 기본 위 */
     position: absolute;
+    /* 부모박스 - .abx */
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    /* 
+       [ 앱솔루트 자식 박스 부모박스의 정중앙 위치하기 ]
+         top : calc(50% - 자기 height 절반)
+         left : clac(50% - 자기 width 절반)
+         -> 50% 밀고 자신크기 절반 빼서 정중앙으로 위치 이동
+            계산은 calc() CSS 함수 사용
+            (+, - 연산 시 기호 앞뒤를 띄어쓰기 한다)
+    */
 
     /* 박스크기 설정 */
     width: 150px;
     height: 150px;
+
     
 }
 /* 캐릭터 이미지 */
