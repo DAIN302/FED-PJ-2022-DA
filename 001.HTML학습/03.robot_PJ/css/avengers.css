@@ -25,6 +25,23 @@ body {
     /* 배경이미지 */
     background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
 }
+/* body 의 높이값을 보이는 화면에 맞추기 */
+
+html, body {
+    height: 100%;
+    /* 
+       body : 100% 는 html 을 기준하며
+       html : 100% 는 보이는 화면(window)을 기준함
+       % 세팅 시 html과 body 를 모두 세팅해야 적용됨 
+       _______________________________________________________________________________
+       
+       가끔 width : 100%를 주는 경우가 있는데,
+       아무것도 값을 주지않으면 width : auto 다
+       width : 100% -> 컨텐트 영역 크기를 채우도록 세팅 
+               따라서 border나 padding을 줄 경우 박스가 커지고 스크롤바가 생김
+       특별한 경우가 아니라면 auto상태로 놓으면 border와 padding 이 내부에 자동으로 포함됨        
+    */
+}
 
 /* 1. 전체 타이틀 */
 .tit {
@@ -93,7 +110,57 @@ body {
     /* 이미지 둥글게 */
     border-radius: 50%;
     /* 글로우효과 */
-    box-shadow: 0 0 30px lightgreen;
+    /* box-shadow: 0 0 30px 5px lightgreen; */
 
 }
 
+/* 2-1. 아이언맨 */
+body:hover .cbx:first-child {
+    top : -10%;
+    left: -80%; 
+}
+
+.cbx:first-child img {
+    box-shadow: 0 0 30px 10px orangered;
+}
+
+/* 2-2. 캡틴아메리카 */
+
+body:hover .cbx:nth-child(2) {
+    top: -10%;
+    left: 130%;
+}
+
+.cbx:nth-child(2) img {
+    box-shadow: 0 0 30px 10px rgb(0, 68, 255);
+}
+/* 2-3. 토르 */
+
+body:hover .cbx:nth-child(3) {
+    top: 70%;
+    left: -80%;
+}
+
+.cbx:nth-child(3) img {
+    box-shadow: 0 0 30px 10px cyan;
+}
+/* 2-4. 닥스 */
+
+body:hover .cbx:nth-child(4) {
+    top: 70%;
+    left: 130%;
+}
+
+.cbx:nth-child(4) img {
+    box-shadow: 0 0 30px 10px orange;
+}
+/* 2-5. 블랙위도우 */
+
+body:hover .cbx:last-child {
+    top: 120%;
+    /* left는 중앙값이 디폴트라 세팅X */
+}
+
+.cbx:last-child img {
+    box-shadow: 0 0 30px 10px lime;
+}
