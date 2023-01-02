@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/mandal.css">
+    <!-- 파비콘 : 탭메뉴 표시 아이콘 이미지 -->
+    <link rel="shortcut icon" href="https://lumiere-a.akamaihd.net/v1/images/andor-favicon-sw-512x512_59e8209_4b196e03.png?region=0%2C0%2C512%2C512">
+    <title>만달로리안 캐릭터 소개</title>
+</head>
+<body>
+    <!-- 0. 전체 타이틀 -->
+    <h1 class="tit">Mandalorian</h1>
+    <!-- 1-1. 캐릭터 소개 페이지 -->
+    <div class="page" id="pg1">
+        <!-- 2. 메인 캐릭터 박스 -->
+        <section class="abx">
+            <!-- 2-1. 딘자린 -->
+            <div class="cbx">
+                <img src="./ab_img/din.PNG" alt="딘자린">
+                <!-- 소개글 박스 -->
+                <article class="cd ltxt">
+                    <div>
+                        <h2>Din Djarin <br>(The Mandalorian)</h2>
+                        <p>The Mandalorian, known to a few as Din Djarin, is a battle-worn bounty hunter, making his way through a dangerous galaxy in an uncertain age.</p>
+                    </div>
+                </article>
+            </div>
+            <!-- 2-2. 그로구 -->
+            <div class="cbx">
+                <img src="./ab_img/grogu.PNG" alt="그로구">
+                <!-- 소개글 박스 -->
+                <article class="cd">
+                    <div>
+                        <h2>Grogu</h2>
+                        <p>A mysterious child pursued by bounty hunters on behalf of Imperial interests, the foundling Grogu found protection with the Mandalorian Din Djarin. Through their adventures and journeys through the galaxy, young Grogu is honing remarkable abilities.</p>
+                    </div>
+                </article>
+            </div>
+            
+        </section>
+        <!-- 예고편 보기 이동버튼 -->
+        <a href="#pg2" class="gobtn">예고편보기</a>
+    </div>
+    <!-- 1-2. 예고편 동영상 페이지 -->
+    <div class="page" id="pg2">
+        <h2 class="subtit">만달로리안 시즌3 티저 예고편</h2>
+        <div class="mvbx">
+            <iframe src="https://www.youtube.com/embed/VpchRguxbQE" title="만달로어인 & 그로구의 끝나지 않은 여정! ㅣ[만달로리안] 시즌 3 티저 예고편 l 디즈니+" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!--
+                [ 아이프레임 : iframe(inline frame) ]
+                  -> 외부 시스템 또는 페이지를 기존 페이지에 불러와서 디스플레이해주는 프레임 요소 
+                  -> 동영상 페이지(유튜브 등), 다른 페이지를 한 페이지에서 모두 보여줄 때 등 사용
+                  -> 필수 속성 : src(페이지 경로값을 세팅)
+                  -> 유의사항 : width, height, border 를 CSS에서 세팅할 것을 권고함
+             -->
+        </div>
+        <a href="#pg1" class="gobtn">캐릭터보기</a>
+    </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 어벤져스 CSS - avengers.css */
+/* 어벤져스 CSS - mandal.css */
 
 /* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
@@ -78,7 +78,7 @@ html, body {
     width: 300px;
     height: 400px;
     /* 배경이미지 */
-    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+    background: url(../ab_img/mandalorian.png) no-repeat center/cover;
     /* 둥근모서리 -> 원형 50% */
     border-radius: 50%;
     /* 가로 중앙 정렬 */
@@ -86,10 +86,17 @@ html, body {
     /* 글로우 효과는 그림자로
        box-shadow : x y blur spread color 
        inset 내부그림자 */
-    box-shadow: 0 0 30px 5px gold, inset 0 0 20px orangered;
-
-
+    box-shadow: 0 0 30px 5px gold;
+    transition: .4s;
 }
+
+body:hover .abx {
+    background: url(../ab_img/mandalorian2.png) no-repeat center/cover;
+    box-shadow: 0 0 30px 5px cornflowerblue;
+}
+
+
+
 
 /* 캐릭터 박스 */
 .cbx {
@@ -145,55 +152,25 @@ body:hover .cbx {
     opacity: 1;
 }
 
-/* 2-1. 아이언맨 */
+/* 2-1. 딘자린 */
 body:hover .cbx:first-child {
-    top : -10%;
+    top : 10%;
     left: -80%; 
 }
 
 .cbx:first-child img {
-    box-shadow: 0 0 30px 10px orangered;
+    box-shadow: 0 0 30px 10px gainsboro;
 }
 
-/* 2-2. 캡틴아메리카 */
+/* 2-2. 그로구 */
 
 body:hover .cbx:nth-child(2) {
-    top: -10%;
+    top: 10%;
     left: 130%;
 }
 
 .cbx:nth-child(2) img {
-    box-shadow: 0 0 30px 10px rgb(0, 68, 255);
-}
-/* 2-3. 토르 */
-
-body:hover .cbx:nth-child(3) {
-    top: 70%;
-    left: -80%;
-}
-
-.cbx:nth-child(3) img {
-    box-shadow: 0 0 30px 10px cyan;
-}
-/* 2-4. 닥스 */
-
-body:hover .cbx:nth-child(4) {
-    top: 70%;
-    left: 130%;
-}
-
-.cbx:nth-child(4) img {
-    box-shadow: 0 0 30px 10px orange;
-}
-/* 2-5. 블랙위도우 */
-
-body:hover .cbx:nth-child(5) {
-    top: 120%;
-    /* left는 중앙값이 디폴트라 세팅X */
-}
-
-.cbx:nth-child(5) img {
-    box-shadow: 0 0 30px 10px lime;
+    box-shadow: 0 0 30px 10px lightgreen;
 }
 
 /* 캐릭터 설명박스 공통 */
@@ -203,8 +180,7 @@ body:hover .cbx:nth-child(5) {
     /* 처음에 내려가 있고 오버시 0 으로 top값이 올라옴 */
     /* 부모 - .cbx */
     /* 박스세팅 */
-    width: 300px;
-
+    width: 230px;
     /* 처음에 height 값 0로 박스 숨기기 -> 투명상태로 오버되는 경우를 없애기 위해 */
     height: 0;
     /* 넘치는 자식요소 숨기기 */
@@ -237,7 +213,7 @@ body:hover .cbx:nth-child(5) {
 /* .cbx 에 오버 시 글자박스 보이기 */
 .cbx:hover .cd {
     opacity: 1;
-    top:0;
+    top:110%;
     height: auto;
     /* 전체적으로 트랜지션 설정되어 있으나 height 값이 특정값(px, %)으로 설정되지 않고
        auto 일 경우 애니메이션 되지 않는다
@@ -249,16 +225,11 @@ body:hover .cbx:nth-child(5) {
 
 /* 왼쪽 진영 글자박스 클래스 */
 .ltxt {
-    left: -235%;
+    left: -50%;
 }
 /* 왼쪽 진영 제목 오른쪽 정렬 */
 .ltxt h2 {
     text-align: right;
-}
-
-/* 오른쪽 진영 글자박스 클래스 */
-.rtxt {
-    right : -235%;
 }
 
 /* 예고편 동영상 페이지 */
@@ -273,7 +244,7 @@ body:hover .cbx:nth-child(5) {
 
 /* 동영상 박스 */
 .mvbx {
-    width: 1000px;
+    width: 1200px;
     height: 600px;
     margin: 100px auto 0 auto;
 }
@@ -319,7 +290,7 @@ body:hover .cbx:nth-child(5) {
 
 /* 오버시 a 변경 */
 .gobtn:hover{
-    color :violet;
+    color :lime;
     text-decoration: underline;
     text-decoration-style: wavy;
 }
