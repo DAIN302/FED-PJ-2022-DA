@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* 어벤져스 CSS - avengers.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
+
+/* 
+    font-family: 'Monoton', cursive;
+    font-family: 'Single Day', cursive;
+*/
+
+/* 초기화 */
+html, body, h1, h2, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+/* 초기세팅 */
+a {
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    /* 배경이미지 */
+    background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
+}
+
+/* 1. 전체 타이틀 */
+.tit {
+    color: white;
+    font-family: 'Monoton', cursive;
+    font-size: 70px;
+    font-weight: normal;
+    text-align: center;
+    padding: 50px 0;
+}
+
+/* 2. 메인 캐릭터 박스 */
+.abx {
+    width: 300px;
+    height: 400px;
+    /* 배경이미지 */
+    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+    /* 둥근모서리 -> 원형 50% */
+    border-radius: 50%;
+    /* 가로 중앙 정렬 */
+    margin: 0 auto;
+    /* 글로우 효과는 그림자로
+       box-shadow : x y blur spread color 
+       inset 내부그림자 */
+    box-shadow: 0 0 30px 5px gold, inset 0 0 20px orangered;
+}
+
+/* 캐릭터 박스 */
+.cbx {
+    /* 앱솔루트 포지션 
+       위치값 주기 전 상태 : 모두 겹침, 싸고있는 박스에 그대로 있음, 크기는 내용만큼 자동
+                           나중것이 기본 위 */
+    position: absolute;
+}
+
