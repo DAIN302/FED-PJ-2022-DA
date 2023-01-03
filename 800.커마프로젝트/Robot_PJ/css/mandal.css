@@ -62,7 +62,18 @@ html, body {
     font-weight: normal;
     text-align: center;
     padding: 50px 0;
+    /* 트랜스폼 -> y축 상단이동, 스케일 0 안보임 */
+    transform: translateY(-200px) scale(0);
+    transition:  transform 1s ease-in-out;
 }
+
+/* 오버시 타이틀 트랜스폼 */
+body:hover .tit {
+    /* 트랜스폼 -> 원래위치로, 원래크기 */
+    transform: translateY(0) scale(1);
+
+}
+
 
 /* 1. 페이지박스 공통 */
 .page {
@@ -302,5 +313,22 @@ body:hover .cbx:nth-child(2) {
 .gobtn:hover img:nth-child(2) {
     display: inline;
 } 
+
+
+.btn_cont {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #fade4b;
+    padding: 10px;
+    border-radius: 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+.btn_cont:hover {
+    background-color: #e0c643;
+}
 
 
