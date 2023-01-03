@@ -4,10 +4,61 @@
     <meta charset="UTF-8">
     <title>스타벅스 응용</title>
     <style>
+        body {
+            background: #000 url(./starbucks_img/reserve_bg.jpg) no-repeat top/100%;
+        }
+        /* 박스의 가로, 세로 크기 세팅 */
+        #trans10 {
+            width: 334px;
+            height: 334px;
+            /* 가운데정렬풀기 */
+            text-align: left;
+            margin: 100px auto 0;
+        }
+        /* 이미지에 겹치도록 position세팅(absolute) */
+        #trans10 img {
+            position: absolute;
+            /* 부모자격이 없지만 그 자리에 그대로 
+               주의 : 크기를 %로 주면 안됨(부모를 찾음) */
+        }
+        /* 1. 박보검 원본 */
+        #trans10 img:last-child {
+            /* 0도 회전 */
+            transform: rotateY(0);
+            /* 트랜지션 - .4s delay*/
+            transition: .4s ease-out .4s;
+        }
+        /* 2. 박보검 오버시  */
+        #trans10:hover img:last-child {
+            /* 90도 회전 */
+            transform: rotateY(90deg);
+            /* 트랜지션 - No delay */
+            transition: .4s ease-in;
+            /* ease-in 처음 천천히 나중 등속도 */
+        }
+        /* 3. 김유정 원본  */
+        #trans10 img:first-child {
+            /* 90도 회전(처음상태) */
+            transform: rotateY(90deg);
+            /* 트랜지션 - No delay */
+            transition: .4s ease-in;
+        }
+        /* 4. 김유정 오버시  */
+        #trans10:hover img:first-child {
+            /* 0도 회전 */
+            transform: rotateY(0);
+            /* 트랜지션 - .4s delay*/
+            transition: .4s ease-out .4s;
+            /* ease-out 나중 천천히 처음 등속도 */
 
+        }
+        
     </style>
 </head>
 <body>
-    
+    <div id="trans10">
+        <img src="./starbucks_img/reserve_medal02.png" alt="스벅">
+        <img src="./starbucks_img/reserve_medal01.png" alt="스벅">
+    </div>
 </body>
 </html>
