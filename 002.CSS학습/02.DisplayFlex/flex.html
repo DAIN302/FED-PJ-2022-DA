@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Display Layout</title>
+    <style>
+        /* 초기화 */
+        html, body, ul, ol {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 블릿 제거 */
+        ul, ol {
+            list-style: none;
+        }
+
+        /* 보이는 화면에 채우기 */
+        html, body, #wrap, #wrap > ul {
+            height: 100%;
+        }
+
+        /* 
+           [ li세팅 기존방식 : float 사용 ]
+             1. 옆으로 흐를 요소에 직접 float 세팅
+             2. 등분할일 경우 width 값 % 계산 필요
+             3. 높이값을 부모에 채울 경우 height 100% 세팅
+             4. 부모box에 높이 값이 없이 자동으로 자식 요소를 인식하려면 
+                마지막 끊어줌 필요(clear 속성 세팅)
+        */
+        /* #wrap > ul > li {
+            float: left;
+            width: 20%;
+            height: 100%;
+        } */
+
+        /* 각 파티션 box 에 배경 이미지 */
+        #wrap>ul>li:first-child {
+            background: url(./imgs/m01_bg.jpg) no-repeat center/cover;
+        }
+        #wrap>ul>li:nth-child(2) {
+            background: url(./imgs/m02_bg.jpg) no-repeat center/cover;
+        }
+        #wrap>ul>li:nth-child(3) {
+            background: url(./imgs/m03_bg.jpg) no-repeat center/cover;
+        }
+        #wrap>ul>li:nth-child(4) {
+            background: url(./imgs/m04_bg.jpg) no-repeat center/cover;
+        }
+        #wrap>ul>li:nth-child(5) {
+            background: url(./imgs/m05_bg.jpg) no-repeat center/cover;
+        }
+
+        /***************************************************************************** 
+           [ flex display box ]
+             flex -> flexible(유연한~ 에서 나온 말)
+             - 가변적인 자식 요소를 컨트롤 하기 위해 CSS3에서 새롭게 선보인 display 기능
+
+           [ flex 세팅법 ]
+             1. 대상 : 컨트롤할 요소들의 직계부모요소  
+             2. 등분할 세팅 : 
+                - 자식요소를 같은 비율로 채울 때 자식 요소의 flex 속성값을 1로 쓰면 됨
+             3. 일반적인 세팅 : 
+                - 특정크기나 내용이 있는 block 요소인 자식을 옆으로 흐르게 함
+                  (flex 세팅 일단 불필요)        
+        *****************************************************************************/
+
+        /* flex 적용 */
+        #wrap > ul {
+            /* flex box : df*/
+            display: flex;
+        }
+
+        /* flex 적용 자식 요소 */
+        #wrap > ul > li {
+            /* 등분할 flex 속성 */
+            flex: 1;
+        }
+
+        /* 타이틀 공통 */
+        .tit {
+            position: absolute;
+            /* 포지션 앱솔루트 주면 마영오가 안먹는다???? */
+            top:100px;
+            left: 50%;
+            /* 가로 중앙 이동 : transform(translate) */
+            transform: translateX(-50%);
+            /* 자신의 크기 절반(50%)만큼 왼쪽방향(-) 이동 */
+            width: 500px;
+            height: 100px;
+            border: 5px double #fff;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 전체 wrapping box -->
+    <div id="wrap">
+        <!-- 파티션 box -->
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <!-- 타이틀 박스 1 -->
+        <ol class="tit t1">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+    </div>
+</body>
+</html>
