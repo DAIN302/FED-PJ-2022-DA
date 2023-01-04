@@ -90,6 +90,85 @@
             height: 100px;
             border: 5px double #fff;
         }
+
+        /* 타이틀 하위 공통 li */
+
+        .tit > li {
+            /* 박스세팅 */
+            width: 50px;
+            height: 50px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background-color: red;
+            text-align: center;
+            /* 글자세팅 */
+            font : bold 14px/50px verdana;
+            color: #fff;
+        }
+
+        /* 타이틀 1 */
+        .t1 {
+            /* flex box */
+            display: flex;
+            /* 
+              [ justify-content 속성 ]
+                - 진행방향정렬속성 (justify 양쪽정렬의 뜻)
+                - content 는 진행방향으로 여러개의 아이템요소가 있으니까 컨텐트임!
+                1) flex-start : 처음위치(기본값)
+                2) flex-end : 끝위치
+                3) center : 중앙
+                4) space-between : 아이템요소 양쪽끝에 붙고 사이간격 일정
+                5) space-around : 아이템요소 양쪽간격 일정
+                6) space-evenly : 아이템요소 양쪽과 사이간격 일정
+
+              [ align-items 속성 ]
+                - 진행방향의 수직 정렬 속성
+                - 수직방향의 아이템(요소)이 하나씩일때 사용
+
+                1) flex-start : 처음위치(기본값)
+                2) flex-end : 끝위치
+                3) center : 중앙
+                4) stretch : 수직방향 부모박스에 꽉채워 늘림!(단, height값이 auto여야함!)
+                5) baseline : 각 요소에 글자가 있다면 글자기준선(baseline)을 기준으로 정렬함!
+                              (글자의 line-height를 변경해서 적용해봄!)
+            */
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        /* 타이틀 2 */
+        .t2 {
+            top: 200px;
+            display: flex;
+            /* 진행방향 정렬 */
+            justify-content: space-between;
+            /* 진행방향의 수직방향 정렬 */
+            align-items: baseline;
+            /* baseline 글자 아랫선 맞춤 */
+        }
+
+        /* 줄간격 변경 */
+        .t2 li:nth-child(2) {
+            line-height: 80px;
+        }
+        .t2 li:nth-child(4) {
+            line-height: 30px;
+        }
+
+        /* 타이틀 3 */
+        .t3 {
+            top: 350px;
+            display: flex;
+            /* 진행방향의 수직방향 정렬 */
+            align-items: center;
+        }
+
+        /* 네번째 li부터 끝으로 보내기 */
+        .t3 li:nth-child(4) {
+            margin-left: auto;
+            /* 선택 요소의 떨어뜨리려는 방향으로 마진을 auto로 설정하면 flex 에서 끝으로
+               이동됨 */
+        }
         
     </style>
 </head>
@@ -112,6 +191,22 @@
             <li>T</li>
             <li>E</li>
         </ol>
+        <!-- 타이틀 박스 2 -->
+        <ol class="tit t2">
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+        </ol>
+        <!-- 타이틀 박스 3 -->
+        <ol class="tit t3">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>        
     </div>
 </body>
 </html>
