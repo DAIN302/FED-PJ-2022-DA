@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1. 가로네비 서브별 드롭다운 세로형</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            color: #fff;
+            background: #0a134e url(./imgs/nav1_bg.png) no-repeat fixed center/cover;
+        }
+
+        h1 { 
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }    
+
+        ul, ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 네비게이션 전체 박스 */
+        .gnb ul {
+            /* flex box */
+            display: flex;
+            /* 진행방향 정렬 : 중앙 */
+            justify-content: center;
+        }
+
+        .gnb ul > li {
+            position: relative;
+            /* 서브메뉴 .smenu 의 부모자격 */
+            padding: 0 32px;
+            /* 아래쪽 패딩으로 앱솔루트 .smenu 와 연결되어 있게 한다 
+               마진만줘서 떨어지게 하면 내려가다 닫힘 */
+            padding-bottom: 15px;   
+        }
+
+        .gnb a {
+            /* a 요소 기본세팅 초기화 : 글자색, 밑줄  */
+            color:#fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight : bold;
+        }
+
+        /* 서브메뉴 박스 */
+        .smenu {
+            position: absolute;
+            /* 서브메뉴 아래쪽 컨텐츠 위로 떠다녀야 하므로 앱솔루트씀 */
+            z-index: 1;
+            /* 1만써도 위에 올라오는데 최상위로 오게 하기 위해 9를 여러번 쓰는 경우도 있음 */
+            left: 50%;
+            /* 부모 : 싸고 있는 li 
+               -> top 값은 안줘서 위의 a요소 아래옴 */
+            /* top값 안주고 앱솔루트 위치 이동 */
+            margin-top: 15px;
+            /* 트랜스폼으로 가로방향 중앙이동 */
+            transform: translateX(-50%);
+            width: 200px;
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            /* 내부 컨텐츠 숨기기 */
+            height: 0;
+            overflow: hidden;
+            /* 처음엔 투명 */
+            opacity: 0;
+            /* 트랜지션 */
+            transition: all .4s ease-out;
+        }
+
+        /* 상위 메뉴 마우스 오버시 하위메뉴 보이기
+           -> 트랜지션 애니를 하려면 구체적인 크기가 있어야함 
+              height : auto하면 애니메이션 안됨 */
+        .gnb>ul>li:first-child:hover .smenu {
+            height: 190px;
+        }
+        .gnb>ul>li:nth-child(2):hover .smenu {
+            height: 120px;
+        }
+        .gnb>ul>li:nth-child(2)~li:hover .smenu {
+            height: 40px;
+        } 
+        
+        /* 마우스 오버시 투명도 공통 */
+        .gnb>ul>li:hover .smenu {
+            opacity: 1;
+        }
+
+        /* 서브메뉴 a요소 */
+        .smenu a {
+            display: block;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+
+        /* 컨텐츠 박스 */
+        .cont {
+            position: relative;
+            /* z-index 관계 파악을 위해 relative */
+            max-width: 1000px;
+            height: 400px;
+            border-radius: 15px;
+            border: 10px dashed yellow;
+            margin: 200px auto;
+            text-align: center;
+            font-size: 34px;
+            line-height: 400px;
+            background-color: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>1. 가로네비 서브별 드롭다운 세로형</h1>
+    <nav class="gnb">
+        <ul>
+            <li>
+                <a href="#">Vision Processor</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">RVC</a>     
+                        </li>
+                        <li>
+                            <a href="#">In-cabin</a>
+                        </li>
+                        <li>
+                            <a href="#">FVC</a>
+                        </li>
+                        <li>
+                            <a href="#">SVM</a>
+                        </li>
+                        <li>
+                            <a href="#">E-mirror</a>
+                        </li>
+                    </ol>
+                </div>
+            </li>
+            <li>
+                <a href="#">ADAS Processor</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">APACHE4</a>     
+                        </li>
+                        <li>
+                            <a href="#">APACHE5</a>
+                        </li>
+                        <li>
+                            <a href="#">APACHE46</a>
+                        </li>
+                    </ol>                
+            </li>
+            <li>
+                <a href="#">AHD™</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">1st Gen</a>     
+                        </li>
+                    </ol>                
+            </li>
+            <li>
+                <a href="#">News</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">News</a>     
+                        </li>
+                    </ol>                
+            </li>
+            <li>
+                <a href="#">About Us</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">About Us</a>     
+                        </li>
+                    </ol>                
+            </li>
+            <li>
+                <a href="#">Career</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ol>
+                        <li>
+                            <a href="#">Career</a>     
+                        </li>
+                    </ol>                
+            </li>
+        </ul>
+    </nav>   
+     <!-- 컨텐츠 박스 -->
+     <main class="cont">
+        내용
+     </main>
+</body>
+</html>
