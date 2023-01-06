@@ -41,16 +41,35 @@ body * {
 
 /* 로봇머리 */
 .head {
+    position: relative;
+    /* 부모자격 static 하면서도 부모자격이 있어야 하기 때문에 position : relavtive
+        static 한 성격 -> 마영오 먹히게 하기 위해 */
     width: 250px;
     height: 250px;
     margin: 0 auto;
+    border-radius: 10% 10% 40% 40%;
+}
+/* 로봇머리 직계 하위 div 모두 앱솔루트 */
+.head > div {
+    position: absolute;
+}
+/* 모자 */
+.head::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top:-178px;
+    left: -40px;
+    width: 420px;
+    height: 300px;
+    background: url(../images/hat2.png) no-repeat center/100%;
 }
 
 /* 눈공통 */
 .eye {
-    width: 50px;
-    height: 50px;
-    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50px;
     /* 배경공통 */
     background-color: #fff;
     background-repeat: no-repeat;
@@ -60,18 +79,69 @@ body * {
     border-radius: 50%;
     /* 보더 이중선 : double */
     border: 4px double #000; 
+
 }
 /* 왼눈 */
 .ey1 {
-    background-image: url(../images/e1.jpg);
+    background-image: url(../images/eye_l.PNG);
+    left: 35px;
 }
 /* 오른눈 */
 .ey2 {
-    background-image: url(../images/e2.jpg);
+    background-image: url(../images/eye_r.PNG);
+    right: 35px;
 }
 /* 코 */
+.nose {
+    width: 50px;
+    height: 70px;
+    top: 105px;
+    left: 100px;
+    border-radius: 50%;
+    background: url(../images/nose.jpg) no-repeat 0/110% 100%;
+}
+/* 볼공통 */
+.cheek {
+    width: 50px;
+    height: 30px;
+    border-radius: 50%;
+    top: 140px;
+    background-color: rgba(240, 128, 128, 0.342);
+}
+
+/* 왼볼 */
+.c1 {
+    left: 10px;
+}
+/* 오른볼 */
+.c2 {
+    right: 10px;
+}
+
+
 /* 입 */
+.mouth {
+    width: 100px;
+    height: 40px;
+    bottom: 25px;
+    left: 75px;
+    background: url(../images/mouth3.png) no-repeat 0/100% 100%;
+}
+/* 귀공통 */
+.ear {
+    width: 35px;
+    height: 80px;
+    top: 80px;
+}
 /* 왼귀 */
+.er1 {
+    left:-35px;
+    border-radius: 50% 0 0 50%;
+}
 /* 오른귀 */
+.er2 {
+    right: -35px;
+    border-radius: 0 50% 50% 0;
+}
 
 /********************************* 3. 하단영역 *********************************/
