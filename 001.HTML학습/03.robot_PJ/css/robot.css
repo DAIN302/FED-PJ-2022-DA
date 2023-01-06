@@ -5,6 +5,9 @@
 /* 웹폰트 */
 @import url(https://hangeul.pstatic.net/hangeul_static/css/NanumBanJjagBanJjagByeor.css);
 
+/* 애니메이션 css */
+@import url(./robot_ani.css);
+
 /* 초기화 */
 html, body,h1, h2, p, ol, ul {
     margin: 0;
@@ -38,6 +41,7 @@ body * {
     /* 패딩 위아래 */
     padding: 200px 0 400px;
 }
+
 
 /* 로봇머리 */
 .head {
@@ -204,7 +208,58 @@ body * {
     border-radius: 0 50% 50% 0;
 }
 
-/* 로봇 몸통 */
+/************** 로봇 몸통 **************/
+.body {
+    position: relative;
+    /* 부모자격 : 하위직계 div들 */
+    width: 180px;
+    height: 450px;
+    margin: 40px auto 0;
+}
 
+/* 몸통 하위 직계 div 앱솔루트 포지션 */
+.body > div {
+    position: absolute;
+}
+/* 가상요소로 몸통 상단 만들기 */
+.body::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    left: -35px;
+    /* 그라데이션 */
+    background-image: linear-gradient(180deg,skyblue, lightpink);
+    clip-path: polygon(0 0, 10% 100%, 90% 100%, 100% 0);
+}
+/* 가상요소로 몸통 하단 만들기 */
+.body::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 220px;
+    bottom: 50px;
+    left: -35px;
+    /* 그라데이션 */
+    background-image: linear-gradient(180deg,lightyellow, lightpink);
+    clip-path: polygon(0 0, 10% 100%, 90% 100%, 100% 0);
+    transform : rotate(180deg) translateY(-30%)
 
+}
+/* 목 */
+.neck {
+    width: 70px;
+    height: 40px;
+    top : -40px;
+    left: 55px;
+}
+/* 왼팔 */
+/* 오른팔 */
+/* 왼다리 */
+/* 오른다리 */
+/* 왼어깨 */
+/* 오른어깨 */
+/* tv */
 /********************************* 3. 하단영역 *********************************/
