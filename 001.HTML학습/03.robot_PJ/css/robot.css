@@ -53,6 +53,21 @@ body * {
 .head > div {
     position: absolute;
 }
+/* 턱깎기 */
+/* .head::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 70%;
+    z-index: -1;
+    width: 250px;
+    height: 100px;
+    background: url(../images/metal01.jpg) no-repeat bottom/cover;
+    clip-path: polygon(0 0, 30% 100%, 70% 100%, 100% 0);
+} */
+
+
+
 /* 모자 */
 .head::before {
     content: '';
@@ -63,6 +78,18 @@ body * {
     width: 420px;
     height: 300px;
     background: url(../images/hat2.png) no-repeat center/100%;
+}
+
+.head:hover::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top:-178px;
+    left: -133px;
+    width: 420px;
+    height: 300px;
+    background: url(../images/hat2.png) no-repeat center/100%;
+    transform: scaleX(-1);
 }
 
 /* 눈공통 */
@@ -100,33 +127,66 @@ body * {
     border-radius: 50%;
     background: url(../images/nose.jpg) no-repeat 0/110% 100%;
 }
-/* 볼공통 */
-.cheek {
-    width: 50px;
-    height: 30px;
-    border-radius: 50%;
-    top: 140px;
-    background-color: rgba(240, 128, 128, 0.342);
+
+/* 볼 */
+.nose::before {
+    left : -90px;
+}
+.nose::after {
+    right : -90px;
 }
 
-/* 왼볼 */
-.c1 {
-    left: 10px;
-}
-/* 오른볼 */
-.c2 {
-    right: 10px;
+.nose::before, .nose::after {
+    content :'';
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    top : 35px;
+    border-radius: 50%;
+    background-color: rgba(240, 128, 128, 0.342);
+
 }
 
 
 /* 입 */
 .mouth {
     width: 100px;
-    height: 40px;
-    bottom: 25px;
+    height: 50px;
+    bottom: 20px;
     left: 75px;
     background: url(../images/mouth3.png) no-repeat 0/100% 100%;
 }
+
+/* 입 옆에 별모양점 가상요소로 만들기 */
+.mouth::before, .mouth::after {
+    content: '';
+    display: block;
+    position: absolute;
+    /* 부모 -> .mouth */
+    top: 5px;
+    right: -25px;
+    width: 20px;
+    height: 20px;
+    background-color: pink;
+    /* 클리핑으로 삼각형 만들기 */
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.mouth::after {
+    transform : rotate(180deg) translateY(-30%)
+}
+
+/* 
+   [ CSS 클리핑 속성 ]
+     clip-path : polycon(x1 y1, x2 y2)
+     -> 클리핑 범위를 지정하는 것, 클리핑 범위 안의 부분은 보여지고 바깥은 숨겨짐
+     -> 각 좌표쌍은 띄어쓰기로 각 점은 콤마로 구분
+     -> 각 점은 연결하여 도형 모양 출력 
+     -> px 은 각 도형 크기 내부의 수치로 쓰고 %는 도형을 기준한 위치를 %로 나타냄
+*/
+
+
 /* 귀공통 */
 .ear {
     width: 35px;
@@ -143,5 +203,8 @@ body * {
     right: -35px;
     border-radius: 0 50% 50% 0;
 }
+
+/* 로봇 몸통 */
+
 
 /********************************* 3. 하단영역 *********************************/
