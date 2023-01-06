@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+/* Robot PJ 메인 CSS - robot.css */
+
+/* 웹폰트 */
+@import url(https://hangeul.pstatic.net/hangeul_static/css/NanumBanJjagBanJjagByeor.css);
+
+/* 초기화 */
+html, body,h1, h2, p, ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/************* 공통클래스 *************/
+/* 메탈소재1 배경1 */
+.mt1 {
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+
+.mt2 {
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+
+body {
+    background: url(../images/bg.jpg) no-repeat fixed top/cover;
+    font-family: 'NanumBanJjagBanJjagByeor';
+}
+
+/* 공사중 표시 */
+body * {
+    outline: 2px dashed yellow;
+}
+/********************************* 1. 상단영역 *********************************/
+
+/********************************* 2. 메인영역 *********************************/
+/* 2-1. 로봇박스 */
+.robx {
+    /* 패딩 위아래 */
+    padding: 200px 0 400px;
+}
+
+/* 로봇머리 */
+.head {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+/* 눈공통 */
+.eye {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    /* 배경공통 */
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    /* 둥근모서리 */
+    border-radius: 50%;
+    /* 보더 이중선 : double */
+    border: 4px double #000; 
+}
+/* 왼눈 */
+.ey1 {
+    background-image: url(../images/e1.jpg);
+}
+/* 오른눈 */
+.ey2 {
+    background-image: url(../images/e2.jpg);
+}
+/* 코 */
+/* 입 */
+/* 왼귀 */
+/* 오른귀 */
+
+/********************************* 3. 하단영역 *********************************/
