@@ -3,9 +3,76 @@
    -> 상단영역, 하단영역 디자인 */
 
 /***** 1. 상단영역 *****/
+/* 겉박스 */
+#top {
+    background-color: #fff;
+}
+/* 속박스 */
 .top {
+    position: relative;
+    /* 부모자격 -> .tmenu */
     height: 128px;
 }
+
+/* 1-1. 로고 */
+h1.logo {
+    text-align: center;
+    /* 이 외에도 가운데 오게 하는 법 -> 사이즈의 가로크기를 이미지만큼 줄이고, 
+       마영오 쓰기
+       width : 100px, margin : 0 auto */
+       padding-top: 20px;  
+    /* 마진탑을 주면 부모박스를 밀어서 박스 모양이 망가짐 */
+    /* 그 상위인 .logo에 패딩을 주었기 때문에 a링크는 이미지에만 생긴다. */
+}
+
+/* 로고 이미지 */
+.logo img {
+    width: 100px;
+}
+
+/* 1-2. GNB 메뉴 */
+nav.gnb ul {
+    /* 플렉스박스 : 흐르게 할 요소의 직계부모박스 */
+    display: flex;
+    /* 진행방향정렬 : 중앙정렬 */
+    justify-content: center;
+    /* 마진탑은 부모인 nav.gnb 바깥으로 나가서 위의 박스를 밀고 있음 */
+    margin-top: 10px;
+
+}
+
+/* GNB a 요소 */
+.gnb > ul > li > a {
+    /* 글씨색 */
+    color: #222;
+    /* 밑줄없애기 */
+    text-decoration: none;
+    /* 글씨세로정렬 */
+    line-height: 40px;
+    /* 글씨끼리 간격 주기 */
+    margin: 0 10px;
+
+}
+
+/* 1-3. 탑메뉴 */
+aside.tmenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* 부모는? .top */
+}
+/* 회원가입 등 메뉴 박스 */
+.tmenu ul {
+    /* 플렉스박스 : 하위 li 요소 옆으로 흐름 */
+    display: flex;
+}
+
+/* sns 메뉴 박스 */
+.tmenu ol {
+    /* 플렉스박스 : 하위 li 요소 옆으로 흐름 */
+    display: flex;
+}
+
 
 
 /***** 2. 메인영역 *****/
