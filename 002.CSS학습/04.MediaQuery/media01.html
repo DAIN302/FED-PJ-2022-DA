@@ -191,6 +191,219 @@
         .screen img:first-child {
             display: inline;
         }
+        /************************** 미디어쿼리 적용 **************************/
+        /* 
+            주의!!
+            1. max-width 만 사용할 경우 큰 사이즈 부터 작은 사이즈 순으로 코딩해야
+               의도대로 적용됨 
+            2. 기존 선택한 방법과 동일한 선택자로 코딩하여 덮어쓰기가 되도록 코딩
+               (.tit 로 했으면 .tit 로 하기 h1 로 선택하지 말기)
+            3. 브라우저 테스트 시 글자크기를 반드시 100%로 세팅해서 테스트
+               (비율이 변경되면 수치가 정확히 표시되지 않음)
+               -> ctrl + 0  => 100% 보기
+        */
+        /* 미디어쿼리에서 이미지 바꾸려면 배경 이미지로 해야함
+           src 바꾸는거는 적용 X  */
+        /* 1200px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:1200px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 1200px 이하';
+            color: pink;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:first-child {
+            display: none;
+            }
+            
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(2) {
+            display: inline;
+            }            
+        }
+        /* 1200px 이하 미디어쿼리 끝 */
+        
+        /* 1100px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 1100px 이하';
+            color: orange;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(2){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(3) {
+            display: inline;
+            }            
+        }
+        /* 1100px 이하 미디어쿼리 끝 */
+
+        /* 1000px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:1000px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 1000px 이하';
+            color: yellow;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(3){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(4) {
+            display: inline;
+            }            
+        }
+        /* 1000px 이하 미디어쿼리 끝 */
+
+        /* 900px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:900px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 900px 이하';
+            color: yellowgreen;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(4){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(5) {
+            display: inline;
+            }            
+        }
+        /* 900px 이하 미디어쿼리 끝 */
+
+        /* 850px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:850px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 850px 이하';
+            color: green;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(5){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(6) {
+            display: inline;
+            }            
+        }
+        /* 850px 이하 미디어쿼리 끝 */
+
+        /* 830px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:830px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 830px 이하';
+            color: darkgreen;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(6){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(7) {
+            display: inline;
+            }            
+        }
+        /* 830px 이하 미디어쿼리 끝 */
+
+        /* 800px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:800px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 800px 이하';
+            color: skyblue;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(7){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(8) {
+            display: inline;
+            }            
+        }
+        /* 800px 이하 미디어쿼리 끝 */
+
+        /* 780px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:780px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 780px 이하';
+            color: deepskyblue;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(8){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(9) {
+            display: inline;
+            }            
+        }
+        /* 780px 이하 미디어쿼리 끝 */
+
+        /* 770px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:770px) {
+            /* 1. 타이틀 변경 */
+            .tit::after {
+            content: '최대 770px 이하';
+            color: blue;
+            /* 덮어쓰기라서 바꿀부분만 써주면 됨 
+               안바꾸면 위에 코딩되어 있는 것 그대로 감 */
+            }
+    
+            /* 2. 기존 이미지 숨기기  */
+            .screen img:nth-child(9){
+            display: none;
+            }
+    
+            /* 3. 다음 이미지 보이기 */
+            .screen img:nth-child(10) {
+            display: inline;
+            }            
+        }
+        /* 770px 이하 미디어쿼리 끝 */
+        
+
+
 
     </style>
 </head>
