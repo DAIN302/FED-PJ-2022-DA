@@ -48,6 +48,7 @@ body * {
     position: relative;
     /* 부모자격 static 하면서도 부모자격이 있어야 하기 때문에 position : relavtive
         static 한 성격 -> 마영오 먹히게 하기 위해 */
+    z-index: 1;    
     width: 250px;
     height: 250px;
     margin: 0 auto;
@@ -251,9 +252,25 @@ body * {
 /* 목 */
 .neck {
     width: 70px;
-    height: 40px;
+    height: 60px;
     top : -40px;
     left: 55px;
+    border-radius: 0 0 15px 15px;
+    border-bottom: 10px ridge pink;
+}
+/* 팔공통 */
+.arm {
+    width: 70px;
+    height: 200px;
+}
+
+/* / */
+.arm span {
+    position: absolute;
+    top: 100%;
+    display: block;
+    width: 60px;
+    height: 150px;
 }
 /* 왼팔 */
 /* 오른팔 */
