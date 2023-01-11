@@ -193,3 +193,32 @@
     rightArm3 .5s ease-in-out 6s forwards,
     rightArm3-2 .3s linear 6.5s infinite alternate;
 }
+
+/* 4-1 로고 중앙에서 왼쪽위로 이동하기 키프레임 */
+@keyframes logoAni {
+    80% {
+    }
+    100% {
+        /* 위치 및 크기 변경 */
+        top : 50px;
+        left : 50px;
+        transform: scale(1) rotate(30deg);
+    }
+}
+
+/* 오뚜기회전 왔다갔다 */
+@keyframes logoAni2{
+    to {
+        transform: rotate(-30deg);
+    }
+    from {
+        transform: rotate(30deg);
+    }
+}
+
+/* 4-2 로고 이동 애니 호출 */
+.logo {
+    animation: logoAni 2s ease-in-out 1s forwards,
+    logoAni2 1s ease-in-out 3s infinite alternate;
+}
+

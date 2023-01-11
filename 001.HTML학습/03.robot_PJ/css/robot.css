@@ -22,12 +22,9 @@ html, body,h1, h2, p, ol, ul {
     padding: 0;
 }
 
-html, body {
-    overflow-x: hidden;
-}
-
 /************* 공통클래스 *************/
 html {
+    /* 부드러운 스크롤 */
     scroll-behavior: smooth;
     /* #아이디명 스크롤 이동 시 부드럽게 애니메이션 이동함 */
 }
@@ -44,6 +41,12 @@ html {
 body {
     background: url(../images/bg.jpg) no-repeat fixed top/cover;
     font-family: 'NanumBanJjagBanJjagByeor';
+    /* 전체가로스크롤방지 */
+    overflow-x: hidden;
+    /* 밑에 sticky 포지션을 쓴 상태로 overflow 를 쓴다면 잘못하면
+       sticky 포지션이 깨질 수 있음, 
+       따라서 부모나 조상 박스를 잘 설정하고 overflow를 줘야함 
+       -> 왠만해선 html 전체에다 주지 말자 */
 }
 
 /* 공사중 표시 */
@@ -648,7 +651,7 @@ width: 180px;
     /* 최대가로크기 maw */
     max-width: 800px;
     /* 중앙정렬 */
-    margin: 0 auto 200px;
+    margin: 0 auto 100px;
     /* 반투명배경색 */
     background-color: rgba(0, 0, 0, 0.5);
     /* 글자색 */
@@ -759,4 +762,8 @@ width: 180px;
     border-radius: 50%;
     border: 2px solid hotpink;
     background: pink url(../images/icons8-beemo-color-32.png) no-repeat center/cover;
+}
+
+.info span {
+    color : aquamarine;
 }
