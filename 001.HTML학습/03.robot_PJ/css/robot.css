@@ -4,6 +4,14 @@
 
 /* 웹폰트 */
 @import url(https://hangeul.pstatic.net/hangeul_static/css/NanumBanJjagBanJjagByeor.css);
+/* font-family: 'NanumBanJjagBanJjagByeor'; */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+/* 
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+*/
 
 /* 애니메이션 css */
 @import url(./robot_ani.css);
@@ -14,7 +22,16 @@ html, body,h1, h2, p, ol, ul {
     padding: 0;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 /************* 공통클래스 *************/
+html {
+    scroll-behavior: smooth;
+    /* #아이디명 스크롤 이동 시 부드럽게 애니메이션 이동함 */
+}
+
 /* 메탈소재1 배경1 */
 .mt1 {
     background: url(../images/metal01.jpg) no-repeat center/cover;
@@ -31,15 +48,120 @@ body {
 
 /* 공사중 표시 */
 body * {
-    outline: 2px dashed yellow;
+    /* outline: 2px dashed yellow; */
 }
 /********************************* 1. 상단영역 *********************************/
+.top {
+    color: #eee;
+}
+/* 1-1. 로고 */
+.logo {
+    /* 포지션 */
+    position: fixed;
+    z-index: 999;
+    /* 위치세팅 */
+    top: calc(50% - 102px);
+    left: calc(50% - 102px);
+    /* 
+       [ 앱솔루트 / 픽스드 정중앙 보내기 ] 
+        1. calc()로 계산 
+           -> top: calc(50% - 중앙갈박스 높이값절반); 
+              left: calc(50% - 중앙갈박스 가로값절반); 
+              (주의 : -, + 기호 앞뒤 반드시 띄어쓰기)
+        2. trnasform : trnaslate 로 이동
+           위치값 50% 이동 후 trnasform 사용
+           -> top : 50%;
+              left : 50%;
+              tranrsform : trnaslate(-50%, -50%)
+    */ 
+    /* 크기 확대 */
+    transform: scale(2.5);
+
+    /* 박스세팅 */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid hotpink;
+    text-align: center;
+    /* 박스배경 */
+    background: pink url(../images/beemo.png) no-repeat center/cover;
+    /* 박스그림자 */
+    box-shadow: inset 0 0 20px hotpink, 0 0 20px 10px hotpink;
+    /* 글자세팅 */
+    color: aquamarine;
+    font-size: 80px;
+    line-height: 250px;
+    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000;
+}
+/* 1-2. 링크 타이틀 */
+.link {
+    position: absolute;
+    top: 60px;
+    right: 50px;
+}
+
+/* 링크 a */
+.link a {
+    /* a 요소 밑줄세팅인 컬러와 밑줄세팅 제거 */
+    color: lawngreen;
+    text-decoration: none;
+    font-size: 60px;
+    text-shadow: 2px 2px 2px #000;
+}
+
+/* 마우스 오버시 */
+.link a:hover {
+    /* 글자색 */
+    color: orangered;
+    /* 글자데코 */
+    text-decoration: underline;
+    /* 글자데코스타일 */
+    text-decoration-style: wavy;
+}
+/* 1-3. 탑이동버튼 */
+.btnTop {
+    position: fixed;
+    z-index: 999;
+    bottom: 50px;
+    right: 30px;
+    /* 박스세팅 */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px outset #fff;
+    background-color: #ccc;
+}   
+
+.btnTop a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: blue;
+    text-decoration: none;
+    font: 30px/90px 'Black Ops One';
+    /* line-height 가 높이값인 100px 이므로 중앙 정렬 위해 100px 아닌 이유
+       버튼은 기본적으로 box-sizing : border-box 이므로
+       패딩과 보더가 내부에 포함
+       따라서 컨테느 영역이 그만큼 작아짐 박스보더가 5px 라 양쪽합 10px
+       이것을 빼서 90px
+    */
+}
+
+/* 버튼 마우스 오버시 */
+.btnTop:hover {
+    background-color: yellow;
+    border-style: inset;
+}
+.btnTop:hover a {
+    color : red;
+}
+
 
 /********************************* 2. 메인영역 *********************************/
 /* 2-1. 로봇박스 */
 .robx {
     /* 패딩 위아래 */
-    padding: 200px 0 500px;
+    padding: 200px 0 300px;
 }
 
 
@@ -521,4 +643,120 @@ width: 180px;
     border: none;
 }
 
+/* 2-2. 로봇설명박스 */
+.dcbx {
+    /* 최대가로크기 maw */
+    max-width: 800px;
+    /* 중앙정렬 */
+    margin: 0 auto 200px;
+    /* 반투명배경색 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 글자색 */
+    color: white;
+    /* 글자그림자 */
+    text-shadow: 1px 1px 1px #000;
+    /* 패딩 */
+    padding: 15px 30px;
+    /* 경계선 */
+    border: 3px solid lavender;
+    /* 둥근모서리 */
+    border-radius: 20px;
+    /* 박스그림자를 이용한 글로우 효과 */
+    box-shadow: 
+    inset 0 0 20px lavender,
+    inset 0 0 50px 10px lightpink;
+    /* inset은 내부그림자 옵션
+       x y spread blur color */
+}
+/* 2-2-1. 제목 */
+.dcbx h2 {
+    /* 스티키 포지션 */
+    position: sticky;
+    top: 10px;
+    /* 위치값을 줘야 그 자리에 스티키!! 해서 fixed 처럼 된다 단! 부모박스 한정 */
+    /* 박스세팅 */
+    text-align: center;
+    background-image: linear-gradient(180deg, rgba(101, 210, 253, 0.514) 20%, rgba(255,255,255,0.5) 80%);
+    border-radius: 20px;
+    /* 글자세팅 */
+    font-size: 50px;
+    color: rgb(255, 112, 195);
+    text-shadow: 0px 0px 10px #ff0080;
+    
+}
+/* 2-2-2. 츌처 */
+.dcbx small {
+    /* 글자세팅 */
+    font-size: 16px;
+    line-height: 3;
+    color: yellow;
+    /* 박스세팅 
+       small 태그는 인라인 요소이기 때문에 블록요소로 바꿔주고 text-align : center
+       써서 중앙정렬 해줌*/
+    display: block;
+    text-align: center;
+}
+/* 2-2-3. 내용단락 */
+.dcbx p {
+    /* 글자세팅 */
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    /* 
+       [ 다단설정 ] 
+         - 다중열 속성
+         -> column-count : 다중열 개수
+         -> column-rule : 다중열 구분선
+         -> column-gqp : 다중열 사이간격 
+    */
+    /* 다중열 개수 */
+    column-count: 3;
+    /* 다중열 구분선 
+       column-rule: 두께 종료 색상; */
+    column-rule: 3px dotted oldlace;
+    /* 다중열 사이간격 */
+    column-gap: 40px;
+    /* 양쪽정렬 */
+    text-align: justify;
+    /* 단어깨기 - 영어는 단어끼리 붙어서 정렬하기 때문에 양쪽정렬 시 공백이 많이 생김
+       이를 깨주기 위해 사용 */
+    word-break: break-all;
+    /* 1byte문자(ex. 영단어)일 경우 기본적으로 단어 단위로 줄바꿈을 하는 세팅
+       이 때 양쪽정렬시 중간에 큰 공백이 생김
+       그래서 단어를 글자단위로 모두 깨주는 설정 -> word-break: break-all; 
+       2byte문자(ex. 한글, 일본어)는 자동으로 깨져있음 */
+    /* 들여쓰기 */
+    text-indent: 20px;
+}
+
+/* 설명문단 첫번째 글자만 가상요소로 글자 디자인 변경 */
+.dcbx p::first-letter {
+    /* 글자세팅 */
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+}
+
 /********************************* 3. 하단영역 *********************************/
+#info {
+    /* 글자세팅 */
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: bold;
+    /* 박스세팅 */
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 50px;
+}
+/* 속박스 가상요소로 아이콘 모양 넣기*/
+.info::before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid hotpink;
+    background: pink url(../images/icons8-beemo-color-32.png) no-repeat center/cover;
+}
