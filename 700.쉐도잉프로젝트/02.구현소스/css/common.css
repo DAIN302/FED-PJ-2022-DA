@@ -6,12 +6,19 @@
 /* 겉박스 */
 #top {
     background-color: #fff;
+    /* 하단보더 */
+    border-bottom: 1px solid #ccc;
 }
 /* 속박스 */
 .top {
     /* position: relative; */
-    /* 부모자격 -> .tmenu */
     height: 128px;
+}
+
+/* 속박스 안에 로고와 탑메뉴를 감싼 박스 */
+.tarea {
+    position: relative;
+    /* 부모자격 -> .tmenu */
 }
 
 /* 1-1. 로고 */
@@ -36,19 +43,21 @@ nav.gnb ul {
     display: flex;
     /* 진행방향정렬 : 중앙정렬 */
     justify-content: center;
+    /* align-items: cen; */
     /* 마진탑은 부모인 nav.gnb 바깥으로 나가서 위의 박스를 밀고 있음 */
-    margin-top: 10px;
-
+    margin-top: 20px;
 }
 
 /* GNB a 요소 */
 .gnb > ul > li > a {
+    position: relative;
+    /* li 가상요소 서브배경보다 위 순서대로 나중에 그려진 static아닌 요소가 위 */
     /* 글씨색 */
     color: #222;
     /* 밑줄없애기 */
     text-decoration: none;
     /* 글씨세로정렬 */
-    line-height: 4rem;
+    line-height: 2rem;
     /* 글씨끼리 간격 주기 */
     margin: 0 10px;
     /* 글씨 크기 */
@@ -62,40 +71,100 @@ nav.gnb ul {
     display: block;
     position: absolute;
     /* 부모는? .top */
-    top: 128px;
+    top: 129px;
     left: 0;
-    z-index: -1;
+    /* z-index: -1; */
     width: 100%;
     height: 0;
     background-color: #fff;
     transition: height .4s ease-out;
 }
 
-/* 상위메뉴 오버시 서브배경 보이기 */
-.gnb > ul > li.sm:hover::after {
-    height: 200px;
+/* 상위메뉴 li 오버시 서브메뉴 보이기 */
+/* 프로그램소개 */
+.gnb > ul > li:first-child:hover::after {
+    height: 110px;
     border-bottom: 2px solid red;
 }
+.gnb > ul > li:first-child:hover::before, .gnb > ul > li:first-child:hover .smenu {
+    height: 110px;
+}
+/* 동영상 */
+.gnb > ul > li:nth-child(3):hover::after {
+    height: 150px;
+    border-bottom: 2px solid red;
+}
+.gnb > ul > li:nth-child(3):hover::before, .gnb > ul > li:nth-child(3):hover .smenu {
+    height: 150px;
+}
+/* 사진첩 */
+.gnb > ul > li:nth-child(4):hover::after {
+    height: 80px;
+    border-bottom: 2px solid red;
+}
+.gnb > ul > li:nth-child(4):hover::before, .gnb > ul > li:nth-child(4):hover .smenu {
+    height: 80px;
+}
+/* 가상요소로 밑줄 애니 만들기 */
+/* 대상 : 
+1. GNB 메뉴의 상위메뉴 a요소
+2. 사이드메뉴의 1,2 번 a요소 */
+.gnb>ul>li>a::after, .tmenu>ul>li:first-child a::after,
+.tmenu>ul>li:nth-child(2) a::after {
+    content: '';
+    display: block;
+    /* margin-top: 5px; */
+    /* 변경할 속성 - 바가 중앙에 있음 */
+    width: 0%;
+    margin-left: 50%;
+
+    height: 2px;
+    background-color: red;
+    /* 트랜지션 */
+    transition: all .3s;
+    }
+
+    /* 마지막 사이드메뉴 li 바 제외
+    .tmenu>ul>li:last-child a::after {display : none;}  */
+
+    /* 오버시 바 보이기 - 바가 중앙에서부터 펼쳐짐 */
+.gnb>ul>li:hover>a::after, .tmenu>ul>li:hover>a::after{
+    width: 100%;
+    margin-left: 0%;
+}
+
+
 
 /* GNB 서브메뉴 */
+.smbx {
+    position: relative;
+    /* .smenu 의 부모 */
+    padding-top: 5px;
+}
+
 .smenu {
+    position: absolute;
+    z-index: 1;
+    padding: 0 5px;
+    /* 주의사항 : 높이값을 0줘서 숨기는 애들은 위아래 패딩을 주면 안됨 */
+    /* margin-top: 10px; */
+    /* 가로방향 중앙위치 */
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    background-color: #fff;
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
     /* 숨기기 */
     height: 0;
     overflow: hidden;
     /* 트랜지션 */
     transition: all .4s ease-out;
 }
-/* 상위메뉴(gnb 메뉴) 오버시 서브메뉴 보이기 */
-.gnb > ul > li:hover .smenu {
-    height: 150px;
-}
 
 .smenu a {
     display: block;
     font-size: 1.4rem;
-    line-height: 2;
+    line-height: 2.5;
     color: #222;
     text-decoration: none;
 
