@@ -16,3 +16,9 @@ ul, ol {
     /* 블릿, 숫자 없앰 */
     list-style: none;
 }
+
+/* 3. root - html 글자 크기 세팅 */
+html {
+    font-size: 10px;
+    /* rem단위 계산하기 쉽도록 10px 로 정함 */
+}

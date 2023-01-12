@@ -149,6 +149,16 @@
             padding: 8px 0;
             font-size: 16px;
             font-weight: normal;
+            transition: .3s;
+        }
+
+        /* 서브메뉴 a 요소 마우스 오버시 글씨 확대 및 글씨색 변경 */
+        .smenu a:hover {
+            transform: scale(1.1);
+            /* scale 은 주변에(마진이나 패딩이나 높이 이런거) 영향주지 않고
+               크기가 변경됨
+               font-size로 글씨 크기 변경하면 위치에 영향을 준다. */
+            color: orange;
         }
 
 
