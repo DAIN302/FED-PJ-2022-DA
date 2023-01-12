@@ -80,9 +80,9 @@
             content: '';
             display: block;
             margin-top: 5px;
-            /* 변경할 속성 */
+            /* 변경할 속성 - 바가 중앙에 있음 */
             width: 0%;
-            margin-left: 100%;
+            margin-left: 50%;
 
             height: 2px;
             background-color: #fff;
@@ -93,13 +93,10 @@
         /* 마지막 사이드메뉴 li 바 제외
            .tmenu>ul>li:last-child a::after {display : none;}  */
 
-        /* 오버시 바 보이기 */
+        /* 오버시 바 보이기 - 바가 중앙에서부터 펼쳐짐 */
         .gnb>ul>li:hover>a::after, .tmenu>ul>li:hover>a::after{
             width: 100%;
             margin-left: 0%;
-            /* margin-left 는 transition 안되고 width 만 되어야함 */
-            transition-property: width;
-            /* 오버 시 트랜지션 속성을 width만 적용 */
         }
 
         /* 서브메뉴 박스 */
