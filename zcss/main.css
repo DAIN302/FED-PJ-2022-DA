@@ -4,7 +4,18 @@
 /* 웹폰트 
    font-family: 'NanumHeuinGgoRiSuRi'; */
 @import url('https://hangeul.pstatic.net/hangeul_static/css/NanumHeuinGgoRiSuRi.css');
-/* font-family: 'NanumHeuinGgoRiSuRi'; */
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumDongHwaDdoBag.css');
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+/*  
+    font-family: 'NanumHeuinGgoRiSuRi';
+    font-family: 'NanumSquareRoundLight';
+    font-family: 'NanumSquareRound';
+    font-family: 'NanumSquareRoundBold';
+    font-family: 'NanumSquareRoundExtraBold';
+    font-family: 'NanumDongHwaDdoBag';
+    font-family: 'Single Day', cursive;
+*/
 
 html {
     scroll-behavior: smooth;
@@ -60,6 +71,7 @@ ul, ol {
     color: pink;
     animation: titAni .5s ease-in alternate infinite;
     /* background-color: #fff; */
+    font-family: 'single day';
 }
 
 @keyframes titAni {
@@ -185,6 +197,7 @@ ul, ol {
     text-decoration: none;
     font-size: 3.5rem;
     line-height: 1.7;
+    font-family: 'NanumDongHwaDdoBag';
 }
 
 .part li:hover a {
