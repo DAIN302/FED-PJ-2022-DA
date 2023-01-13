@@ -5,10 +5,17 @@
 /*********** 1. 웹폰트 : CDN ***********/
 /* Cute Font, Jua, Audiowide 체 */
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Cute+Font&family=Jua&display=swap');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumHeuinGgoRiSuRi.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumBanJjagBanJjagByeor.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumDongHwaDdoBag.css');
+
 /* 
     font-family: 'Audiowide', cursive;
     font-family: 'Cute Font', cursive;
     font-family: 'Jua', sans-serif;
+    font-family: 'NanumHeuinGgoRiSuRi'; 
+    font-family: 'NanumBanJjagBanJjagByeor';
+    font-family: 'NanumDongHwaDdoBag';
 */
 
 /* 전체 글자크기 Root 셋팅! */
