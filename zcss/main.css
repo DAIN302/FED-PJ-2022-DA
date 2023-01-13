@@ -9,6 +9,7 @@
 html {
     scroll-behavior: smooth;
     /* #아이디명 스크롤 이동 시 부드럽게 애니메이션 이동함 */
+    font-size: 10px;
 }
 
 
@@ -23,6 +24,18 @@ body {
     /* 패딩탑 */
     /* padding-top: 50px; */
     font-family: 'NanumHeuinGgoRiSuRi';
+    overflow: hidden;
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 /* 상단영역 */
@@ -44,27 +57,34 @@ body {
     /* 글자 중앙 정렬 */
     text-align: center;
     font-size: 40px;
+    color: pink;
+    animation: titAni .5s ease-in alternate infinite;
+    /* background-color: #fff; */
+}
+
+@keyframes titAni {
+    to {
+        text-shadow: 0 0 10px lightpink;
+    }
 }
 
 /* GNB 메뉴 */
 .gnb {
-    width: 600px;
+    width: 640px;
     margin: 0 auto;
-}
-/* ul초기화 */
-.gnb ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    white-space: nowrap;
 
 }
+
 /* li 옆으로 흐르게 */
 .gnb li {
     float: left;
     text-align: center;
     width: 150px;
-
-
+    background-color: rgba(255, 255, 255, 0.658);
+    height: 35px;
+    margin : 0 5px;
+    border-radius: 40px;
 }
 
 /* ul 박스 가상요소로 clear 처리 */
@@ -77,17 +97,21 @@ body {
 
 /* GNB a요소 */
 .gnb a {
-    color: lightseagreen;
-    background-color: rgba(255, 255, 255, 0.658);
+    color: #000;
+    width: 100%;
+    height: 100%;
     border-radius: 40px;
     display: block;
-    height: 35px;
-    margin : 0 5px;
-    padding: 5px 10px;
     font-size: 25px;
     text-decoration: none;
     font-weight: bold;
+    transition: all .3s;
 
+}
+
+.gnb li:hover a {
+    transform: scale(1.1);
+    color : seagreen;
 }
 
 
@@ -97,7 +121,7 @@ body {
     height: 100%;
     /* 배경이미지 공통 */
     /* 배경 이미지 bgi */
-    background-image: url(../imgs/starfish.jpg);
+    background-image: url(../imgs/bmo.jpg);
     /* 배경 반복 여부 bgr 반복 X (no-repeat) */
     background-repeat: no-repeat;
     /* 배경 크기 : 채우기(cover) bgz */
@@ -109,15 +133,15 @@ body {
 }
 /* 두번째 페이지 박스 배경변경 */
 .mbx2 {
-    background: url(../imgs/2587614.jpg) no-repeat fixed center/cover;
+    background: url(../imgs/bmo2.jpg) no-repeat fixed center/cover;
 }
 /* 세번째 페이지 박스 배경변경 */
 .mbx3 {
-    background: url(../imgs/whales.jpg) no-repeat fixed center/cover;
+    background: url(../imgs/at.jpg) no-repeat fixed center/cover;
 }
 /* 네번째 페이지 박스 배경변경 */
 .mbx4 {
-    background: url(../imgs/whales2.jpg) no-repeat fixed center/cover;
+    background: url(../imgs/at2.jpg) no-repeat fixed center/cover;
 }
 
 
@@ -125,7 +149,9 @@ body {
 
 /* 페이지별 컨텐츠 박스 */
 .pwrap {
-    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 90%;
     /* 둥근 모서리 brad */
     border-radius: 20px;
     /* 가로 중앙 */
@@ -135,7 +161,38 @@ body {
     top:300px;
     height: calc(100% - 350px);
     /* 부모 높이값보다 300px 만큼 조금 더 그 크기를 뺀 높이값은 cal로 계산 */
-
-
+    text-align: center;
 }
 
+/* .pwrap 하위 .part 박스 */
+.part {
+    flex: 1;
+    padding: 20px;
+}
+/* .part 서브타이틀 */
+.part h2 {
+    font-size: 4rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 30px;
+    color: white;
+    text-shadow: 2px 2px 2px #555;
+}
+
+/* .part a 요소 */
+.part a {
+    color: #222;
+    text-decoration: none;
+    font-size: 3.5rem;
+    line-height: 1.7;
+}
+
+.part li:hover a {
+    text-shadow: 2px 2px 2px #222;
+}
+
+/* pg1 - 공통프로젝트 */
+#pg1 .part a::before{
+    content: '💖';
+    margin-right: 5px;
+}
