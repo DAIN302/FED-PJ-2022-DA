@@ -14,27 +14,76 @@ html, body, h1 {
 
 /* 전체 설정 */
 body {
-    background-color: #9c0;
+    background-color: lightcoral;
+    /* 배경색 애니 */
+    animation: bgAni 10s linear infinite;
+}
+
+/* 배경색 키프레임 */
+@keyframes bgAni {
+    0% {
+        background-color: lightcoral;
+    }
+    20% {
+        background-color: pink;
+    }
+    40% {
+        background-color: lightpink;
+    }
+    60% {
+        background-color: lightyellow
+    }
+    80% {
+        background-color: lightsalmon
+    }
+    100% {
+        background-color: lightcoral
+    }
+    
 }
 
 /* 전체 타이틀 */
 .tit {
+    /* height: 50px; -> auto로 유동적인 글자크기 만큼만 사이즈 주지 말자 */
     font-family: 'Comfortaa';
     /* 최대글자크기 지정 */
     font-size: min(5vw, 42px);
-    padding: 5vh 0;
+    margin : 5vh 0;
     text-align: center;
     color: #fff;
     text-shadow: 2px 2px 2px #222;
+    overflow: hidden;
+}
+/* 글자만 싸고 있는 span */
+.tit span { 
+    display: block;
+    transform: translateY(100%);
+    animation: upAni .3s ease-out 1.5s forwards;
 }
 
-/* 문 */
+/* 등장 키프레임 애니 */
+@keyframes upAni {
+    to {
+        transform: translateY(0);
+    }
+
+}
+
+/* 전체 랩핑박스 */
+.wrap {
+    overflow: hidden;
+}
 /* 전체문부모 */
 .cont {
     width: 200px;
     height: 300px;
-    margin: 0 auto;
+    margin: 5vh auto;
+    /* 문이 열렸을 때 문이 안잘려보이게 위아래 마진줌..
+       .wrap 에 패딩줘도 돰*/
     background-color: #900;
+    /* 트랜스폼 y축 이동 */
+    transform: translateY(120%);
+    animation: upAni .5s ease-out 1s forwards;
 }
 
 /* 문프레임 */
@@ -66,18 +115,28 @@ body {
         2가지를 같이 셋팅함!
      ***********************************************/
      /* perspective-origin: ; */
+     animation: waveAni 3s ease-in-out infinite alternate;
+}
+
+/* 파도 치는 듯한 애니메이션 */
+@keyframes waveAni {
+    to {
+       background-size: auto 110%; 
+    }
+    
 }
 
 /* 문짝 */
 .door {
     position: relative;
     /* 부모자격 .handle */
+    z-index: 1;
     width: 150px;
     height: 280px;
     background-color: #c90;
 
     /* 문짝회전 */
-    transform: rotateY(30deg);
+    /* transform: rotateY(30deg); */
     /* 회전축변경 */
     transform-origin: left;
     /* 트랜스폼 회전축 변경속성
@@ -127,6 +186,7 @@ body {
 
 
 
+
 /* 손잡이 */
 .handle {
     position: absolute;
@@ -138,3 +198,33 @@ body {
     background-color: blue;
 }
 
+/* 엘사박스 */
+#elsa {
+    position: absolute;
+    /* 부모 : .frame */
+    top: 0;
+    width: 150px;
+    height: 280px;
+    /* 엘사이미지 숨기기 */
+    overflow: hidden;
+}
+/* 엘사이미지 */
+#elsa img {
+    margin-left: 133px;
+    /* transform: rotate(-10deg); */
+    transform-origin: bottom;
+    animation: elsaAni 1s ease-in-out infinite alternate;
+    animation-play-state: paused;
+}
+
+.cont:hover #elsa img {
+    animation-play-state: running;
+}
+
+/* 엘사이미지 애니메이션 */
+@keyframes elsaAni {
+    to {
+        transform : rotate(-10deg)
+    }
+    
+}

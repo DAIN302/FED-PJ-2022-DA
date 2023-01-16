@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+/* 태양계 2D 애니 - solar2d.css */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    background: url(../images/space.jpg) no-repeat center/cover;
+    overflow: hidden;
+    /* 스크롤바 없앰 */
+}
+
+body *{
+    outline: 1px dashed lightblue;
+}
+
+/* 공통클래스 */
+/* 배경이미지 설명숨기기 */
+.ir {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 태양계박스 */
+#solar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 박스 정중앙 이동 */
+    width: 250px;
+    height: 250px;
+}
+
+/* 태양박스 */
+#sun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 250px;
+}
+
+/* 태양이미지 */
+#sun img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+[ 변수설정하기 ]
+:root {
+    --변수명1 :값1;
+    --변수명2 :값2;
+}
+
+[ 변수호출 ]
+var(--변수명)
+
+[ 변수는 언제 사용? ]
+  -> 같은 값이 여러 부분에서 사용될 때
+  -> 미디어쿼리 등에서 변경이 필요한 경우 변값만 변경하면 복잡한 값
+     변경이 불필요하게 됨 
+*/
+:root {
+    /* 지구 크기 */
+    --esz : 80px;
+    /* 목성크기 */
+    --jsz : 150px;
+    /* 명왕성크기 */
+    --psz : 50px;
+}
+
+
+/* 지구 */
+#earth {
+    position: absolute;
+    top: calc(50% - var(--esz)/2);
+    left: calc(50% - var(--esz)/2);
+    width: var(--esz);
+    height: var(--esz);
+    background: url(../images/earth.png) no-repeat 0/100% 100%;
+    /* 애니메이션 */
+    animation: earth 20s linear infinite;
+}
+
+/* 지구 회전 키프레임 */
+@keyframes earth {
+    from {
+        transform: rotate(0deg) translateX(-250px) rotate(0deg);
+    }
+    /* 
+        [ 주변회전만들기 ]
+          1. 첫번쨰 rotate : 0deg -> 360deg
+             => 중앙회전
+          2. 위치이동 translateX 
+             => 주변을 도는 효과 생김
+          3. 두번째 rotate : 0deg -> -360deg
+             => 반대회전은 옆으로 이동한 박스에 적용되어 세워져서 주변을 도는
+                효과가 생김      
+
+    */
+    to {
+        transform: rotate(360deg) translateX(-250px) rotate(-360deg);
+    }
+    
+} /* 지구회전 키프레임 */
+
+/* 목성 */
+#jupiter {
+    position: absolute;
+    top: calc(50% - var(--jsz)/2);
+    left: calc(50% - var(--jsz)/2);
+    width: var(--jsz);
+    height: var(--jsz);
+    background: url(../images/jupiter.png) no-repeat 0/100% 100%;
+    /* 애니메이션 */
+    animation: jupiter 35s linear infinite;
+}
+
+/* 목성 회전 키프레임 */
+@keyframes jupiter {
+    from {
+        transform: rotate(0deg) translateX(400px) rotate(0deg);
+    }
+    /* 
+        [ 주변회전만들기 ]
+          1. 첫번쨰 rotate : 0deg -> 360deg
+             => 중앙회전
+          2. 위치이동 translateX 
+             => 주변을 도는 효과 생김
+          3. 두번째 rotate : 0deg -> -360deg
+             => 반대회전은 옆으로 이동한 박스에 적용되어 세워져서 주변을 도는
+                효과가 생김      
+
+    */
+    to {
+        transform: rotate(360deg) translateX(400px) rotate(-360deg);
+    }
+    
+} /* 목성회전 키프레임 */
+
+/* 명왕성 */
+#pluto {
+    position: absolute;
+    top: calc(50% - var(--psz)/2);
+    left: calc(50% - var(--psz)/2);
+    width: var(--psz);
+    height: var(--psz);
+    background: url(../images/pluto.png) no-repeat 0/100% 100%;
+    /* 애니메이션 */
+    animation: pluto 50s linear infinite;
+}
+
+/* 명왕성 회전 키프레임 */
+@keyframes pluto {
+    from {
+        transform: rotate(0deg) translateY(650px) rotate(0deg);
+    }
+    /* 
+        [ 주변회전만들기 ]
+          1. 첫번쨰 rotate : 0deg -> 360deg
+             => 중앙회전
+          2. 위치이동 translateX 
+             => 주변을 도는 효과 생김
+          3. 두번째 rotate : 0deg -> -360deg
+             => 반대회전은 옆으로 이동한 박스에 적용되어 세워져서 주변을 도는
+                효과가 생김      
+
+    */
+    to {
+        transform: rotate(360deg) translateY(650px) rotate(-360deg);
+    }
+    
+} /* 명왕성 회전 키프레임 */
