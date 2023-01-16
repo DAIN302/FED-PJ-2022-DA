@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+/* Open Door CSS - opendoor.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+/* font-family: 'Comfortaa', cursive; */
+
+/* 초기화 */
+html, body, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 설정 */
+body {
+    background-color: #9c0;
+}
+
+/* 전체 타이틀 */
+.tit {
+    font-family: 'Comfortaa';
+    /* 최대글자크기 지정 */
+    font-size: min(5vw, 42px);
+    padding: 5vh 0;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 2px #222;
+}
+
+/* 문 */
+/* 전체문부모 */
+.cont {
+    width: 200px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #900;
+}
+
+/* 문프레임 */
+.frame {
+    position: relative;
+    top: 20px;
+    width: 150px;
+    height: 280px;
+    margin: 0 auto;
+    background: url(../images/seashore.jpg) no-repeat center/auto 100%;   
+
+    /****************************************************************** 
+    
+      [ 3D 원근 설정 ] 
+        1. 세팅 위치 : 3D 원근 설정을 할 대상의 부모요소
+        2. 설정 방법 : 
+           perspective : 수치;
+           -> 수치는 px단위로 숫자가 클수록 소실점이 먼 것이므로 각도가 작아짐
+              (이 거리는 기준점에서 소실점까지의 거리)
+    
+    ******************************************************************/
+    perspective: 480px;
+     /*********************************************** 
+        [ 뷰포인트(관찰자위치) 변경옵션 ]
+        perpective-origin : 가로 세로;
+        - 가로축: left, center, right, px, % 등 단위
+        - 세로축: top, center, bottom, px, % 등 단위
+        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우
+        2가지를 같이 셋팅함!
+     ***********************************************/
+     /* perspective-origin: ; */
+}
+
+/* 문짝 */
+.door {
+    position: relative;
+    /* 부모자격 .handle */
+    width: 150px;
+    height: 280px;
+    background-color: #c90;
+
+    /* 문짝회전 */
+    transform: rotateY(30deg);
+    /* 회전축변경 */
+    transform-origin: left;
+    /* 트랜스폼 회전축 변경속성
+       transform-origin: 가로축 세로축
+       - 가로축: left, center, right, px, % 등 단위
+       - 세로축: top, center, bottom, px, % 등 단위 */
+
+    /* 애니메이션 지정 */
+    animation: 
+    /* 처음 1초간 열린 후 끝상태유지 */
+    openFirst 1s ease-in-out forwards, 
+    /* 계속 여닫기 애니 1초후 작동 */
+    openDoor 2s ease-in-out 1s infinite alternate;
+    /* 애니메이션 상태관리 */
+    animation-play-state: paused;
+    /* 
+       animation-play-state 상태속성
+       1. running : 작동
+       2. paused : 멈춤
+    */
+
+
+}
+/* 문짝부모에 오버시 문짝 애니메이션 작동 */
+.cont:hover .door {
+    animation-play-state: running;
+}
+
+/* 문짝 처음 열기 키프레임 */
+@keyframes openFirst {
+    to {
+        transform: rotateY(60deg);
+    }
+} /* openFirst 키프레임 */
+
+
+/* 문짝여닫기 키프레임 */
+@keyframes openDoor {
+    0% {
+        transform: rotateY(60deg);
+    }
+    100% {
+        transform: rotateY(-60deg);
+    }
+    
+} /* openDoor 키프레임 */
+
+
+
+/* 손잡이 */
+.handle {
+    position: absolute;
+    top: 140px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: blue;
+}
+
