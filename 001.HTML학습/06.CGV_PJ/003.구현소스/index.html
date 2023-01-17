@@ -1,62 +1,123 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGV에 오신것을 환영합니다!</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./images/logo_cgv.png" />
-    <!-- 외부 CSS -->
-    <link rel="stylesheet" href="./css/main.css">
-    <!-- 자바스크립트 코드 구역 : 인터널 방식 -->
-    <script>
-        // JS한줄주석
-        /* JS 여러줄주석 */
-        // JS 코드구역 //////////
-        // JS는 만나는 즉시 실행
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CGV에 오신것을 환영합니다!</title>
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="./images/logo_cgv.png"
+        />
+        <!-- 외부 CSS -->
+        <link rel="stylesheet" href="./css/main.css" />
+        <!-- 자바스크립트 코드 구역 : 인터널 방식 -->
+        <script>
+            // JS한줄주석
+            /* JS 여러줄주석 */
+            // JS 코드구역 //////////
+            // JS는 만나는 즉시 실행
 
-        // 바로 실행하지 않고 내가 호출하면 코드를 실행하도록 코드저장구역 만들기 -> 함수(function)
-        // function 이름(전달변수){코드}
-        function 멍멍(먹이) {// parameter전달변수 - 값이 내부로 전달
-            // 변수는 메모리공간의 이름
-            // 전달값 확인
-            // alert(먹이);
+            // 바로 실행하지 않고 내가 호출하면 코드를 실행하도록 코드저장구역 만들기 -> 함수(function)
+            // function 이름(전달변수){코드}
+            function 멍멍(먹이) {
+                // parameter전달변수 - 값이 내부로 전달
+                // 변수는 메모리공간의 이름
+                // 전달값 확인
+                // alert(먹이);
 
-            // JS 철저히!!! 대소문자 구분함
-            // 전체문서객체 : document 
-            // 가져와 아이디 이름으로 getElementById('아이디명')
-            // src 선택된 요소의 src 속성
-            const Utube = "https://www.youtube.com/embed/"
-            document.getElementById('ifr').src=Utube+먹이+"?autoplay=1"
-        } /////////// 멍멍함수
-
-    </script>
-    <!-- 자바스크립트 코드 외부파일 호출 : 익스터널 방식 -->
-    <!-- <script src="JS외부파일.js"></script> -->
-</head>
-<body>
-    <!-- 1.상단영역 -->
-    <div id="top">
-        <header class="top ibx">
-            <!-- 1-1.로고 -->
-            <h1 class="tit">CGV 예고편 상영관</h1>
-            <!-- 1-2.GNB메뉴 -->
-        </header>
-    </div>
-    <!-- 2.메인영역 -->
-    <div id="cont">
-        <main class="cont ibx">
-            <!-- 2-1.스크린 -->
-            <div class="screen">
-                <!-- 유튜브 iframe -->
-                <iframe id="ifr" src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I" allow="autoplay"></iframe>
-                <!-- allow="autoplay"는 유튜브 동영상 요청 시 자동재생의 필수 -->
-                <!-- 
+                // JS 철저히!!! 대소문자 구분함
+                // 전체문서객체 : document
+                // 가져와 아이디 이름으로 getElementById('아이디명')
+                // src 선택된 요소의 src 속성
+                const Utube = "https://www.youtube.com/embed/";
+                const autoP = "?autoplay=1";
+                document.getElementById("ifr").src = Utube + 먹이 + autoP;
+            } /////////// 멍멍함수
+        </script>
+        <!-- 자바스크립트 코드 외부파일 호출 : 익스터널 방식 -->
+        <!-- <script src="JS외부파일.js"></script> -->
+    </head>
+    <body>
+        <!-- 1.상단영역 -->
+        <div id="top">
+            <header class="top ibx">
+                <!-- 1-1.로고 -->
+                <h1 class="tit">CGV 예고편 상영관</h1>
+                <!-- 1-2.GNB메뉴 -->
+                <nav class="gnb">
+                    <ul>
+                        <li>
+                            <a href="#">영화</a>
+                            <!-- 서브메뉴 -->
+                            <div class="smenu">
+                                <ol>
+                                    <li><a href="#">무비차트</a></li>
+                                    <li><a href="#">HD 트레일러</a></li>
+                                    <li><a href="#">무비파인더</a></li>
+                                    <li class="bdt">
+                                        <a href="#">CGV아트하우스</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">예매</a>
+                            <!-- 서브메뉴 -->
+                            <div class="smenu">
+                                <ol>
+                                    <li><a href="#">빠른예매</a></li>
+                                    <li><a href="#">상영시간표</a></li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">극장</a>
+                            <!-- 서브메뉴 -->
+                            <div class="smenu">
+                                <ol>
+                                    <li><a href="#">CGV 극장</a></li>
+                                    <li><a href="#">특별관</a></li>
+                                    <li class="bdt">
+                                        <a href="#">CLUB 서비스</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">이벤트&amp;컬쳐</a>
+                            <!-- 서브메뉴 -->
+                            <div class="smenu">
+                                <ol>
+                                    <li><a href="#">이벤트</a></li>
+                                    <li><a href="#">기프트샵</a></li>
+                                    <li><a href="#">매거진</a></li>
+                                </ol>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <!-- 2.메인영역 -->
+        <div id="cont">
+            <main class="cont ibx">
+                <!-- 2-1.스크린 -->
+                <div class="screen">
+                    <!-- 유튜브 iframe -->
+                    <iframe
+                        id="ifr"
+                        src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I"
+                        allow="autoplay"
+                    ></iframe>
+                    <!-- allow="autoplay"는 유튜브 동영상 요청 시 자동재생의 필수 -->
+                    <!-- 
                     [ 유튜브 동영상 고유 ID ]
                       동영상아이디 : embed/코드값
                       일반 웹주소일 때
                       youtube.com/watch?v=고유ID
                 -->
-                <!--
+                    <!--
                     [iframe 요소 : inline frame]
                     - 다른 페이지를 삽입하는 요소
                     - src속성 : 필수속성으로 경로를 지정
@@ -83,12 +144,12 @@
                     4. 반복재생리스트 : playlist=동영상ID
                     -> 반복설정시 반복재생리스트도 같이씀!
                   -->
-            </div>
-            <!-- 2-2.예고편선택메뉴 -->
-            <nav class="mlist">
-                <ul>
-                    <li>
-                        <!--
+                </div>
+                <!-- 2-2.예고편선택메뉴 -->
+                <nav class="mlist">
+                    <ul>
+                        <li>
+                            <!--
                             [ 이벤트 속성 ]
                               1. 모든 요소에 이미 이벤트 속성이 있음
                                  on+이벤트명
@@ -96,81 +157,120 @@
                               2. 이벤트 속성의 값은 JS문법 구역
                                  -> 쌍따옴표 안에 쓰는 값이 JS 코드 구역   
                          -->
-                        <!-- <a href="#" onclick="document.getElementById('ifr').src='https://www.youtube.com/embed/mI9oyFMUlfg?autoplay=1'"> -->
-                        <a hred="#" onclick="멍멍('mI9oyFMUlfg')">   
-                            <img src="./images/m1.jpg" alt="닥스2">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>닥터스트레인지2</li>
-                                <li>베네딕트 컴버배치</li>
-                                <li>액션, 판타지, 모험</li>
-                            </ol>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="멍멍('DSEfRVqjbFA')">
-                            <img src="./images/m2.jpg" alt="쥐라기공원">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>쥬라기월드 : 도미니언</li>
-                                <li>크리스 프랫</li>
-                                <li>액션, 모험</li>
-                            </ol>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="멍멍('DpVAb7Bi5UQ')">
-                            <img src="./images/m3.jpg" alt="브로커">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>브로커</li>
-                                <li>송강호, 강동원</li>
-                                <li>드라마</li>
-                            </ol>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="멍멍('aw9j_23nORs')">
-                            <img src="./images/m4.jpg" alt="범죄도시2">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>범죄도시2</li>
-                                <li>마동석, 손석구</li>
-                                <li>범죄, 액션</li>
-                            </ol>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="멍멍('qoXf5Zr3BhA')">
-                            <img src="./images/m5.jpg" alt="미니언즈2">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>미니언즈2</li>
-                                <li>스티브 카렐</li>
-                                <li>애니메이션</li>
-                            </ol>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="멍멍('W7edvITC9g4')">
-                            <img src="./images/m6.jpg" alt="스파이더맨3">
-                            <!-- 영화정보 -->
-                            <ol class="movtxt">
-                                <li>스파이더맨 : 노웨이홈</li>
-                                <li>톰 홀랜드</li>
-                                <li>액션,모험</li>
-                            </ol> 
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </main>
-    </div>
-    <!-- 3.하단영역 -->
-    <div id="info">
-        <footer class="info ibx">
+                            <!-- <a href="#" onclick="document.getElementById('ifr').src='https://www.youtube.com/embed/mI9oyFMUlfg?autoplay=1'"> -->
+                            <a hred="#" onclick="멍멍('mI9oyFMUlfg')">
+                                <img src="./images/m1.jpg" alt="닥스2" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>닥터스트레인지2</li>
+                                    <li>베네딕트 컴버배치</li>
+                                    <li>액션, 판타지, 모험</li>
+                                </ol>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="멍멍('DSEfRVqjbFA')">
+                                <img src="./images/m2.jpg" alt="쥐라기공원" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>쥬라기월드 : 도미니언</li>
+                                    <li>크리스 프랫</li>
+                                    <li>액션, 모험</li>
+                                </ol>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="멍멍('DpVAb7Bi5UQ')">
+                                <img src="./images/m3.jpg" alt="브로커" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>브로커</li>
+                                    <li>송강호, 강동원</li>
+                                    <li>드라마</li>
+                                </ol>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="멍멍('aw9j_23nORs')">
+                                <img src="./images/m4.jpg" alt="범죄도시2" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>범죄도시2</li>
+                                    <li>마동석, 손석구</li>
+                                    <li>범죄, 액션</li>
+                                </ol>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="멍멍('qoXf5Zr3BhA')">
+                                <img src="./images/m5.jpg" alt="미니언즈2" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>미니언즈2</li>
+                                    <li>스티브 카렐</li>
+                                    <li>애니메이션</li>
+                                </ol>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="멍멍('W7edvITC9g4')">
+                                <img src="./images/m6.jpg" alt="스파이더맨3" />
+                                <!-- 영화정보 -->
+                                <ol class="movtxt">
+                                    <li>스파이더맨 : 노웨이홈</li>
+                                    <li>톰 홀랜드</li>
+                                    <li>액션,모험</li>
+                                </ol>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </main>
+        </div>
+        <!-- 3.하단영역 -->
+        <div id="info">
+            <footer class="info ibx">
+                <!-- 3-1.로고 -->
+                <div class="logo">
+                    <img src="./images/blogo.png" alt="하단로고" />
+                </div>
+                <!-- 3-2.회사정보 -->
+                <div class="corp">
+                    <address>
+                        (04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰
+                        6층(한강로동) <br> 
+                        대표이사 : 허민회
+                        사업자등록번호 :
+                        104-81-45690 통신판매업신고번호 : 2017-서울용산-0662 <br>
+                        개인정보보호 책임자 : 심준범 대표이메일 :
+                        cjcgvmaster@cj.netCGV고객센터 : 1544-1122
+                    </address>
+                </div>
+                <!-- 3-3.SNS -->
+                <div class="sns">
+                    <ol>
+                        <li>
+                            <a href="#" class="fa-brands fa-square-facebook">
+                                <span class="ir">페이스북 바로가기</span>
+                             </a>
+                        </li>
+                        <li>
+                            <a href="#" class="fa-brands fa-square-twitter">
+                                <span class="ir">트위터 바로가기</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="fa-brands fa-square-instagram">
+                                <span class="ir">인스타그램 바로가기</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </footer>
+        </div>
+    <script
+    src="https://kit.fontawesome.com/2041668019.js"
+    crossorigin="anonymous"></script>
+    </body>
 
-        </footer>
-    </div>
-</body>
 </html>
