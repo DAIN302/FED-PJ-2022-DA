@@ -29,7 +29,7 @@ body {
 /* 1-1.로고 */
 .tit {
     font-family: 'jua';
-    color : aquamarine;
+    color : gold;
     font-size: 4rem;
     line-height: 80px;
     text-align: center;
@@ -40,7 +40,7 @@ body {
 /* 타이틀 글로우 효과 애니메이션 키프레임 */
 @keyframes titAni {
     to {
-        text-shadow: 0 0 12px aquamarine;
+        text-shadow: 0 0 12px gold;
     }
 }
 /* 1-2.GNB메뉴 */
@@ -74,7 +74,7 @@ body {
 /* 오버시 변경 */
 .gnb ul>li:hover>a {
     transform: scale(1.3);
-    color: rgb(192, 255, 234);
+    color: rgb(255, 240, 153);
     animation: titAni .5s ease-in infinite alternate;
 }
 

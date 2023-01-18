@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. 가로네비 서브별 드롭다운 가로형</title>
+    <style>
+        /* 초기화 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }   
+
+        ul, ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }        
+
+        h1 {
+            text-align: center;
+        }
+
+        :root {
+            --blue : #004b9b;
+        }
+
+        .gnb {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .gnb ul {
+            /* 플렉스박스 */
+            display: flex;
+        }
+        
+        .gnb > ul {
+            /* 진행방향정렬 : 중앙 */
+            justify-content: center;    
+        }
+
+        .gnb >ul>li {
+            /* box-sizing: border-box; 크기가 auto면 소용이 없어용 */
+            padding : 0 5px;
+        }
+        
+        /* 상위 li에 서브메뉴 배경 넣기 */
+        .gnb >ul>li::after {
+            content: '';
+            position: absolute;
+            /* 부모는?  보이는 화면 */
+            left: 0;
+            width: 100%;
+            /* top값은 주지 않아서 보이는 화면 기준으로 left만 이동 */
+            background-color: #f9f9f9;
+            height: 80px;
+            margin-top: 1px;
+            border-bottom: 5px solid var(--blue);
+            
+            /* 처음에 숨김 */
+            display: none;
+        }
+
+        /* 상위 li 오버시 서브 배경 보이기 */
+        .gnb >ul>li:hover::after {
+            display: block;
+            
+        }
+
+        
+        /* li 오버시 */
+        /* .gnb >ul>li:hover {
+            border-bottom-color: var(--blue);
+        } */
+        /* li 오버시 a */
+        .gnb >ul>li:hover>a {
+            color: var(--blue);
+            border-bottom: 5px solid var(--blue);
+        }
+        
+        .gnb>ul>li>a {
+            /* a 확장 */
+            display: block;
+            color : #555;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 56px;
+            padding: 0 25px;  
+            /* 투명보더 */
+            border-bottom: 3px solid transparent;
+        }
+
+        /* 서브메뉴 */
+        .smenu {
+            position: absolute;
+            z-index: 1;
+            padding: 25px 15px;
+            /* outline: 1px dashed gray; */
+            /* 처음에 안보임 */
+            display: none;
+        }
+
+        /* 상위메뉴 li 오버시 서브메뉴 보이기 */
+        .gnb>ul>li:hover .smenu {
+            display: block;
+        }
+
+        .smenu li+li {
+            margin-left: 15px;
+        }
+
+        .smenu a {
+            display: inline-block;
+            color : #777;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 6px 8px;
+        }
+
+        /* 마우스 오버시 */
+        .smenu a:hover {
+            background-color: var(--blue);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 서브메뉴 위치이동 6,7,8 */
+        /* .smenu 의 위치 세부조정 마진값으로 함 - left값을 주면 부모를 찾아 삼만리되기 때문에
+           left로 위치값을 주면 margin-left로 위치조정해야함 margin-right는 안먹음  */
+        .gnb>ul>li:nth-child(6) .smenu {
+            margin-left: -150px;
+        }
+        .gnb>ul>li:nth-child(7) .smenu {
+            margin-left: -600px;
+        }
+        .gnb>ul>li:nth-child(8) .smenu {
+            margin-left: -220px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1>2. 가로네비 서브별 드롭다운 가로형</h1>
+    <nav class="gnb">
+        <ul>
+            <li>
+                <a href="#">홈페이지</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">제작안내</a>
+                        </li>
+                        <li>
+                            <a href="#">제작유형</a>
+                        </li>
+                        <li>
+                            <a href="#">부가서비스</a>
+                        </li>
+                        <li>
+                            <a href="#">포트폴리오</a>
+                        </li>
+                        <li>
+                            <a href="#">문의하기</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">쇼핑몰</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">제작안내</a>
+                        </li>
+                        <li>
+                            <a href="#">제작유형</a>
+                        </li>
+                        <li>
+                            <a href="#">부가서비스</a>
+                        </li>
+                        <li>
+                            <a href="#">포트폴리오</a>
+                        </li>
+                        <li>
+                            <a href="#">문의하기</a>
+                        </li>
+                    </ul>
+                </div>                               
+            </li>
+            <li>
+                <a href="#">모바일/앱</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">제작안내</a>
+                        </li>
+                        <li>
+                            <a href="#">제작유형</a>
+                        </li>
+                        <li>
+                            <a href="#">부가서비스</a>
+                        </li>
+                        <li>
+                            <a href="#">포트폴리오</a>
+                        </li>
+                        <li>
+                            <a href="#">문의하기</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">기술력</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">웹접근성</a>
+                        </li>
+                        <li>
+                            <a href="#">반응형웹</a>
+                        </li>
+                        <li>
+                            <a href="#">하이브리드앱</a>
+                        </li>
+                        <li>
+                            <a href="#">웹문서최적화SEO</a>
+                        </li>
+                    </ul>
+                </div>                 
+            </li>
+            <li>
+                <a href="#">호스팅/유지관리</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">웹호스팅</a>
+                        </li>
+                        <li>
+                            <a href="#">정기유지관리</a>
+                        </li>
+                        <li>
+                            <a href="#">건별유지관리</a>
+                        </li>
+                        <li>
+                            <a href="#">유지관리신청</a>
+                        </li>
+                    </ul>
+                </div>                   
+            </li>
+            <li>
+                <a href="#">포트폴리오</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">홈페이지</a>
+                        </li>
+                        <li>
+                            <a href="#">쇼핑몰</a>
+                        </li>
+                        <li>
+                            <a href="#">해외 쇼핑몰</a>
+                        </li>
+                        <li>
+                            <a href="#">모바일</a>
+                        </li>
+                        <li>
+                            <a href="#">Android</a>
+                        </li>
+                        <li>
+                            <a href="#">IOS</a>
+                        </li>
+                        <li>
+                            <a href="#">영상</a>
+                        </li>
+                    </ul>
+                </div>                
+            </li>
+            <li>
+                <a href="#">회사소개</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">회사소개</a>
+                        </li>
+                        <li>
+                            <a href="#">연구개발</a>
+                        </li>
+                        <li>
+                            <a href="#">주요고객사</a>
+                        </li>
+                        <li>
+                            <a href="#">고객분포도</a>
+                        </li>
+                        <li>
+                            <a href="#">스텝</a>
+                        </li>
+                        <li>
+                            <a href="#">채용정보</a>
+                        </li>
+                        <li>
+                            <a href="#">오시는 길</a>
+                        </li>
+                        <li>
+                            <a href="#">뉴스&공지사항</a>
+                        </li>
+                        <li>
+                            <a href="#">쓰리웨이스토리</a>
+                        </li>
+                    </ul>
+                </div>                   
+            </li>
+            <li>
+                <a href="#">고객센터</a>
+                <!-- 서브메뉴 -->
+                <div class="smenu">
+                    <ul>
+                        <li>
+                            <a href="#">자주묻는질문</a>
+                        </li>
+                        <li>
+                            <a href="#">제작시 유의사항</a>
+                        </li>
+                        <li>
+                            <a href="#">원격지원상담</a>
+                        </li>
+                    </ul>
+                </div>                 
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
