@@ -142,8 +142,8 @@ body {
 
 /* 캐릭터 설명 타이틀 */
 .cd h3 {
-    font-family: 'Gugi', cursive;
-    font-size: 24px;
+    font-family: 'NanumMiRaeNaMu';
+    font-size: 3rem;
     font-weight: normal;
     padding: 15px 10px 5px;
     letter-spacing: -1px;
@@ -195,4 +195,12 @@ body {
 }
 .cat:last-child .cd p:first-child::first-letter {
     color : lightcoral;
+}
+
+/* 등장글자 이미지 */
+#mvtxt {
+    position: absolute;
+    top: 30vh;
+    right: 5vw;
+    width: min(20vw, 327px);
 }

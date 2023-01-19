@@ -318,11 +318,67 @@
                         </article>
                     </section>
                 </div>
+                <!-- 등장글자이미지 -->
+                <img id="mvtxt" src="./images/dkb_main.png" alt="등장글자">
             </main>
         </div>
         <!-- 3. 하단 영역 -->
         <div id="info">
-            <footer class="info ibx"></footer>
+            <footer class="info ibx">
+                <!-- 3-1. 하단링크 -->
+                <div class="blink">
+                    <ul>
+                        <li>
+                            <a href="#">법적고지</a>
+                        </li>
+                        <li>
+                            <a href="#">영상정보처리기기운영/관리방침</a>
+                        </li>
+                        <li>
+                            <a href="#">이메일무단수집거부</a>
+                        </li>
+                        <li>
+                            <a href="#">사이버감사실</a>
+                        </li>
+                        <li>
+                            <a href="#">찾아오시는길</a>
+                        </li>
+                        <li>
+                            <a href="#">개인정보처리방침</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 3-2. 회사정보 -->
+                <div class="addr">
+                    <address>
+                        (주)씨제이이엔엠 CJ ENM 대표이사 강호성, 허민호<br>
+                        주소 (03926) 서울시 마포구 상암산로 66 사업자 등록번호 106-81-51510 개인정보보호책임자 김재환<br>
+                        © CJ ENM. All Rights Reserved.
+                    </address>
+                </div>
+                <!-- 3-3. 하단로고 -->
+                <div class="blogo"><img src="./images/blogo.png" alt="하단로고"></div>
+                <!-- 3-4. 바로가기 -->
+                <div class="brand">
+                    <select name="" id="sel">
+                        <option value="init">브랜드 바로가기</option>
+                        <option value="tvn">tvN</option>
+                        <option value="ocn">OCN</option>
+                        <option value="mnet">MNET</option>
+                    </select>
+                    <!-- 
+                        [ select 요소 ]
+                          - 지정된 값을 선택하는 입력 요소
+                          - name속성은 form요소로 전송시 사용
+                          - 하위필수요소 : option - 각 선택항목
+                          - 옵션을 그룹화하는 요소(중간분류) : optgroup
+                            (참고 : https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_optgroup)
+                          - 유의사항 : 값을 선택할 경우 선택값은 option 요소의 속성인
+                            value 값을 읽어감
+                            option의 value 값을 설정하지 않으면 내부 데이터값을 읽어감
+                     -->
+                </div>
+            </footer>
         </div>
     </body>
 </html>
