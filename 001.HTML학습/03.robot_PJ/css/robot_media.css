@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+/* Robot PJ 미디어쿼리 메인 CSS - robot_media.css */
+
+/* 1024px 이하 */
+@media screen and (max-width:1024px) {
+    /* 링크이동 버튼 */
+    .link a {
+        font-size: 60px;
+    }
+}
+/* 900px 이하 */
+@media screen and (max-width:900px) {
+    /* 링크박스 */
+    .link {
+        position: static;
+        text-align: center;
+
+    }
+    /* 링크이동 버튼 */
+    .link a {
+        font-size: 50px;
+    }
+    /* 바디 양쪽여백 */
+    .dcbx {
+        margin : 0 30px;
+    }
+
+    /* 설명다단 */
+    .dcbx p {
+        column-count: 2;
+    }
+}
+/* 500px 이하 */
+@media screen and (max-width:500px) {
+    html, body {
+        width: 100vw;
+        /* 보이는 화면 가로크기 채움 */
+        overflow-x: hidden;
+        /* x축 스크롤 없애기 */
+    }
+    
+    /* 링크박스 */
+    .link {
+        position: static;
+        text-align: center;
+
+    }
+    /* 링크이동 버튼 */
+    .link a {
+        font-size: 35px;
+    }
+    .logo {
+        animation: none;
+        top: 50px;
+        left: 20px;
+        transform: scale(1);
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+        line-height: 3;
+    }
+        /* 
+       [ 기존 애니메이션 적용 요소 변경 시 ]
+         애니메이션을 없애고(none) 디자인 변경
+         필요에 따라 애니메이션을 다시 설정 
+    */
+    /* 로고 애니메이션 재설정 */
+    .logo {
+        animation: logoAni2 1s ease-in-out 3s infinite alternate;
+    }
+    /* 설명다단 */
+    .dcbx p {
+        column-count: 1;
+    }
+}
