@@ -4,12 +4,14 @@
 /* 웹폰트 CDN */
 @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Gothic&family=Single+Day&family=ZCOOL+KuaiLe&display=swap');
 @import url('https://hangeul.pstatic.net/hangeul_static/css/NanumMiRaeNaMu.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumGarMaesGeur.css');
 /* 
     1. 캐릭터 설명 제목체
     font-family: 'Gugi', cursive;
-    font-family: 'NanumMiRaeNaMu';
+    font-family: 'NanumGarMaesGeur';
     2. 캐릭터 설명 내용체
     font-family: 'Single Day', cursive;
+    font-family: 'NanumMiRaeNaMu';
     3. 캐릭터 설명 한자체
     font-family: 'ZCOOL KuaiLe', cursive;
     4. 전체 공통체(메뉴 등)

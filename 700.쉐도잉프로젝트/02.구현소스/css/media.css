@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* 도깨비 PJ 공통 미디어쿼리 CSS - media.css */
+
+
+/* 1200px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1200px) {
+    /* 하단 - 브랜드바로가기 */
+    .brand {
+        top : 159px;
+        right: 10px;
+    }
+    
+} /* 1200px 사이즈 이하 미디어쿼리 끝*/
+
+
+/* 1024px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1024px) {
+    /* 전체 글자크기 변경 */
+    html {
+        /* rem단위 글자 모두 변경 */
+        font-size: 8.235px;
+        /* 
+           [ 기준 글자 계산 : GNB 메뉴 기준 ] 
+           처음 -> 1.7rem * 10px = 17px
+           변경 -> 1.7rem * 몇px = 14px
+           => 계산 : 몇px = 14px / 1.7rem
+           => 결과 : 8.23px
+           ?rem * 몇 px = 14px 
+        */
+    }
+    /* 메인 속박스 */
+    .cont {
+        /* 가로크기에 대한 비율 */
+        min-height: 100vh;
+    }
+    /* 전체 캐릭터 박스 */
+    .cbx {
+        width: 80%;
+        margin-top: 10vh;
+    }
+
+    /* 각 캐릭터 박스 공통 */
+    .cat {
+        position: relative;
+        /* 부모자격 .cd */
+        /* 2등분할 가로크기 -> 50% - 마진(1%) => 49% */
+        width: 49%;
+        margin-bottom: 20px;
+    }
+    /* 마우스 오버시 마진탑 제자리 */
+    .cat:hover .ci {
+        margin-top: 0;
+    
+    }    
+    /* 캐릭터 설명 박스 */
+    .cd {
+        position: absolute;
+        /* 부모 -> .cat */
+        z-index: 1;
+    }
+    /* 등장글자 제거 */
+    #mvtxt {
+        display: none;
+    }
+    
+} /* 1024px 사이즈 이하 미디어쿼리 끝*/
+
+
+/* 500px 사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 500px) {
+    /* 상단영역 */
+    .top {
+        height: 80px;
+    }
+    /* 디스플레이 없애기 */
+    .tmenu, .gnb {
+        display: none;
+    }
+    /* 메인영역 */
+    /* 각 캐릭터 박스 공통 */
+    .cat {
+        /* 2등분할 가로크기 -> 50% - 마진(1%) => 49% */
+        width: 99%;
+    }    
+    /* 캐릭터 설명박스 */
+    .cd {
+        /* 자리차지 포지션으로 전환 */
+        position: static;
+    }
+    
+    /* 캐릭터 설명 타이틀 */
+    .cd h3 {
+        font-size: 6vw;
+    }
+    /* 캐릭터 설명 문단 */
+    .cd p {
+        font-size: 4vw;
+        padding: 3vw;
+    }
+    /* 문단 첫글자 */
+    .cd p:first-child::first-letter {
+        font-size: 7vw;
+    }   
+    /* 하단영역 */
+    /* 하단링크 */
+    .blink > ul>li:nth-child(-n+3){
+        display: none;
+    }
+    /* 브랜드 바로가기 */
+    .brand {
+        top: auto;
+        bottom: 40px;
+        
+    }
+} /* 500px 사이즈 이하 미디어쿼리 끝*/
