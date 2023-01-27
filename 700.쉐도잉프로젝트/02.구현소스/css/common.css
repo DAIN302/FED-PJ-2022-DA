@@ -23,6 +23,8 @@
 
 /* 1-1. 로고 */
 h1.logo {
+    position: relative;
+    z-index: 9999;
     text-align: center;
     /* 이 외에도 가운데 오게 하는 법 -> 사이즈의 가로크기를 이미지만큼 줄이고, 
        마영오 쓰기
@@ -30,6 +32,7 @@ h1.logo {
        padding-top: 20px;  
     /* 마진탑을 주면 부모박스를 밀어서 박스 모양이 망가짐 */
     /* 그 상위인 .logo에 패딩을 주었기 때문에 a링크는 이미지에만 생긴다. */
+
 }
 
 /* 로고 이미지 */
@@ -66,6 +69,12 @@ nav.gnb ul {
     /* 글씨 크기 */
     font-size: 1.7em;
 }
+/* 모바일에서 오버시 설정이 적용되지 않도록 미디어쿼리 min-width를 사용한 구역에 넣어준다 */
+/* 780px 이상일 때만 적용 */
+
+@media screen and (min-width:780px) {
+    
+
 
 /* GNB 서브메뉴 배경 상위메뉴 li 에 가상요소로 만들기 */
 /* 서브메뉴가 있는 li에 sm 이름의 클래스를 준다 */
@@ -82,6 +91,7 @@ nav.gnb ul {
     background-color: #fff;
     transition: height .4s ease-out;
 }
+
 
 /* 상위메뉴 li 오버시 서브메뉴 보이기 */
 /* 프로그램소개 */
@@ -108,6 +118,8 @@ nav.gnb ul {
 .gnb > ul > li:nth-child(4):hover::before, .gnb > ul > li:nth-child(4):hover .smenu {
     height: 80px;
 }
+
+
 /* 가상요소로 밑줄 애니 만들기 */
 /* 대상 : 
 1. GNB 메뉴의 상위메뉴 a요소
@@ -135,6 +147,8 @@ nav.gnb ul {
     width: 100%;
     margin-left: 0%;
 }
+
+} /* 780px 이상일때 오버시 적용 */
 
 
 
@@ -270,6 +284,10 @@ aside.tmenu {
 
     /* 처음에 숨기기 */
     display: none;
+}
+/* 햄버거 모양 가상요소 넣기 */
+.ham::before {
+    content: '≡';
 }
 
 /***** 2. 메인영역 *****/
