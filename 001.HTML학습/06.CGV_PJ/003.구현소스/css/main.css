@@ -163,6 +163,60 @@ body {
     border-top: 1px solid #ccc;
 }
 
+/* 영사기 박스 */
+#cam {
+    position: absolute;
+    z-index: -1;
+    right: -60px;
+    bottom: -10px;
+}
+
+/* 영사기 이미지 */
+
+#cam img {
+    position: relative;
+    z-index: 1;
+    width: 50px;
+    transform: rotate(30deg);
+    transition: .3s ease-out .3s;
+}
+
+/* gnb에 오버시 영사기 회전 */
+.gnb:hover #cam img {
+    transform: rotate(0);
+    transition-delay: 0;
+}
+
+/* 빔박스 */
+.beam {
+    position: absolute;
+    top: -16px;
+    right: 19px;
+    width: 0;
+    height: 70px;
+    /* outline: 2px dotted lime; */
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    opacity: 0;
+    transition: .3s ease-out;
+    animation: beam .04s linear .6s infinite alternate;
+}
+
+/* gnb에 오버시 빔 쏘기 */
+.gnb:hover #cam .beam {
+    width: 200px;
+    /* 영사기 도는 시간동안 기다림 */
+    transition-delay: .6s;
+}
+
+/* 영사기 빔 빛 애니 키프레임 */
+@keyframes beam {
+    to {
+        opacity: 1;
+    }
+    
+}
 
 /****************************** 2.메인영역 ******************************/
 /* 속박스 */

@@ -30,9 +30,9 @@
         // 전체문서객체 : document
         // 가져와 아이디 이름으로 getElementById('아이디명')
         // src 선택된 요소의 src 속성
-        const Utube = "https://www.youtube.com/embed/";
-        const autoP = "?autoplay=1";
-        document.getElementById("ifr").src = Utube + 먹이 + autoP;
+        var uTube = "https://www.youtube.com/embed/";
+        var autoP = "?autoplay=1";
+        document.getElementById("ifr").src = uTube + 먹이 + autoP;
       } /////////// 멍멍함수
     </script>
     <!-- 자바스크립트 코드 외부파일 호출 : 익스터널 방식 -->
@@ -96,6 +96,13 @@
               </div>
             </li>
           </ul>
+          <!-- 영사기 박스 -->
+          <aside id="cam">
+            <!-- 영사기 이미지 -->
+            <img src="./images/gnb.png" alt="영사기">
+            <!-- 빔박스 -->
+            <div class="beam"></div>
+          </aside>
         </nav>
       </header>
     </div>
