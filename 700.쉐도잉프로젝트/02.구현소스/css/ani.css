@@ -61,3 +61,23 @@ body.on #top {
         transform: translateY(0);
     }
 }
+
+/* 4. 애니메이션 진행 중 오버시 이벤트 방지해주는 가림막 애니 */
+body.on::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    animation: cover .1s 6s forwards;
+}
+
+/* 가림막 키프레임 */
+@keyframes cover {
+    to {
+        height: 0;
+    }
+    
+}
