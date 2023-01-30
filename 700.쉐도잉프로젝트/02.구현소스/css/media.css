@@ -97,15 +97,21 @@
         z-index: 999;
     }
 
+    .top.on .tmenu{
+        display: block;
+    }
+
     nav.gnb > ul {
         /* 플렉스박스 방향 세로로 변경 */
         flex-direction: column;
         text-align: center;
         margin-top: 15vh;
     }
-
+    /* li세팅 */
     .gnb > ul > li {
         margin: 0;
+        height: 10vh;
+        /* li가 6개 이므로 보이는 높이의 60% 차지 */
     }
 
     /* GNB 상위메뉴 a 변경 */
@@ -113,6 +119,36 @@
         color: #fff;
         font-size: 5vh;
         line-height: 10vh;
+    }
+
+    /* 탑메뉴 */
+    aside.tmenu {
+        position: fixed;
+        top: 85vh;
+        width: 100vw;
+    }
+
+    .tmenu ul {
+        /* 플렉스 진행방향 중앙 */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .tmenu>ul>li>a {
+        color : #fff;
+        font-size: 6vw;
+    }
+
+    .tmenu>ul>li:last-child {
+        /* 마지막 li 100% - 한줄차지 */
+        width: 100%;
+    }
+
+    /* sns 메뉴 */
+    .tmenu ol {
+        justify-content: center;
+        margin-top: 2vh;
+        transform: scale(1.3);
     }
 
     /* 햄버거 버튼 보이기 */

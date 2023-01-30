@@ -8,6 +8,9 @@
     background-color: #fff;
     /* 하단보더 */
     border-bottom: 1px solid #ccc;
+    position: relative;
+    z-index: 999;
+    /* 메인 영역보다 위 : 이유 - gnb 서브메뉴가 위로 와야함 */
 }
 /* 속박스 */
 .top {
@@ -202,6 +205,7 @@ aside.tmenu {
     top: 20px;
     right: 5px;
     /* 부모는? .top */
+    z-index: 9999;
 }
 /* 회원가입 등 메뉴 박스 */
 .tmenu ul {
