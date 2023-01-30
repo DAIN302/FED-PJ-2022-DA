@@ -29,6 +29,8 @@ body {
 /************* 메인 영역 *************/
 /* 메인 영역 속박스 */
 .cont {
+    position: relative;
+    /* 부모자격 -> #mvtxt */
     overflow: hidden;
     /* 자식요소 위아래 마진 포함 */
 
@@ -205,7 +207,9 @@ body {
 /* 등장글자 이미지 */
 #mvtxt {
     position: absolute;
-    top: 25vh;
+    /* 부모 -> .cont */
+    z-index: -1;
+    top: 13vh;
     right: 5vw;
     width: min(20vw, 327px);
 }

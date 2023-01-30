@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/* 도깨비 PJ 메인 페이지 애니메이션 CSS */
+
+/* 전제조건 : 모든 애니메이션은 body.on인 경우에 적용됨
+   (body에 on 클래스가 활성화되었을 때만 적용) */
+
+/* 1. 드라마 문구 등장 애니 */
+/* 초기화 */
+body.on #mvtxt {
+    /* 자신의 위치에서 오른쪽 아래로 이동 */
+    transform: translate(100%, 100%);
+    /* 처음에 투명 */
+    opacity: 0;
+    /* 키프레임 호출 */
+    animation: mvtxtAni 2s ease-out 1s forwards;
+}
+
+/* 키프레임 */
+@keyframes mvtxtAni {
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+/* 2. 캐릭터 박스 순서대로 등장 애니 */
+/* 초기화 */
+body.on .cat {
+    transform: translateY(-500%);
+    animation: catAni 2s ease-out 2s forwards;
+}
+/* 애니메이션 지연시간 세팅*/
+
+body.on .cat:nth-child(2) {
+    animation-delay: 2.5s;
+}
+body.on .cat:nth-child(3) {
+    animation-delay: 3s;
+}
+body.on .cat:nth-child(4) {
+    animation-delay: 3.5s;
+}
+/* 키프레임 */
+@keyframes catAni {
+   to {
+    transform: translateY(0);
+   }
+}
+
+/* 3. 상단영역 등장 애니 */
+/* 초기화 */
+body.on #top {
+    transform: translateY(-100%);
+    animation: topAni 1.5s ease-out 4.5s forwards;
+}
+
+/* 키프레임 */
+@keyframes topAni {
+    to { 
+        transform: translateY(0);
+    }
+}
