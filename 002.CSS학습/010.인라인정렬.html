@@ -86,6 +86,37 @@
                    그래서 위아래 마진에 1000px을 줘도 적용안된다.*/
             }
 
+            /* 동적인 높이의 박스의 글자가 정중앙에 오기 */
+            .bx7 {
+                /* 테이블 디스플레이 */
+                display: table;
+                width: 50%;
+                aspect-ratio: 4/3;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                /* line-height 100%는 글씨 크기의 100% */
+                line-height: 100%;
+            }
+            /* 테이블 디스플레이 아래에는 테이블 셀 필요 */
+            .bx7 span {
+                display: table-cell;
+                vertical-align: middle;
+                /* td에서만 vertical-aling : middle 이 세로 중앙 정렬로 적용됨 
+                   원래는 인라인 요소간 진행방향 세로정렬속성 */
+            }
+
+            /* 동적인 높이가 vh단위인 박스의 글자가 정중앙에 오기 */
+            .bx8 {
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                /* 높이값 - 보이는 화면의 20% */
+                height: 40vh;
+                /* 줄간격을 같은 vh로 설정 */
+                line-height: 40vh;
+            }
+
         </style>
     </head>
     <body>
@@ -108,7 +139,17 @@
 
         <h2>박스안의 글자가 박스의 정중앙에 오기</h2>
         <div class="bx bx4">
-            나는 김수현이 좋다! 랄라라라라라라라라라라라라라라라라라라라라라라라라라라라라라라라랄라
+            나는 김수현이 좋다!
+        </div>
+
+        <h2>동적인 높이의 박스의 글자가 정중앙에 오기</h2>
+        <div class="bx bx7">
+            <span>메메메메메메메로오로로로로롱</span>
+        </div>
+
+        <h2>동적인 높이가 vh단위인 박스의 글자가 정중앙에 오기</h2>
+        <div class="bx bx8">
+            메!!
         </div>
 
         <h2>박스안의 이미지가 박스의 정중앙에 오기</h2>
