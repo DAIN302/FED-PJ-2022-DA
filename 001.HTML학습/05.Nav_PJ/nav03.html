@@ -61,14 +61,19 @@
             background-color: #fff;
             transition: height .3s ease-in-out;
         }
-
+        
         /* #top오버시 가상요소 */
         #top:hover::after {
+            border-top: 1px solid #ddd;
             height: 400px;
         }
         /* 속박스 */
         .top {
             display: flex;
+            /* 진행방향 정렬 - 양쪽끝 붙이고 사이간격일정 */
+            justify-content: space-between;
+            height: 110px;
+            /* align-items: center; */
             max-width: 1600px;
             margin: 0 auto;
             font-family: 'Maven Pro','Noto Sans KR', sans-serif;
@@ -76,12 +81,21 @@
 
 
         /* 상단영역 직계요소들 - 파티션 박스 */
-        .top > div {
+        /* .top > div {
             outline: 2px dashed lime;
-        }
+        } */
+
+        
         /* 1. 로고파트 */
+        .logo {
+            position: relative;
+            top: 50%;
+            height: 110px;
+        }
+
         .logo img {
             height: 50px;
+            transform: translateY(-50%);
         }
         /* 로고 2번째 이미지 처음에 숨김 */
         .logo img:last-child, #top:hover .logo img:first-child {
@@ -117,6 +131,7 @@
         /* 최상위 메뉴 : dt */
         .gnb dt {
             line-height: 110px;
+            white-space: nowrap;
         }
         .gnb dt a {
             transition: .2s ease-in-out;
@@ -126,33 +141,184 @@
             color:#222
 
         }
+        /* 첫번째 dt 이미지 메뉴 */
+        .story img {
+            vertical-align: -23px;
+        }
+
+        /* 스토리 2번째 이미지 처음에 숨김 */
+        .story img:last-child, #top:hover .story img:first-child {
+            display: none;
+        }
+        /* #top 마우스 오버 시 스토리 2번째 이미지 보이기 */
+        #top:hover .story img:last-child {
+            display: inline;
+        }
 
         /* 서브메뉴 : dd */
         .gnb dd {
             line-height: 40px;
+            white-space: nowrap;
+        }
+
+        .gnb dd:first-of-type {
+            margin-top: 50px;
+        }
+
+        .gnb dl:first-child dd:last-of-type {
+            line-height: 20px;
+            padding-top: 10px;
         }
         
         .gnb dd a {
-            color: #222;
+            color: #555;
+            font-size: 14px;
         }
+
+        .gnb a:hover {
+            color : red !important;
+
+        }
+    
+
 
         /* 3.기타파트 */
         .tlink {
             display: flex;
+            position: relative;
+            height: 110px;
+            top: 50%;
+            
+            /* align-items: center; */
         }
 
+        .tlink li+li {
+            margin-left: 15px;
+        }
+
+        /* 이미지 크기 조정 */
         .tlink img {
-            height: 25px;
+            height: 30px;
+            transform: translateY(-50%);
         }
         /* 스토어 2번째 이미지 처음에 숨김 */
-        .store img:last-child, #top:hover .store img:first-child {
+        .store img:last-child, #top:hover .store img:first-child,
+        .lang img:last-child, #top:hover .lang img:first-child {
             display: none;
         }
         /* #top 마우스 오버 시 스토어 2번째 이미지 보이기 */
-        #top:hover .store img:last-child {
+        #top:hover .store img:last-child,
+        #top:hover .lang img:last-child {
             display: inline;
         }
+
+        /* 가상요소로 글자 넣기 */
+        .lang::after {
+            content: 'KOR';
+            position: absolute;
+            color: #fff;
+            font-size: 12px;
+            margin-left: -15px;
+        }
+
+        .store::after {
+            content: 'store';
+            position: absolute;
+            color: #fff;
+            font-size: 12px;
+            margin-left: -20px;
+        }
+
+        #top:hover .lang::after, 
+        #top:hover .store::after {
+            color: #222;
+        }
+        .lang:hover::after, 
+        .store:hover::after {
+            color: red !important;
+            
+        }
+
+
     </style>
+    <script>
+        /////로드구역
+        window.addEventListener("load", function(){
+            // 1. 호출확인
+            // console.log("안뇽");
+            // 구현내용 : 메뉴 이미지 오버시 이미지 변경
+            // 2. 대상선정 : 
+            // .story img:last-child 
+            // .lang img:last-child 
+            // .store img:last-child 
+            var tg = document.querySelectorAll(`.story img:last-child,
+            .lang img:last-child, .store img:last-child`);
+            console.log(tg);
+
+            //3. 이벤트 설정 및 구현 
+            // 대상의 수만큼 for문으로 설정 
+
+            //한계수 세팅  : 대상의 개수
+            var limit = tg.length;
+            for(var i = 0; i < limit; i++) {
+                // console.log("ㅎㅇ", i);
+                // 대상요소를 구체적으로 선택함
+                // i는 0,1,2
+                // tg에는 대상이 컬렉션 집합으로 들어있음
+                // tg.item(순번) / tg[순번]
+                // 사용이벤트속성 : onmouseover / onmouseout
+
+                // 오버시 /아웃시 사용할 공통 이미지변수
+                var csrc;
+
+                // 마우스 오버시
+                tg[i].onmouseover = function(){
+                    // this 키워드로 오버된 자신의 정보를 알아낸다
+                    // this = tg[i]
+
+                    // 0. 아웃시 원본으로 돌아가기 위한 원래 이미지 경로 저장
+                    csrc = this.src;
+                    console.log("원본",csrc);
+
+                    // 1. 이미지의 설명 속성값을 읽어옴
+                    // 이미지 설명 속성값으로 대상을 구분
+                    var ialt = this.alt;
+                    // console.log(ialt);
+
+                    // 2. 변경될 이미지의 경로를 대상별로 할당
+                    var isrc;
+                    // switch case문으로 분기
+                    switch(ialt) {
+                        case "스토리":
+                            isrc = "./imgs/nav03/story_red_s.png";
+                            break;
+                        case "다국어아이콘":
+                            isrc = "./imgs/nav03/lang_i_on.png";
+                            break;
+                        case "스토어아이콘":
+                            isrc = "./imgs/nav03/store_i3_on.png";
+                            break;
+                    }
+                    // 3. 할당된 isrc 이미지경로를 대상의 src에 넣기
+                    // setAtrribute(속성명, 값)
+                    this.setAttribute("src", isrc);
+                    // this.style.transition = ".2s ease-in-out"
+                } // mouseover 이벤트 함수 끝
+
+
+                // 마우스 아웃시
+                tg[i].onmouseout = function(){
+                    // 원본이미지 경로 확인
+                    console.log("아웃시", csrc);
+
+                    // 원본이미지로 돌아가기
+                    this.setAttribute("src", csrc);
+                    
+                } // mouseout 이벤트 함수 끝                
+
+            } // for문 끝
+        })//// 로드구역
+    </script>
 </head>
 <body>
     <h1 class="tit">3. 가로네비<br>
@@ -177,9 +343,12 @@
                 <nav class="gnb">
                     <!-- 1. 스토리 -->
                     <dl>
-                        <dt>
+                        <dt class="story">
                             <a href="#">
-                                <img src="./imgs/nav03/story_white_s.png" alt="">
+                                <!-- 오버전 이미지 -->
+                                <img src="./imgs/nav03/story_white_s.png" alt="스토리">
+                                <!-- 오버시 이미지 -->
+                                <img src="./imgs/nav03/story_gray_s.png" alt="스토리">
                             </a>
                         </dt>
                         <dd>
@@ -192,10 +361,7 @@
                             <a href="#">아름다운 공장</a>
                         </dd>
                         <dd>
-                            <a href="#">알파레이S</a>
-                        </dd>
-                        <dd>
-                            <a href="#">개발스토리</a>
+                            <a href="#">알파레이S<br>개발스토리</a>
                         </dd>
                     </dl>
                     <!-- 2.ABOUT US -->
@@ -316,14 +482,19 @@
                             <img src="./imgs/nav03/cpl_bi.png" alt="나눔명문기업">
                         </a>
                     </li>
-                    <li>
+                    <li class="lang">
                         <a href="#">
+                            <!-- 오버전 이미지 -->
                             <img src="./imgs/nav03/lang_i_w.png" alt="다국어아이콘">
+                            <!-- 오버시 이미지 -->
+                            <img src="./imgs/nav03/lang_i.png" alt="다국어아이콘">
                         </a>
                     </li>
                     <li class="store">
                         <a href="#">
+                            <!-- 오버전 이미지 -->
                             <img src="./imgs/nav03/store_i3_w.png" alt="스토어아이콘">
+                            <!-- 오버시 이미지 -->
                             <img src="./imgs/nav03/store_i3.png" alt="스토어아이콘">
                         </a>
                     </li>
