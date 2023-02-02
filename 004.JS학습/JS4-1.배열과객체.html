@@ -22,6 +22,8 @@
             font-size: 24px;
         }
     </style>
+    <!-- 영화 객체 JS 불러오기 -->
+    <script src="./JS4-1.배열과객체_object.js"></script>
     <script>
         //로딩구역
         window.addEventListener("DOMContentLoaded", function(){
@@ -352,14 +354,11 @@
                 // 6. 예고편
                 예고편 : function() {
                     // 1. 호출확인
-                    console.log("예고편");
-                    // 스타일 변수
-                    var sty = tg[5].style
-                    // 2. 예고편 넣기
-                    tg[5].innerHTML = `
-                    <iframe src="https://www.youtube.com/embed/i50tT8n9fp8?autoplay=1&mute=1" allow="autoplay"></iframe>
-                    `;
-                    sty.height = "600px"
+                    // console.log("예고편");
+
+                    // 플레이 함수 호출
+                    playMv("i50tT8n9fp8");
+
                 } // 예고편 메서드
             } /// leaveObJ 객체 ///////
             console.log(leaveObj);
@@ -368,7 +367,11 @@
             // 줄간격
             tg[5].style.lineHeight = "34px";
 
-            // 내용 출력
+            // 손가락 모양
+            tg[5].style.cursor = "pointer";
+
+            // 내용 출력 하기 함수로 변경
+            var expFn = function(){
             tg[5].innerHTML = `
                 ☆ 영화명 : ${leaveObj.제목} /
                 ☆ 감독 : ${leaveObj.감독} /
@@ -376,21 +379,119 @@
                 ☆ 장르 : ${leaveObj.장르} /
                 ☆ 관람가 : ${leaveObj.관람가}
             `;
-
-            // 타이틀
+            // 툴팁보이기 
             tg[5].title = `클릭하면 ${leaveObj.제목} 예고편이 나와요☆`;
 
-            // 손가락 모양
-            tg[5].style.cursor = "pointer";
-
             // 클릭 시 예고편 호출
-            tg[5].onclick = function() {
-                leaveObj.예고편();
-                var frame = tg[5].querySelector("iframe").style;
-                frame.height = "100%";
-                frame.width = "100%";
-            }
+            tg[5].onclick = leaveObj.예고편;
+
+        }; ////////// expFn 함수
+
+            // 할당된 expFn 함수를 처음 실행호출
+            expFn();
+
+            
+
+           /////////////////////////////////////////////////////////////////
+           // 영화 초이스 버튼 클릭 시 영화 정보와 동영상 변경
+           
+           // 대상 : .choice button
+           var cho = document.querySelectorAll(".choice button");
+           console.log(cho);
+
+           // for문으로 버튼들을 클릭이벤트 설정
+           for(var i=0; i<cho.length;i++){
+           cho[i].onclick = function() {
+            // 1. 버튼텍스트 
+            var btxt = this.innerText;
+            console.log(btxt);
+
+            // 할당 전 영화 객체
+            console.log(leaveObj);
+
+            // 2. 버튼 텍스트에 해당하는 객체를 기존 변수에 할당
+            // switch()문 사용
+            // 새로운 객체를 기존 객체에 할당(변경)
+            switch(btxt){
+                case "ㄱㄱ초이스": leaveObj = motoraObj; break;
+                case "ㄴㄴ초이스": leaveObj = myV; break;
+                case "ㄷㄷ초이스": leaveObj = GSObj; break;
+                case "ㄹㄹ초이스": leaveObj = mjObj; break;
+                case "ㅁㅁ초이스": leaveObj = somObj; break;
+            } ////// switch case 문
+
+            // 기존 영화 객체 변수값이 변경되었는지 확인
+            console.log(leaveObj);
+
+            // 3. 실제 적용 요소에 객체 데이터 넣기
+            // 위에서 함수로 생성한 expFn 함수 호출
+            expFn();
+
+           }; // 클릭이벤트 함수
+        } // for문 끝
+
         }); // 로드구역 끝
+
+            // -> 다른 영화 객체에서 호출하고 있으므로 로드구역 바깥으로 옮겨서
+            // 전역함수로 변경
+            /*******************************************************************
+             함수명 : playMv
+             기능: 영화 예고편 화면에 띄우기     
+             *******************************************************************/
+            
+             var playMv = function(mvcode) { // mvcode는 예고편 아이디
+                // 예고편 동영상용 박스
+                var mvbx = document.querySelector("#mvbx");
+                console.log(mvbx);
+            // 1. 함수호출확인
+            // console.log("player", mvcode);
+
+            // 2. 영화박스에 아이프레임 넣기
+            // 대상 : #mvbx
+            mvbx.innerHTML = `
+            <div id="mv">
+                <!-- 유튜브 아이프레임 -->
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${mvcode}?autoplay=1" allow="autoplay" style="border:none"></iframe>
+                <!-- 닫기 버튼 -->
+                <button class="cbtn">×</button>
+            </div>
+                `;
+            // 삽입된 동영상 박스(#mv) CSS 설정
+            var mv = document.querySelector("#mv");
+            var msy = mv.style;
+
+            msy.position = "fixed";
+            msy.top = "50%";
+            msy.left = "50%";
+            msy.transform = "translate(-50%, -50%)";
+            msy.width = "700px";
+            msy.height = "450px";
+            msy.backgroundColor = "#000";
+
+            // 닫기 버튼 CSS 설정
+            var cbtn = document.querySelector(".cbtn");
+            var csy = cbtn.style;
+
+            csy.position = "absolute";
+            csy.top = "0";
+            csy.right = "-70px";
+            csy.width = "50px";
+            csy.height = "50px";
+            csy.lineHeight = "50px";
+            csy.border = "none";
+            csy.borderRadius = "50%";
+            csy.color = "#fff";
+            csy.backgroundColor ="blue";
+            csy.fontSize = "40px";
+            csy.fontWeight = "bold";
+            csy.cursor = "pointer";
+
+            // 닫기 버튼 클릭 시 #mv 제거
+            cbtn.onclick = function() {
+                mv.remove();
+                // remove() -> DOM에서 요소를 삭제하는 메서드 
+            };
+           }; // plavMv 함수
         
         
     </script>
@@ -405,6 +506,14 @@
     <div class="cont"></div>
     <div class="cont"></div>
     <div class="cont"></div>
+    <!-- 영화초이스 버튼 박스 -->
+    <div class="cont choice">
+        <button>ㄱㄱ초이스</button>
+        <button>ㄴㄴ초이스</button>
+        <button>ㄷㄷ초이스</button>
+        <button>ㄹㄹ초이스</button>
+        <button>ㅁㅁ초이스</button>
+    </div>
 
     <!-- 예고편 동영상용 박스 -->
     <aside id="mvbx"></aside>
