@@ -333,7 +333,7 @@
             
                 [ 미션 : 내가 만든 객체 ]
                   1. 주제 : 영화정보
-                  2. 조건 : 변수명, 객체속성명 모두 자신이 지은 이름 사용
+                  2. 조건 : 객체변수명 자신이 지은 이름 사용
                   3. 객체를 쌤께 전송
             
             ****************************************************************/
@@ -353,12 +353,22 @@
                 예고편 : function() {
                     // 1. 호출확인
                     console.log("예고편");
+                    // 스타일 변수
+                    var sty = tg[5].style
+                    // 2. 예고편 넣기
+                    tg[5].innerHTML = `
+                    <iframe src="https://www.youtube.com/embed/i50tT8n9fp8?autoplay=1&mute=1" allow="autoplay"></iframe>
+                    `;
+                    sty.height = "600px"
                 } // 예고편 메서드
             } /// leaveObJ 객체 ///////
             console.log(leaveObj);
+            // 출력대상 : tg[5]
 
-            tg[5].style.lineHeight = "40px";
+            // 줄간격
+            tg[5].style.lineHeight = "34px";
 
+            // 내용 출력
             tg[5].innerHTML = `
                 ☆ 영화명 : ${leaveObj.제목} /
                 ☆ 감독 : ${leaveObj.감독} /
@@ -366,6 +376,20 @@
                 ☆ 장르 : ${leaveObj.장르} /
                 ☆ 관람가 : ${leaveObj.관람가}
             `;
+
+            // 타이틀
+            tg[5].title = `클릭하면 ${leaveObj.제목} 예고편이 나와요☆`;
+
+            // 손가락 모양
+            tg[5].style.cursor = "pointer";
+
+            // 클릭 시 예고편 호출
+            tg[5].onclick = function() {
+                leaveObj.예고편();
+                var frame = tg[5].querySelector("iframe").style;
+                frame.height = "100%";
+                frame.width = "100%";
+            }
         }); // 로드구역 끝
         
         
