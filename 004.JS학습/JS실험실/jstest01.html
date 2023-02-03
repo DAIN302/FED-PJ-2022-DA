@@ -6,6 +6,12 @@
     <title>JS실험실 1 : 따라다니는 원</title>
 </head>
 <style>
+    /* CSS 변수 처리 */
+
+    :root {
+        --msz : 50px;
+    }
+
     html, body {
         margin: 0;
         padding: 0;
@@ -14,18 +20,80 @@
     body {
         width: 100vw;
         height: 100vh;
-        background: url(./imgs/bmo2.jpg) no-repeat center/cover;
+        /* background: url(./imgs/bmo2.jpg) no-repeat center/cover;
+     */
     }
+
 
     .mover {
         position: fixed;
-        width: 30px;
-        height: 30px;
+        z-index: 1;
+        /* 
+            [ z-inder 무버에 주는 기준 ]
+              -> 오버 시 위에 와야 하므로 가장 높게 준 z-index보다 크게 준다.
+                 (맨 아래 코딩했으므로 z-index가 같아도 위에 올 수 있음)
+                 일반요소 0보다 크게
+        */
+        width: var(--msz);
+        height: var(--msz);
         border-radius: 50%;
-        background: url(./imgs/icons8-beemo-color-32.png) no-repeat center/cover;
+        background-color: rgb(255,0,0);
+
+        /* 겹치는 색상처리 블렌딩 모드 속성
+            [ mix-blend-mode 속성]
+              - 겹쳐지는 요소의 색상을 섞어서 디스플레이 해주는 처리 속성
+              - 밝은 색 mix(screen계열)
+              - 어두운 색 mix(darken계열)
+        */
+        mix-blend-mode: exclusion;
+
+
         /* 트랜지션 - 이징을 반드시 ease-out을 준다
            따라다니는 반응이 시작할 때 바로 움직여야 하므로 */
-        transition: .1s ease-out;
+        transition: .1s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    }
+    .cont{
+        display: flex;
+    }
+    .cont>div{
+        position: relative;
+        /* z-index: 1;   */
+        /* mover와 z-index로 위치관계 비교를 내부의 요소와 하려면 부모박스에
+            z-index 를 주지 않아야 비교 가능
+        */
+        
+        flex: 1;
+        text-align: center;
+    }
+    .cont>div>img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    
+    /* 컨텐츠 a링크 */
+    .cont>div>a{
+        position: absolute;
+        /* 무버보다 위에 오도록 z-index 주기
+           a 요소는 포지션이 없으면 z-index가 적용 X 
+           만약 포지션이 없다면 relative라도 줘서 z-index가 적용되도록 한다 */
+        z-index: 2;
+        bottom: 10%;
+        /* 가로 중앙 이동 */
+        left: 50%;
+        transform: translateX(-50%);
+
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 0 0 5px #000;
+        white-space: nowrap;
+    }
+    
+    .cont>div>a:hover{
+        color: #f00;
     }
 </style>
 <!-- JS코드 구역 -->
@@ -34,6 +102,15 @@
     window.addEventListener("load", function(){
         // 움직일 대상 : 돌아다니는 원 .mover
         var mover = document.querySelector(".mover");
+
+        // mover 크기의 절반 계산
+        var gap = mover.clientWidth;
+        console.log("무버크기", gap);
+
+        // [ JavaScript 에서 요소의 크기 구하기(패딩포함) ]
+        // 가로크기 : 요소.clientWidth
+        // 세로크기 : 요소.clientHeight
+
         // 이벤트 대상 : body
         // 이벤트 종류 : mousemove - 마우스가 대상 위에서 움직일 때 발생
         document.body.onmousemove = function(){
@@ -41,21 +118,76 @@
             // x좌표 : event.pageX
             // Y좌표 : event.pageY
             // console.log("x좌표", event.pageX, "y좌표", event.pageY);
+
+            // 위치값 보정 (gap은 mover 크기의 절반)
+            var posx = event.pageX-(gap/2);
+            var posy = event.pageY-(gap/2);
+
             
             // mover에서 위치값 이동 세팅(mover 중앙위치 보정)
-            mover.style.top = (event.pageY-15)+"px"; // px 단위를 써 줘야함
-            mover.style.left = (event.pageX-15)+"px";
+            mover.style.top = posy+"px"; // px 단위를 써 줘야함
+            mover.style.left = posx+"px";
             // event.pageX 에서 자기 크기의 절반을 빼주면 마우스 포인터의 중앙에 위치가 옴
             
         } // mousemove 이벤트 함수 끝
+
+        // a요소 오버시 원 크게하기
+        // 대상 : .pt
+        var pt = document.querySelectorAll(".pt");
+        // console.log(pt);
+
+        // for문으로 모든  a 요소에 이벤트 설정
+        for(var i = 0; i < pt.length ; i++) {
+            // 마우스 오버시 -> mouseenter
+            pt[i].onmouseenter = function(){
+                // 대상 : .mover
+                mover.style.transform = "scale(2)";
+            }; // mouseenter 이벤트 함수
+            // 마우스 아웃시 -> mouseleave
+            pt[i].onmouseleave = function(){
+                mover.style.transform = "scale(1)";
+            }; // mouseleave 이벤트 함수
+
+        } // for문 끝
+
+        /*****************************************************************
+            [ 마우스 오버/아웃 이벤트 ]
+              1. 오버시 이벤트
+                 1) mouseover -> 요소 위에 올라갈 때 발생
+                 2) mouseenter -> 요소의 경계선 안으로 들어갈 때 발생 
+
+              2. 아웃시 이벤트
+                 1) mouseout -> 요소를 벗어날 때 발생
+                 2) mouseleave -> 요소의 경계선 밖으로 나갈 때 발생 
+
+        *****************************************************************/
 
 
     }) // 로드구역
 </script>
 <body>
-    <!-- 돌아다니는 비모 -->
-    <div class="mover"></div>
+
     <!-- 버튼 -->
-    <button>비모야 안뇽!</button>
+    <!-- <button>비모야 안뇽!</button> -->
+    <section class="cont">
+        <div>
+            <img src="../images/dress/1.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/2.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/3.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/4.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+    </section>
+    <!-- 돌아다니는 원 -->
+    <div class="mover"></div>
 </body>
 </html>

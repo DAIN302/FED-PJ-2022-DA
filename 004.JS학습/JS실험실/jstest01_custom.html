@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS실험실 1(custom) : 따라다니는 비모</title>
+</head>
+<style>
+    :root {
+        --msz : 50px;
+    }
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        background: url(./imgs/bmo2.jpg) no-repeat center/cover;
+    }
+
+
+    .mover {
+        position: fixed;
+        width: var(--msz);
+        height: var(--msz);
+        border-radius: 50%;
+        background: url(./imgs/icons8-beemo-color-32.png) no-repeat center/cover;
+        /* 트랜지션 - 이징을 반드시 ease-out을 준다
+           따라다니는 반응이 시작할 때 바로 움직여야 하므로 */
+        transform: scale(1.2);
+        transition: .1s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    }
+</style>
+<!-- JS코드 구역 -->
+<script>
+    // 로딩구역
+    window.addEventListener("load", function(){
+        // 움직일 대상 : 돌아다니는 원 .mover
+        var mover = document.querySelector(".mover");
+
+        // mover 크기의 절반 계산
+        var gap = mover.clientWidth;
+        console.log("무버크기", gap);
+
+        // 이벤트 대상 : body
+        // 이벤트 종류 : mousemove - 마우스가 대상 위에서 움직일 때 발생
+        document.body.onmousemove = function(){
+            // 마우스 포인터 위치 알아내기
+            // x좌표 : event.pageX
+            // Y좌표 : event.pageY
+            // console.log("x좌표", event.pageX, "y좌표", event.pageY);
+
+            // 위치값 보정 (gap은 mover 크기의 절반)
+            var posx = event.pageX-(gap/2);
+            var posy = event.pageY-(gap/2);
+
+            
+            // mover에서 위치값 이동 세팅(mover 중앙위치 보정)
+            mover.style.top = posy+"px"; // px 단위를 써 줘야함
+            mover.style.left = posx+"px";
+            
+            // mover에서 위치값 이동 세팅(mover 중앙위치 보정)
+            mover.style.top = (event.pageY-15)+"px"; // px 단위를 써 줘야함
+            mover.style.left = (event.pageX-15)+"px";
+            // event.pageX 에서 자기 크기의 절반을 빼주면 마우스 포인터의 중앙에 위치가 옴
+            
+        } // mousemove 이벤트 함수 끝
+
+
+    }) // 로드구역
+</script>
+<body>
+    <!-- 돌아다니는 비모 -->
+    <div class="mover"></div>
+    <!-- 버튼 -->
+    <button>비모야 안뇽!</button>
+</body>
+</html>
