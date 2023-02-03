@@ -772,3 +772,15 @@ width: 180px;
 .info span {
     color : aquamarine;
 }
+
+
+.copyright {
+    color: #eee;
+    text-decoration: none;
+    font-size: 15px;
+}
+.copyright a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 15px;
+}
