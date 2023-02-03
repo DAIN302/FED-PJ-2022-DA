@@ -279,7 +279,8 @@
 
         // [ 2. 객체 ]
         const obj = {name : "김수현"};
-        console.log("객체 obj", obj);
+        console.log("1. 객체 obj", obj);
+        console.log(obj.weight); // undefined 출력
 
         // 재할당 불가
         // obj = 100;
@@ -289,17 +290,31 @@
         // Object.defineProperty(객체명, 속성명, {value:속성값});
 
         Object.defineProperty(obj, "weight", {value:"74kg"});
-        console.log("객체 obj", obj);
+        console.log("2. 객체 obj", obj);
+        console.log(obj.weight);
 
         // 객체에 속성 추가 2
-        obj.work = "별그대";
-        console.log("객체 obj", obj);
+        obj.work = "별에서 온 그대";
+        console.log("3. 객체 obj", obj);
+
+        // 객체에 속성 추가 3
+        obj.tall = "몰라";
+        console.log("3. 객체 obj", obj);
+
+        obj.tall = "100cm";
+        console.log("3. 객체 obj", obj);
+        // 얘는 덮어쓰기가 되고
+
+        obj.weight = "100cm";
+        console.log("3. 객체 obj", obj);
+        // 얘는 덮어쓰기가 안된다
+        // 차이는 Object.defineProperty 이거
+
 
         // [ 3. 함수 ]////////////////////////////
         const fn = function(txt){
             console.log("나는 함수당", txt);
-        } //// 
-
+        }
         // 함수호출    
         fn("메롱");
 
