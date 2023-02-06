@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* 도깨비 PJ 인물관계도 페이지 디자인 CSS - cat.css */
+
+/* 공통 외부 CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+/* 메인 겉박스 */
+#cont {
+    background-color: #d7d7d7;
+}
+
+/* 메인 속박스 */
+.cont { 
+    text-align: center;
+}
+/* 인물관계도 이미지 */
+#catimg {
+    /* max-width 100%를 주면 창 가로 사이즈가 줄어들면 이미지가 자동으로 사이즈가 작아진다 */
+    max-width: 100%;
+    /* 이미지 크기 최대 100%의 의미는?
+       싸고 있는 박스가 이미지 크기보다 작아질 때 이미지 가로 크기는 100%로 자동 전환
+       이미지를 박스에 무조건 100% 보이게 하고 싶을 경우 이렇게 세팅함  */
+}
