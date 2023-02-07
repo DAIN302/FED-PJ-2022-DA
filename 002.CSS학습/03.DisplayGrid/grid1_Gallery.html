@@ -130,6 +130,7 @@
             position: relative;
             /* 부모자격 */
             aspect-ratio: 7/10;
+            overflow: hidden;
         }
 
         /* 그리드 갤러리 이미지 */
@@ -137,20 +138,80 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover0;
+            object-fit: cover;
+            transition: .2s;
         }
+
+       /* 마우스 오버시 scale 커짐 */
+       .grid div:hover img {
+            /* transform: scale(1.1); */
+            animation: magAni 10s linear infinite alternate;
+        }
+
+        /* 계속 확대/축소 애니 키프레임 */
+        @keyframes magAni {
+            to {
+                transform: scale(1.5);
+            }
+        }
+        
+        /* 상품설명박스 */
+        .grid aside {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        /* 상품명 글자박스(h2) */
+        .grid aside h2 {
+            font-size: min(1.8vw, 24px);
+            font-weight: normal;  
+            margin: min(1.2vw, 14px) 0 0;
+            /* 마진 : 위 양쪽 아래 */
+        }
+
+        /* 상품가격 글자박스(h3) */
+        .grid aside h3 {
+            font-size: min(1.4vw, 18px);
+            font-weight: normal;
+            margin: min(0.5vw, 10px) 0;
+            /* 마진 : 위아래 양쪽 */
+        }
+
+
 
         
 
         /* 1100px이하 미디어쿼리 시작 */
         @media screen and (max-width:1100px) {
-            
+            .grid {
+                /* 가로방향 4개 */
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         /* 1100px이하 미디어쿼리 끝 */
 
         /* 1000px이하 미디어쿼리 시작 */
         @media screen and (max-width:1000px) {
+            .grid {
+                /* 가로방향 3개 */
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* 상품명 글자박스 */
+            .grid aside h2{
+                font-size: 3vw;
+                margin: 2vw 0 0;
+            }
+            /* 상품가격 글자박스 */
+            .grid aside h3{
+                font-size: 2vw;
+                margin: 2vw 0;
+            }
             
         }
 
@@ -158,14 +219,36 @@
 
         /* 800px이하 미디어쿼리 시작 */
         @media screen and (max-width:800px) {
-            
+            .grid {
+                /* 가로방향 2개 */
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* 800px이하 미디어쿼리 끝 */
 
         /* 600px이하 미디어쿼리 시작 */
         @media screen and (max-width:600px) {
-            
+            body {
+                margin: 0;
+            }
+            .grid {
+                /* 가로방향 1개 */
+                grid-template-columns: repeat(1, 1fr);
+                /* 수직방향간격 */
+                grid-row-gap: 0;
+            }
+
+            /* 상품명 글자박스 */
+            .grid aside h2{
+                font-size: 5.5vw;
+                margin: 4vw 0 0;
+            }
+            /* 상품가격 글자박스 */
+            .grid aside h3{
+                font-size: 4vw;
+                margin: 4vw 0;
+            }
         }
 
         /* 600px이하 미디어쿼리 끝 */
