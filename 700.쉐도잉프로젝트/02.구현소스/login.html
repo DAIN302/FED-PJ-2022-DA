@@ -137,6 +137,56 @@
                 <h2 class="stit">Log In</h2>
                 <!-- 2-2. 컨텐츠 박스 -->
                 <section class="scont">
+                    <!-- 
+                        [ form 요소 ]
+                          입력데이터를 서버로 전송하기 위한 요소
+                          (속성)
+                          action - 전송할 서버 처리 페이지(어떤 페이지로 data를 보낼건지 지정)
+                          method - 전송방식
+                          1) post : post 전달방식 (백엔드 서버에 정보를 전송하는 방식)
+                             -> 페이지에 숨겨서 전송 
+                             -> 민감한 데이터 처리시 사용(보안레벨 높은것 : id나 비밀번호같은거)
+                          2) get : get 전달방식
+                             -> URL 뒤에 키, 값 쌍으로 전달(url에 정보가 포함됨) 
+                             -> 페이지 데이터 세팅 등 사용(공개되어도 상관없는 정보들)   
+                     -->
+                    <form action="process.php" method="post">
+                        <!-- 아이디박스 -->
+                        <div class="minput">
+                            <label for="mid">아이디</label>
+                            <input type="text" name="mid" id="mid" maxlength="10" placeholder="아이디를 입력하세요" required>
+                        <!-- name속성은 서버쪽 사용용도로 작성(id명과 같은 이름 많이 씀) -->
+                        </div>
+                        <!-- 비밀번호박스 -->
+                        <div class="minput">
+                            <label for="mpw">비밀번호</label>
+                            <input type="password" name="mpw" id="mpw" maxlength="10" placeholder="비밀번호를 입력하세요" required>
+                        </div>
+                        <!-- 버튼박스 -->
+                        <div class="btnbx">
+                            <input type="submit" name="sbtn" id="sbtn" value="LOGIN">
+                            <!-- type이 submit이면 form 요소 인의 모든 입력요소를 
+                                 target 페이지 (action 값) 로 전송 -->
+                        </div>
+                        <!-- 기타 링크 -->
+                        <div class="addbx">
+                            <span>
+                                <input type="checkbox" id="chkbx" name="chkbx">
+                                <label for="chkbx" class="fa-regular fa-circle-check"></label>
+                                <label for="chkbx">아이디저장</label>
+                                <!-- 라벨은 여러개 만들 수 있음 -->
+                            </span>
+                            <span>
+                                <a href="#">아이디찾기</a>
+                            </span>
+                            <span>
+                                <a href="#">비밀번호찾기</a>
+                            </span>
+                            <span>
+                                <a href="#">회원가입</a>
+                            </span>
+                        </div>
+                    </form>
                 </section>
             </main>
         </div>
@@ -198,5 +248,9 @@
                 </div>
             </footer>
         </div>
+        <!-- 폰트어썸 -->
+        <script
+        src="https://kit.fontawesome.com/2041668019.js"
+        crossorigin="anonymous"></script>
     </body>
 </html>

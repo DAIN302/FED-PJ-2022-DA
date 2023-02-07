@@ -27,6 +27,8 @@
 
 /* 2-2. 컨텐츠 박스 */
 .scont {
+    position: relative;
+    /* .btnbx 의 부모 */
     margin: 0 auto;
     padding: 60px 15px;
     max-width: 700px;
@@ -38,4 +40,107 @@
     box-sizing: border-box;
     /* width를 700px로 지정, 패딩 및 보더때문에 700px보다 커짐 
        box-sizing : border-box 설정하면 패딩과 보더를 포함해서 width가 700px로 설정됨 */
+}
+
+/* 입력창 공통 라벨 */
+.minput label {
+    /* 크기 디자인 적용 위해 inline-block 적용 label은 원래 inline 요소 */
+    display: inline-block;
+    width: 150px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    line-height: 3.6rem;
+}
+
+/* 입력양식 공통 */
+.minput input {
+    width: 320px;
+    height: 36px;
+    border: 1px solid #777;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+/* 비밀번호 박스 */
+.scont div:nth-child(2) {
+    margin-top: 20px;
+}
+
+/* 포커스 아웃라인 제거 - 모든 브라우저에 기본 포커스 아웃라인 세팅됨 */
+input:focus {
+    outline: none;
+}
+
+/* 로그인 버튼 영역 */
+.btnbx {
+    position: absolute;
+    /* 부모 -> .scont */
+    top: 60px;
+    right: 60px;
+}
+
+/* submit 버튼 */
+#sbtn {
+    width: 113px;
+    height: 92px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #eee, #555);
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px #555;
+}
+
+/* 기타 링크 */
+
+.addbx {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.6rem;
+    /* 체크박스 빠르게 체크시 영역 잡히는것 막기 */
+    user-select: none;
+}
+
+/* 체크박스 라벨 숨기기 */
+.addbx input {
+    display: none;
+}
+
+/* 체크박스 라벨을 체크박스로 만들기 */
+/* input바로 다음에 있는 label input+label */
+.addbx input+label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: -1px;
+    color : red;
+    /* outline: 1px solid red; */
+}
+
+/* 체크박스 체크 시 아이콘 변경 */
+.addbx input:checked+label {
+    font-weight: 900;
+    /* 체크된 상태의 아이콘은 두께만 변경하면 됨 */
+}
+/* 기타링크 구분선 넣기 */
+/* span+span 앞에 span 있는 span */
+.addbx span+span::before {
+    content: '|';
+    margin: 0 15px;
+
+}
+/* 기타링크 a 요소 */
+.addbx a {
+    color: #000;
+    text-decoration: none;
+}
+
+.addbx a:hover {
+    color : red;
+    text-decoration: underline;
+    text-decoration-style: wavy;
 }
