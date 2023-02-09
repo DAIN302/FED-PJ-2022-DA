@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>객체를 위한 for문</title>
+    <title>객체를 위한 for문-> 사실 안써도됨</title>
     <style>
         h1,.btns,.show{
             text-align: center;
@@ -120,67 +120,48 @@
                     // console.log(data); 매칭되어진 객체 정보 출력
 
                     // 3. 해당 요소에 데이터 넣기
-                    // for in문 사용
-                    // for(변수 in 객체){코드}
-                    // 변수는 속성명
-                    for(let z in data) {
-                        // z는 속성명
-                        // 속성값 가져오는 법 -> 객체명[변수] : data[z]
-                        // console.log(z, data[z]);
 
-                        // 각 속성명에 해당하는 데이터 세팅
-                        // switch case문으로 분기
-                        switch(z) {
-                            // 1. 포스터 넣기 .photo
-                            case "포스터": qs(".photo").innerHTML = `<img src="${data[z]}" alt="${btxt}의 포스터">`;
-                                break;
-                            // 2. 제목 넣기 .tit
-                            case "제목": qs(".tit").innerText = "★영화명 : "+ data[z];
-                                break;
-                            // 3. 장르 넣기 .sum
-                            case "개요": qs(".sum").innerText = "★장르 : "+data[z]; 
-                                break;
-                            // 4. 감독 넣기 .dir
-                            case "감독": qs(".dir").innerText = "★감독 : "+data[z]; 
-                                break;
-                            // 5. 배우 넣기 .act
-                            case "출연": qs(".act").innerText = "★출연 : "+data[z]; 
-                                break;
-                        }///// switch case
+                    // 1. 포스터 넣기 .photo
+                    qs(".photo").innerHTML = `<img src="${data["포스터"]}" alt="${btxt}의 포스터">`;
+                    // 2. 제목 넣기 .tit
+                    qs(".tit").innerText = "★영화명 : "+data["제목"];
+                    // 3. 장르 넣기 .sum
+                    qs(".sum").innerText = "★장르 : "+data["개요"]; 
+                    // 4. 감독 넣기 .dir
+                    qs(".dir").innerText = "★감독 : "+data["감독"]; 
+                    // 5. 배우 넣기 .act
+                    qs(".act").innerText = "★출연 : "+data["출연"]; 
 
-                        // 영화 한마디 넣기
-                        // for of문으로 문자데이터 잘라넣기
-                        // 한글자씩 span태그로 싸서 해당 요소에 넣음
-                        if(z==="문구") {
-                            // 1. 데이터 담기
-                            let txt = data[z];
-                            // console.log(txt);
+                // 영화 한마디 넣기
+                // for of문으로 문자데이터 잘라넣기
+                // 한글자씩 span태그로 싸서 해당 요소에 넣음
+                
+                    // 1. 데이터 담기
+                    let txt = data["문구"];
+                    // console.log(txt);
 
-                            // span 태그로 싼 새로운 데이터 넣을 변수
-                            let newtxt = "";
+                    // span 태그로 싼 새로운 데이터 넣을 변수
+                    let newtxt = "";
 
-                            // 문구 데이터를 for of 문으로 하나씩 넣기
-                            for(let m of txt) { // m은 한 글자씩
-                                // console.log(m); 한글자씩 출력
+                    // 문구 데이터를 for of 문으로 하나씩 넣기
+                    for(let m of txt) { // m은 한 글자씩
+                        // console.log(m); 한글자씩 출력
 
-                                // 공백(스페이스)일 경우 띄어쓰기 기호로
-                                if(m===" ") {
-                                    newtxt += "&nbsp;&nbsp;&nbsp;";
-                                    // nbsp -> 줄바꿈 없는 공백
-                                } //// if문
-                                else {
-                                    newtxt += `<span>${m}</span>`;
-                                } //  else 문
-                            } ///// for of 문
+                        // 공백(스페이스)일 경우 띄어쓰기 기호로
+                        if(m===" ") {
+                            newtxt += "&nbsp;&nbsp;&nbsp;";
+                            // nbsp -> 줄바꿈 없는 공백
+                        } //// if문
+                        else {
+                            newtxt += `<span>${m}</span>`;
+                        } //  else 문
+                    } ///// for of 문
 
-                            // 문구데이터를 대상에 출력 .show
-                            qs(".show").innerHTML = newtxt;
-                            // 영화 한마디 보이게 하기
-                            // 대상 : .showit
-                            qs(".showtit").style.display = "block";
-
-                        } ///// if문
-                    } ////// for in 문
+                    // 문구데이터를 대상에 출력 .show
+                    qs(".show").innerHTML = newtxt;
+                    // 영화 한마디 보이게 하기
+                    // 대상 : .showit
+                    qs(".showtit").style.display = "block";
 
 
                 } // 클릭이벤트 함수

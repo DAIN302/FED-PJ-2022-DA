@@ -25,16 +25,15 @@ font-family: 'Roboto Condensed', sans-serif;
 /* 
   [ 공통 클래스 이름정의 ]
   1. ibx - inside box 속박스
-  2. fbx - flex box 플렉스 디스플레이 박스
-  3. pt1, pt2 - part1, part2 각 부분박스
-  4. cbx - content box 내용박스
-  5. bgi - background image 관련 속성
+  2. pt1, pt2 - part1, part2 각 부분박스
+  3. cbx - content box 내용박스
+  4. bgi - background image 관련 속성
 */
 
 /* 공사중 표시 */
-/* body * {
+body * {
     outline: 1px dashed gray;
-} */
+}
 
 /************* 2. 공통 class *************/
 
@@ -43,6 +42,42 @@ font-family: 'Roboto Condensed', sans-serif;
     max-width: 1300px;
     margin: 0 auto;
 }
+
+/* 2-2.컨텐츠 박스 유형별 클래스 */
+/* 유형 1 - 1개 박스 구성 : .pt1 */
+.pt1 {
+    /* 비율 적용 시 height 값은 주지 않는다 */
+    /* height: 724px; */
+    /* 1300 : 724 비율 */
+    aspect-ratio: 1300 / 724;
+}
+/* 유형 1 컨텐츠 박스 */
+.pt1 .cbx {
+    /* 부모박스 높이값에 맞춤 */
+    height: 100%;
+}
+
+/* 유형 2 - 3개 박스 구성 : .pt2 */
+.pt2 {
+    /* 비율 적용 시 height 값은 주지 않는다 */
+    /* height: 650px; */
+    /* 1300 : 650 비율 */
+    aspect-ratio: 1300 / 650;
+    display: flex;
+}
+
+/* 유형 2 컨텐츠 박스 : 등분할 가로정렬박스 */
+.pt2 .cbx {
+    /* 플렉스 자식요소 동일분할 설정 -> 높이값 100% 설정 불필요 자동맞춤됨 */
+    flex: 1;
+}
+
+/* 2-3. 배경이미지 공통 세팅 클래스 */
+.bgi {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 /* 글자 숨김 클래스(IR배경이미지 설명 등  숨기기) */
 .ir {
