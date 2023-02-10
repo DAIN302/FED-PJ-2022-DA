@@ -35,11 +35,16 @@ function loadFn() {
     // for of 문
     for(let x of menu) { // x는 는 각각의 a 요소
         // 1. 클릭 이벤트 설정
-        x.onclick = () => {
+        x.onclick =()=>{
             // 0. 도시정보박스 숨기기
             // 다른 정보로 넘어갈 때나 출발면에서 컨텐츠 보이기 방지
             cbx.style.opacity = "0";
             cbx.style.transition = "none";
+
+            // 도시 정보 스크롤 생길 경우
+            // 내려놓고 다른 도시가면 스크롤 위치가 내려가 있기 때문에
+            // 스크롤 위치 맨위로 세팅하기
+            cinfo.scrollTo(0,0);
             
             // 1. 메뉴 텍스트 읽기
             let mtxt = x.innerText;
@@ -87,13 +92,13 @@ function loadFn() {
             // 도시정보박스 보이게 하기
             // 내용 : 큐브 1.5초간 회전 후 도시정보박스 보이기
             // 1.5초 후 코드 실행
-            setTimeout(() => {
+            setTimeout(()=>{
                 cbx.style.opacity = 1;
                 cbx.style.transition = "opacity .5s ease-in-out";
-            }, 1500)
+            }, 1500);
 
 
-        } /////// 클릭 이벤트 함수
+        }; /////// 클릭 이벤트 함수
     } ////// for of문 끝
 
 

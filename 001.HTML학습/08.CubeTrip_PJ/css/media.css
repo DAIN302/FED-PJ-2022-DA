@@ -25,6 +25,10 @@
         background-image: linear-gradient(to bottom, transparent, rgb(247, 202, 201), rgb(146, 168, 209));
     }
 
+    .city li:hover {
+        transform: none !important;
+    }
+
     /* 3. 큐브 */
     :root {
         --csz : 60vw;
