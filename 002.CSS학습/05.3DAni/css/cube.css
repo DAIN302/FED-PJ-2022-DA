@@ -18,6 +18,18 @@ body {
     /* 큐브 공통 크기 */
     --csz : 300px;
 }
+/* 작동버튼 */
+.btngo {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    border-radius: 10px;
+    border: none;
+    background-image: linear-gradient(to bottom, lightskyblue, white);
+    cursor: pointer;
+}
 
 /* 큐브 */
 .cube {
@@ -49,7 +61,15 @@ body {
 .cube-ani {
     /* 큐브 애니 */
     animation : cubeAni 4s linear infinite;
+    /* 애니메이션 처음에 멈춰있기 */
+    animation-play-state: paused;
 }
+/* 큐브회전 작동 클래스 +.on*/
+.cube-ani.on {
+    /* 애니메이션 작동 */
+    animation-play-state: running;
+}
+
 
 /* 큐브 각면 공통 */
 .cube span {
