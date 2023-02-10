@@ -5,7 +5,45 @@
 
 /* 모바일 미디어쿼리 */
 @media only screen and (max-width:950px) {
+    /* 2. 메뉴 버튼 */
+    .city {
+        position: fixed;
+        width : 94vw;
+        top : auto;
+        bottom : 3vh;
+        right: auto;
+        left : 3vw;
+    }
 
+    .city ul {
+        width: auto;
+        display : flex;
+    }
+
+    .city li {
+        flex: 1;
+        background-image: linear-gradient(to bottom, transparent, rgb(247, 202, 201), rgb(146, 168, 209));
+    }
+
+    /* 3. 큐브 */
+    :root {
+        --csz : 60vw;
+    }
+
+
+
+    /* 도시이름 */
+    h2.cname {
+        line-height: 10vw;
+        font-size: 6vw;
+    }
+
+    /* 도시설명 */
+    p.cinfo {
+        top: min(10vw, 100px);
+        line-height: 5vw;
+        font-size: 3vw;
+    }
    
 }
 

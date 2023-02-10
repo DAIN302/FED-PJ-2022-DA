@@ -29,6 +29,25 @@ a {
     text-decoration: none;
 }
 
+/* 스크롤바 디자인 클래스 */
+/* -webkit 밴더사명(크롬, 사파리) 접두어 */
+/* (참고 : -ms-(ie), -o-(오페라), -moz-(파이어폭스) */
+/* 클래스명 scbar */
+.scbar::-webkit-scrollbar {
+    /* 전체 스크롤바 크기 변경 */
+    width: 2px;
+}
+.scbar::-webkit-scrollbar-thumb {
+    /* 스크롤바 */
+    background-color: #555;
+    border-radius: 5px;
+}
+.scbar::-webkit-scrollbar-track {
+    /* 스크롤바 */
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
 
 body {
     height: 100vh;
@@ -56,7 +75,7 @@ body {
 }
 
 .city ul {
-    width: 200px;
+    width: min(15vw,200px);
     perspective: 50vw;
 }
 
@@ -72,7 +91,7 @@ body {
 
 /* li 오버시 y축 회전 */
 .city li:nth-child(1):hover {
-    transform: rotateY(45deg);
+    transform: rotateY(-25deg);
     background-image: linear-gradient(to right, transparent, rgb(255, 111, 97));
 }
 .city li:nth-child(2):hover {
@@ -88,7 +107,7 @@ body {
     background-image: linear-gradient(to right, transparent, #52afac);
 }
 .city li:nth-child(5):hover {
-    transform: rotateY(30deg);
+    transform: rotateY(-30deg);
     background-image: linear-gradient(to right, transparent, #6465a6);
 }
 .city li:nth-child(6):hover {
@@ -133,20 +152,6 @@ body {
     /* outline: 2px dashed red; */
 
 }
-
-/* 큐브회전 클래스 */
-.cube-ani {
-    /* 큐브 애니 */
-    animation : cubeAni 4s linear infinite;
-    /* 애니메이션 처음에 멈춰있기 */
-    animation-play-state: paused;
-}
-/* 큐브회전 작동 클래스 +.on*/
-.cube-ani.on {
-    /* 애니메이션 작동 */
-    animation-play-state: running;
-}
-
 
 /* 큐브 각면 공통 */
 .cube span {
@@ -209,25 +214,6 @@ body {
 }
 
 
-/* 큐브 회전 키프레임 */
-@keyframes cubeAni {
-    to {
-        transform: rotateX(370deg) rotateY(-330deg);
-        /* 
-            x축 양의 방향으로 10도에서 출발
-            양의 방향 360도 + 10도 = 370도
-            음의 방향 -360도 + 10도 = -350도
-            __________________________________________________
-            y축 양의 방향으로 30도에서 출발
-            양의 방향 360도 + 30도 = 390도
-            음의 방향 -360도 + 30도 = -330도
-            
-        */
-        /* transform: rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
-    }
-    
-}
-
 /* 4. 도시 설명 겉박스 */
 .cbx {
     position: absolute;
@@ -276,4 +262,5 @@ p.cinfo {
     line-height: min(28px, 1.5vw);
     font-size: min(16px, 1vw);
     background-color: rgba(0,0,0,0.4);
+    overflow-y: auto;
 }
