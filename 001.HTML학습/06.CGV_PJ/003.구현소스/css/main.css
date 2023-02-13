@@ -258,8 +258,9 @@ body {
     transition: top .4s ease-in-out .2s;
 }
 
-/* 마우스 오버시 타이틀애니박스 들춰지기 */
-.anibx:hover>span {
+/* 마우스 오버시 + 클래스 "on" 적용 시 타이틀애니박스 들춰지기 */
+.anibx:hover>span, 
+.anibx.on > span {
     top: -100%;
     /* top은 기본값이 auto이므로 애니메이션 되려면 top:0으로 초기값 필요 */
     outline: 1px solid gold;
