@@ -218,6 +218,194 @@ body {
     
 }
 
+/* 1-3. 극장가는 길 애니박스 */
+.anibx {
+    position: absolute;
+    /* 부모-> .top */
+    top: 0;
+    left: 0;
+    width: 144px;
+    height: 80px;
+    /* overflow: hidden; */
+    /* 원근설정 : 직계하위 span적용 */
+    /* perspective: 50vh; */
+    cursor: pointer;
+}
+
+/* 극장가는 길 타이틀 박스 */
+.anibx > span {
+    /* 커튼대문역할 */
+    position: absolute;
+    top: 0;
+    /* transition적용을 위해 초기값(top:0)을 줌 -> 안주면 기본값이 auto라서 적용이 안됨 */
+    z-index: 1;
+    display: block;
+    width: 144px;
+    height: 80px;
+    line-height: 80px;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'NanumDongHwaDdoBag';
+    font-size: 2rem;
+    color: #fff;
+    /* 줄바꿈방지 : text-indent로 인해 들여쓰기 했으므로 박스 바깥으로 나가면 줄바꿈 현상이 있을 수 있어서 줄바꿈 방지함 */
+    white-space: nowrap;
+    /* 배경이미지 넣기 */
+    background: url(../images/curtain.jpg) no-repeat;
+    /* 애니메이션 */
+    animation: anibxAni 3s cubic-bezier(0.610, -0.600, 0.530, 1.650) infinite;
+    /* 트랜지션 */
+    transition: top .4s ease-in-out .2s;
+}
+
+/* 마우스 오버시 타이틀애니박스 들춰지기 */
+.anibx:hover>span {
+    top: -100%;
+    /* top은 기본값이 auto이므로 애니메이션 되려면 top:0으로 초기값 필요 */
+    outline: 1px solid gold;
+}
+
+/* 극장가는 길 타이틀 애니 키프레임 */
+@keyframes anibxAni {
+    0% {
+        /* text-indent 값이 양수면 들여쓰기 음수면 내어쓰기 */
+        text-indent: 0;
+        
+    }
+    /* 50~70% 오른쪽으로 나감 */
+    50% {
+        text-indent: 0;
+        
+    }
+    70% {
+        text-indent: 250px;
+        
+    }
+    /* 위치변경 왼쪽 바깥 */
+    70.1% {
+        text-indent: -250px;
+        
+    }
+    /* 80~100% 왼쪽에서 들어옴 */
+    80% {
+        text-indent: -250px;
+        
+    }
+    90% {
+        text-indent: 0;
+        
+    }
+    100% {
+        text-indent: 0;
+        
+    }
+}
+
+/* 셀애니박스 */
+.cellAni {
+    position: absolute;
+    /* 부모 -> .tvset */
+    top: 0;
+    left: 0;
+    width: 144px;
+    height: 80px;
+    /* 배경넣기 */
+    background: url(../images/street.jpg) repeat-x;
+    background-size: auto 100%;
+    /* 애니메이션 */
+    animation: street 4s linear infinite;
+}
+
+
+/* 스크린배경이동 키프레임 */
+@keyframes street {
+    to {
+        background-position: -136px 0;
+
+    }
+}
+
+/* 키프레임 */
+
+/* 3-1.걷는존 */
+.spani1 {
+    position: relative;
+    width: 30%;
+    height: 100%;
+    margin: 2px auto 0;
+    background: url(../images/spAni03.png) no-repeat;
+    background-size: auto 100%;
+
+    animation: spani1 1s steps(8) infinite;
+    /* steps(숫자) -> 숫자수 만큼 알아서 장면을 찍어줌!!
+       전체 장면의 길이가 안맞으면 이상하게 표현됨 */
+}
+
+
+/* 걷는존 키프레임 */
+@keyframes spani1 {
+    to {
+        background-position: -362px 0;
+    }
+    /* 배경이미지 x축 이동일 경우 세로크기를 줄였을 때 이미지 전체 가로크기를 
+       음수 값으로 써주면 됨 */
+    
+}
+
+/* 3-2.꼬마 */
+.spani2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 29px;
+    background: url(../images/spAni01.png) no-repeat;
+    background-size: 200px;
+
+    animation: spani2 1s steps(10) infinite;
+}
+
+
+/* 꼬마 키프레임 */
+@keyframes spani2 {
+    to {
+        background-position: -200px 0;
+    }
+}
+
+/* 키프레임 */
+
+/* 3-3.몬스터 */
+.spani3 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: url(../images/spAni02.png) no-repeat;
+    background-size: 240px;
+
+    animation: spani3X 1s steps(6) infinite, spani3Y 3s steps(3) infinite;
+    /* X축은 6장면을 1초간 작동, Y축은 3줄을 3초간 작동 */
+}
+
+/* 몬스터 키프레임 X축 */
+@keyframes spani3X {
+    to {
+        background-position-x: -240px;
+        /* X축은 가로크기를 마이너스로 씀 */
+    }
+    
+}
+/* 몬스터 키프레임 Y축 */
+@keyframes spani3Y {
+    to {
+        background-position-y: -120px;
+        /* Y축은 세로크기를 마이너스로 씀 */
+    }
+    
+}
+
 /****************************** 2.메인영역 ******************************/
 /* 속박스 */
 .cont {
@@ -258,6 +446,7 @@ body {
     transform: translateX(-49%);
     /* 앱솔루트 부모자격이 있는 요소의 overflow 가 적용됨 -> li 각각에 처리함 */
     /* overflow: hidden; */
+    cursor: pointer;
 }
 /* 선택메뉴 */
 .mlist ul {
@@ -440,3 +629,47 @@ body {
      (띄어쓰기, 특수문자 등 있으면 따옴표 사용)
 
 *********************************************************************************/
+
+/* 구글맵 박스 */
+.gmap {
+    position: fixed;
+    top: -50%;
+    /* 처음에 top값으로 윗쪽에 숨김 */
+    left: 50%;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 450px;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 20px solid red;
+    transition: top .8s cubic-bezier(0.610, -0.600, 0.530, 1.650);
+}
+
+/* 구글맵에 클래스 "on"적용 시 등장하기 */
+.gmap.on {
+    top: 50%;
+}
+
+/* 구글맵 아이프레임 */
+.gmap iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* 닫기 버튼 */
+.cbtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    background-color:transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 기본포커스 아웃라인 제거 */
+.cbtn:focus{
+    outline: none;
+}
