@@ -130,6 +130,12 @@
     min-height: 46px;
 }
 
+.gnb>ul {
+    display: flex;
+    /* margin: 0 auto; */
+    justify-content: center;
+}
+
 
 
 /* 2. 메인영역 */

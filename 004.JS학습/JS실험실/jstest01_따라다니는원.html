@@ -19,7 +19,7 @@
 
     body {
         width: 100vw;
-        height: 100vh;
+        height: 300vh;
         /* background: url(./imgs/bmo2.jpg) no-repeat center/cover;
      */
     }
@@ -118,10 +118,15 @@
             // x좌표 : event.pageX
             // Y좌표 : event.pageY
             // console.log("x좌표", event.pageX, "y좌표", event.pageY);
+            // console.log("x좌표", event.clientX, "y좌표", event.clientY);
 
             // 위치값 보정 (gap은 mover 크기의 절반)
-            var posx = event.pageX-(gap/2);
-            var posy = event.pageY-(gap/2);
+            // var posx = event.pageX-(gap/2);
+            // var posy = event.pageY-(gap/2);
+            // -> pageX, pageY 는 전체 웹문서에서의 위치이므로 .mover가 absolute면 사용됨
+            var posx = event.clientX-(gap/2);
+            var posy = event.clientY-(gap/2);
+            // clientX, clientY 는 브라우저 화면에서의 위치이므로 .mover가 fixed일때 사용됨
 
             
             // mover에서 위치값 이동 세팅(mover 중앙위치 보정)
@@ -130,6 +135,18 @@
             // event.pageX 에서 자기 크기의 절반을 빼주면 마우스 포인터의 중앙에 위치가 옴
             
         } // mousemove 이벤트 함수 끝
+
+        // body 영역 바깥으로 나가면 사라지고 들어오면 나타남
+        document.body.onmouseenter = () => {
+            mover.style.display = "block";
+        } /////// mouseenter 
+
+        document.body.onmouseleave = () => {
+            // 나가면 사라짐
+            mover.style.display = "none";
+        } /////// mouseleave 
+
+
 
         // a요소 오버시 원 크게하기
         // 대상 : .pt
