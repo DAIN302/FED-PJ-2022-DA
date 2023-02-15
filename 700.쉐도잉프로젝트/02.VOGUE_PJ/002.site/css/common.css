@@ -105,6 +105,7 @@
     display: block;
     padding: 7px 19px 7px 10px;
     color : #747474;
+    background-color: #fff;
 }
 
 /* 서브메뉴 마우스 오버시 */
@@ -130,12 +131,46 @@
     min-height: 46px;
 }
 
-.gnb>ul {
+/* gnb ul */
+.gnb ul {
     display: flex;
     /* margin: 0 auto; */
     justify-content: center;
+    /* 플렉스 줄바꿈 설정 */
+    flex-wrap: wrap;
+    /* flex 박스의 사이 간격 속성 : gap */
+    /* gap : 상하 좌우 -> 숫자를 하나만 쓰면 양방향 모두 같은 수치 세팅 */
+    gap: 0 45px;
 }
 
+/* gnb li */
+.gnb li {
+    /* padding-right: 45px; 
+       -> 사이 간격을 li에 패딩으로 주지 않고 
+          부모 요소인 flex박스에서 gap속성으로 주기   */
+    font-family: 'Roboto Condensed', sans-serif;
+    line-height: 40px;
+}
+
+/* gnb li 돋보기 */
+.gnb li:last-child {
+    padding: 0;
+}
+
+.gnb li:last-child a {
+    font-weight: bold;
+    padding-top: 11px;
+}
+
+/* gnb a 요소 */
+.gnb a {
+    transition: color .2s linear;
+}
+
+/* a 요소 마우스 오버시 */
+.gnb a:hover {
+    color : red;
+}
 
 
 /* 2. 메인영역 */

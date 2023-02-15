@@ -72,10 +72,43 @@ body * {
     flex: 1;
 }
 
+
 /* 2-3. 배경이미지 공통 세팅 클래스 */
 .bgi {
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* 컨텐츠 박스 */
+.cbx {
+    position: relative;
+    /* 부모자격 */
+}
+
+/* 가상요소로 컨텐츠 박스 배경 그라데이션 넣기 */
+.cbx::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background-image: linear-gradient(to bottom, transparent, #000);
+}
+/* 2-4. 컨텐츠 타이틀 박스 */
+.cbx h2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: min(50px, 3.4vw);
+    box-sizing: border-box;
+
+    /* 글자설정 */
+    font-family: pist, nbg;
+    font-size: min(33px, 3vw);
+    font-weight: normal;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
 }
 
 
