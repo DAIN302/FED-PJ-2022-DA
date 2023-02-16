@@ -35,9 +35,21 @@
             border-radius: 10px;
         }
 
+        .photo {
+            height: 200px;
+            width: 140px;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+
         .photo img {
             height: 200px;
-            margin-right: 20px;
+            transition: .3s;
+            object-fit: cover;
+        }
+
+        .photo img:hover {
+            transform: scale(1.2);
         }
 
         /* 영화한마디 글자박스 */
