@@ -2,6 +2,13 @@
 /* 보그 PJ 공통 CSS */
 
 /* 1. 상단영역 */
+
+#top {
+    position: relative;
+    /* border-bottom: 1px solid #ccc; */
+    box-shadow: 0 2px 3px rgba(128, 128, 128, 0.2);
+    z-index: 999;
+}
 .top {
     /* 최소높이 */
     min-height: 206px;
@@ -182,4 +189,38 @@
 .info {
     /* 최소높이 */
     min-height: 286px;
+    background-color: #000;
+    padding: 70px;
+    box-sizing: border-box;
+    font-family: 'Roboto', nbg;
+}
+
+/* 3-1. 하단로고 */
+.blogo {
+    text-align: center;
+}
+/* 3-2. 회사주소 */
+.addr {
+    text-align: center;
+    font-style: normal;
+    font-size: 11px;
+    color : #747474;
+    margin: 20px 0 10px;
+}
+/* 3-3. 하단링크 */
+.blink {
+    display: flex;
+    justify-content: center;
+    gap: 0 12px;
+    flex-wrap: wrap;
+}
+
+.blink a {
+    color : #747474;
+    font-size: 13px;
+}
+
+/* 마지막 링크 두껍게 */
+.blink li:last-child a {
+    font-weight: bold;
 }
