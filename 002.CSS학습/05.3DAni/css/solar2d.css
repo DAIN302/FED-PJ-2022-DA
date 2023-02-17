@@ -2,6 +2,37 @@
 
 /* 태양계 2D 애니 - solar2d.css */
 
+/* 
+[ 변수설정하기 ]
+:root {
+    --변수명1 :값1;
+    --변수명2 :값2;
+}
+
+[ 변수호출 ]
+var(--변수명)
+
+[ 변수는 언제 사용? ]
+  -> 같은 값이 여러 부분에서 사용될 때
+  -> 미디어쿼리 등에서 변경이 필요한 경우 변값만 변경하면 복잡한 값
+     변경이 불필요하게 됨 
+*/
+:root {
+    /* 태양 크기 */
+    --sunsz : 250px;
+    /* 지구 크기 */
+    --esz : 80px;
+    /* 달 크기 */
+    --msz : 40px;
+    /* 목성크기 */
+    --jsz : 150px;
+    /* 토성크기 */
+    --ssz : 160px;
+    /* 명왕성크기 */
+    --psz : 50px;
+}
+
+
 html, body {
     margin: 0;
     padding: 0;
@@ -16,7 +47,7 @@ body {
 }
 
 body *{
-    outline: 1px dashed lightblue;
+    /* outline: 1px dashed lightblue; */
 }
 
 /* 공통클래스 */
@@ -35,8 +66,8 @@ body *{
     left: 50%;
     transform: translate(-50%, -50%);
     /* 박스 정중앙 이동 */
-    width: 250px;
-    height: 250px;
+    width: var(--sunsz);
+    height: var(--sunsz);
 }
 
 /* 태양박스 */
@@ -44,39 +75,29 @@ body *{
     position: absolute;
     top: 0;
     left: 0;
-    width: 250px;
-    height: 250px;
+    width: var(--sunsz);
+    height: var(--sunsz);
+    border-radius: 50%;
+
+    /* 커지는 태양 이미지 숨기기 */
+    overflow: hidden;
 }
 
 /* 태양이미지 */
 #sun img {
     width: 100%;
     height: 100%;
+    animation: flame 40s linear infinite alternate;
 }
 
-/* 
-[ 변수설정하기 ]
-:root {
-    --변수명1 :값1;
-    --변수명2 :값2;
+/* 태양 이글거리는 애니메이션 키프레임 */
+@keyframes flame {
+    to {
+        transform: scale(1.5);
+    }
+    
 }
 
-[ 변수호출 ]
-var(--변수명)
-
-[ 변수는 언제 사용? ]
-  -> 같은 값이 여러 부분에서 사용될 때
-  -> 미디어쿼리 등에서 변경이 필요한 경우 변값만 변경하면 복잡한 값
-     변경이 불필요하게 됨 
-*/
-:root {
-    /* 지구 크기 */
-    --esz : 80px;
-    /* 목성크기 */
-    --jsz : 150px;
-    /* 명왕성크기 */
-    --psz : 50px;
-}
 
 
 /* 지구 */
@@ -114,6 +135,41 @@ var(--변수명)
     
 } /* 지구회전 키프레임 */
 
+/* 달 */
+#moon {
+    position: absolute;
+    top: calc(50% - var(--msz)/2);
+    left: calc(50% - var(--msz)/2);
+    width: var(--msz);
+    height: var(--msz);
+    background: url(../images/moon.png) no-repeat 0/100% 100%;
+    /* 애니메이션 */
+    animation: moon 5s linear infinite;
+}
+
+/* 달 회전 키프레임 */
+@keyframes moon {
+    from {
+        transform: rotate(0deg) translateX(80px) rotate(0deg);
+    }
+    /* 
+        [ 주변회전만들기 ]
+          1. 첫번쨰 rotate : 0deg -> 360deg
+             => 중앙회전
+          2. 위치이동 translateX 
+             => 주변을 도는 효과 생김
+             -> 자신의 원래 위치는 보전되면서 회전하기 때문에 중심축이 자신의 원래위치인 가운데라 주변을 도는것처럼 보임
+          3. 두번째 rotate : 0deg -> -360deg
+             => 반대회전은 옆으로 이동한 박스에 적용되어 세워져서 주변을 도는
+                효과가 생김      
+
+    */
+    to {
+        transform: rotate(360deg) translateX(80px) rotate(-360deg);
+    }
+    
+} /* 달회전 키프레임 */
+
 /* 목성 */
 #jupiter {
     position: absolute;
@@ -147,6 +203,49 @@ var(--변수명)
     }
     
 } /* 목성회전 키프레임 */
+
+/* 토성 */
+#saturn {
+    position: absolute;
+    top: calc(50% - var(--ssz)/2);
+    left: calc(50% - var(--ssz)/2);
+    width: var(--ssz);
+    height: var(--ssz);
+    /* 애니메이션 */
+    animation: saturn 45s linear infinite;
+}
+
+/* 가상요소로 토성 배경이미지 넣기 */
+#saturn::before{
+    content: '';
+    background: url(../images/saturn.png) no-repeat 0/100% 100%;
+    position: absolute;
+    width: 160%;
+    height: 100%;
+    top: 0;
+    left: -30%;
+}
+/* 토성 회전 키프레임 */
+@keyframes saturn {
+    from {
+        transform: rotate(0deg) translateY(-460px) rotate(0deg);
+    }
+    /* 
+        [ 주변회전만들기 ]
+          1. 첫번쨰 rotate : 0deg -> 360deg
+             => 중앙회전
+          2. 위치이동 translateX 
+             => 주변을 도는 효과 생김
+          3. 두번째 rotate : 0deg -> -360deg
+             => 반대회전은 옆으로 이동한 박스에 적용되어 세워져서 주변을 도는
+                효과가 생김      
+
+    */
+    to {
+        transform: rotate(360deg) translateY(-460px) rotate(-360deg);
+    }
+    
+} /* 토성회전 키프레임 */
 
 /* 명왕성 */
 #pluto {
