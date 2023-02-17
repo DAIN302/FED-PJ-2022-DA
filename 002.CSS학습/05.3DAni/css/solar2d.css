@@ -78,6 +78,8 @@ body *{
     width: var(--sunsz);
     height: var(--sunsz);
     border-radius: 50%;
+    /* 원형 바깥쪽 글로우효과 */
+    box-shadow: 0 0 60px 10px orange;
 
     /* 커지는 태양 이미지 숨기기 */
     overflow: hidden;
