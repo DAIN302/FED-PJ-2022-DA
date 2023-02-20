@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+/* CGV PJ 미디어쿼리 CSS - media.css */
+
+/* 1330px 이하 사이즈 시작 */
+@media screen and (max-width:1330px) {
+    .gnb {
+        right: 60px;
+    }
+}
+/* 1330px 이하 사이즈 종료 */
+
+
+/* 1050px 이하 사이즈 시작 */
+@media screen and (max-width:1050px) {
+    /* 상단영역 */
+    .gnb {
+        right: 10px;
+        bottom: -125px;
+        padding-top: 20px;
+        /* cam과 ul을 이어주게 하기 위해 패딩을 줌(연속성을 주기위해) */
+    }
+    
+    .gnb:hover ul {
+        display: flex;
+        /* 보이게할때 원래 세팅된 display로 돌아감 */
+    }
+
+
+    .gnb ul {
+        flex-direction: column;
+        align-items: flex-end;
+        display: none; 
+    }
+
+    #cam {
+        right: 0;
+        bottom: 132px;
+        z-index: 0;
+        cursor: pointer;
+    }
+
+
+    /*서브메뉴 오버시 안나오게 */
+    /* 방법은 2가지가 있다
+       1) hover 설정 덮어쓰기(이번에 쓴거)
+       2) 원소스에 미디어쿼리로 감싸주기(min-width 설정으로 이 사이즈 이상에서만 나오게 설정) */
+    .gnb>ul>li:hover .smenu {
+        display: none;
+    }
+
+    /* 하단영역 */
+    .info {
+        padding: 10px;
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .corp {
+        text-align: center;
+    }
+
+    .sns {
+        margin-left: 0;
+    }
+}
+/* 1050px 이하 사이즈 종료 */
+
+/* 800px 이하 사이즈 시작 */
+@media screen and (max-width:800px) {
+    /* 상단영역 */
+    .tit {
+        font-size: min(40px, 7vw);
+    }
+
+    /* 극장가는 길 애니박스 */
+    .anibx {
+        display: none;
+    }
+    /* 메인영역 */
+    .cont {
+        aspect-ratio: 1/1.2;
+        background-size : 130%;
+    }
+
+    /* 스크린 */
+    .screen {
+        top: 12.2%;
+        left: 12.8%;
+        width: 76%;
+        height: 36%;
+    }
+
+    /* 예고편선택메뉴 */
+    .mlist {
+        bottom: 0.4%;
+    }
+
+    .mlist ul {
+        flex-wrap: wrap;
+    }
+
+    .mlist ul>li {
+        flex-basis: 31.83%;
+        /* 사이간격 마진이 빠진 비율
+           -> flex-basis 는 width와 같지만 flex 통합설정에서는 
+           flex-basis로 재정의됨 */
+        transform: rotateX(20deg);
+    }
+
+    /* 영화정보박스 */
+    .movtxt{
+    font-size: 2.8vw;
+    }
+    /* 영화정보박스 제목만 변경 */
+    .movtxt li:first-child {
+        font-size: 3.1vw;
+    }
+
+
+
+}
+/* 800px 이하 사이즈 종료 */
