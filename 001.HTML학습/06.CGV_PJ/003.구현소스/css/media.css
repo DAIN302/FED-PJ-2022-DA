@@ -103,6 +103,7 @@
 
     .mlist ul {
         flex-wrap: wrap;
+        gap : 1vh 2.2%;
     }
 
     .mlist ul>li {
@@ -111,6 +112,11 @@
            -> flex-basis 는 width와 같지만 flex 통합설정에서는 
            flex-basis로 재정의됨 */
         transform: rotateX(20deg);
+    }
+
+    .mlist ul>li+li {
+        margin-left: 0;
+        /* 마진간격을 없애고 gap으로 간격 설정 */
     }
 
     /* 영화정보박스 */
