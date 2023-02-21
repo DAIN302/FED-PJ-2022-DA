@@ -7,7 +7,6 @@
             //////////// 로드구역 ///////////////////////////
             window.addEventListener("DOMContentLoaded", function () {
                 // 로드구역 확인
-                console.log("로딩완료!");
 
                 ////////////////////////////////////////////////////////
                 //// #div01의 각 메뉴에 마우스 오버시 하위메뉴 보이기 ////
@@ -25,7 +24,6 @@
                     x.onmouseover = () => {
                         // 2. 대상의 높이값 알아오기 : offsetHeight
                         let hv = tg.querySelector("ol").offsetHeight;
-                        // console.log(hv);
 
                         // 3. 서브메뉴 열리기 : 높이값 + 보정값
                         tg.style.height = (hv+10)+"px";
@@ -52,7 +50,6 @@
 
                 // 1. 대상선정 : .smenu ol밑의 a요소
                 const link = document.querySelectorAll(".smenu ol a");
-                // console.log(link);
 
                 // 2. 이벤트설정
                 link.forEach((ele)=>{
@@ -62,7 +59,6 @@
                         event.preventDefault(); 
                         // 1. 클릭된 요소 텍스트 읽어오기
                         let atxt = ele.innerText;
-                        // console.log(atxt);
 
                         let url;
 
@@ -133,12 +129,12 @@
                                 break;
                         }// switch case
 
-                        // console.log(url);
                         // 3. 할당한 주소로 이동 
                         // 새창열기 -> window.open().location.href = 이동주소
-                        window.open().location.href = url;
-                        
-
+                        // window.open().location.href = url;
+                        window.open(url);
+                        // url만 값을 사용하면 새탭 새창열기됨
+                    
                     } // 클릭이벤트 함수
                 }); // forEach문
 
@@ -174,13 +170,54 @@
                 //// DOM 요소 제어 및 조작하기 //////////////
                 ////////////////////////////////////////////
 
+                
                 /////////////////////////////////////////////
                 // 새리스트 생성 버튼 클릭시 리스트 만들기 ////
                 // 이벤트 종류: click
                 // 이벤트 대상: .nbt
                 // 변경 대상: #div02 ul -> ctg 변수에 할당!
                 /////////////////////////////////////////////
+                // 변경대상
+                const ctg = document.querySelector("#div02 ul");
+                // 이벤트대상
+                const nbt = document.querySelector(".nbt");
 
+                // 새로운 이미지 번호 변수
+                let inum = 1;
+
+                // 순번에 따른 이름 배열변수
+                const cname = ["아이언맨", "딱딱이", "토르", "닥스", "스타로드"];
+
+                // 클릭이벤트 설정
+                nbt.onclick = () => {
+                    // 1. 호출확인
+
+                    // 2. 새로운 li를 생성하여 변수에 할당
+                    // -> document.createElement(태그명)
+                    // 메모리상에 생성
+                    let ne = document.createElement("li");
+
+                    // 3. 메모리상에 생성된 li에 이미지 넣기
+                    ne.innerHTML = `<img src="images/ab${inum}.jpg" alt="${cname[inum-1]}"/>`;
+                    
+                    // 4. 새로운 li요소에 title 속성, alt 설명글 넣기
+                    ne.querySelector("img").title = `${cname[inum-1]+(inum===1?"을":"를")} 클릭하시면 삭제됩니다.`;
+                    // inum이 1이면 "아이언맨" -> 조사가 "을" 나머지는 "를"                    
+
+                    // 5. 새로운 li 요소 클릭 시 지우기 세팅
+                    // 선택요소.remove()
+                    ne.onclick = () => ne.remove();
+                    
+                    // 6. 변경대상(ctg)애 새로운 li 맨 뒤에 추가
+                    // appendChild(요소) -> 맨뒤에 요소 추가
+                    ctg.appendChild(ne);
+
+                    // 7. 다음번호를 위해 업데이트
+                    inum++; // 클릭 이벤트 때마다 1씩 증가
+                    if(inum===6) inum=1; // 한계수 체크
+
+                }
+                
                 ///////////////////////////////////////////////
                 ///// 최초 리스트의 li를 클릭하면 지우기 셋팅! //
                 ///////////////////////////////////////////////
@@ -190,6 +227,20 @@
                 // 변경대상: 이벤트대상
                 // 변경내용: 삭제 셋팅하기
                 /////////////////////////////////////////////
+                // 대상선정 #div02 ul li
+                const deltg = document.querySelectorAll("#div02 ul li");
+
+                // 대상에 클릭이벤트 설정
+                for(let x of deltg) {
+                    // 1. 대상 내부의 이미지 요소
+                    let ximg = x.querySelector("img");
+
+                    // 2. 내부 이미지에 타이틀 속성 변경
+                    ximg.title = `${ximg.alt+(ximg.alt==="아이언맨"?"을":"를")} 클릭하시면 삭제됩니다.`;
+
+                    // 3. 클릭시 삭제하기
+                    x.onclick = () => x.remove();
+                }
 
                 ///// 맨앞요소를 맨뒤로 이동하기 ////////////////////
                 // 이벤트 종류: click
@@ -202,6 +253,27 @@
                 // 사용 메서드: appendChild(요소)
                 // -> 기존요소를 선택하면 이동이 됨!
                 /////////////////////////////////////////////////
+                // 대상선정 : .mvl
+                const mvl = document.querySelector(".mvl");
+                
+                // 대상에 클릭이벤트 설정
+                mvl.onclick = () => {
+                    // 1. 호출확인
+                    // console.log("맨뒤로가");
+
+                    // 2. 이동할 대상 선정 : 대상 ul하위의 첫번째 li
+                    let fele = ctg.querySelectorAll("li")[0];
+                    // fele -> first element
+                    // 클릭이벤트 안에다 변수할당 한 이유 : 바깥에서 하면 메모리에 이미 할당되어서
+                    // 연속적으로 이벤트가 발생하지 않음
+
+                    // 3. 맨뒤로 이동 : appendChild(요소)
+                    // 기존요소를 선택하면 이동됨
+                    ctg.appendChild(fele);
+
+                }; ////// 클릭이벤트
+                
+
 
                 /// 맨뒤요소 맨앞으로 이동하기 ///////////////////////
                 // 이벤트 종류: click
@@ -213,6 +285,27 @@
                 // 넣을놈 - 마지막 li요소
                 // 넣을놈전놈 - 맨처음 li요소
                 //////////////////////////////////////////////////
+                // 대상선정 : .mvf
+                const mvf = document.querySelector(".mvf");
+
+                // 대상에 클릭이벤트 설정
+                mvf.onclick = () => {
+                    // 1. 호출확인
+                    // console.log("맨앞으로가");
+
+                    //2. 이동할 대상 선정 : 대상 ul하위의 마지막 li
+                    let eles = ctg.querySelectorAll("li")
+
+                    // 3. 맨앞으로 이동
+                    // -> insertBefore(넣을놈, 넣을놈전놈)
+                    // insertBefore(맨뒤li, 맨앞li)
+                    ctg.insertBefore(eles[eles.length-1], eles[0]);
+                    // 맨뒤li -> eles[마지막번호] = eles[개수-1]
+                    // 맨앞li -> eles[0]
+                    // ※ 배열과 컬렉션의 마지막순번은 항상 [개수-1]
+
+                }; ////// 클릭이벤트
+                
 
                 /************************************************* 
                     ※ appendChild() 와 insertBefore()는 대상을
