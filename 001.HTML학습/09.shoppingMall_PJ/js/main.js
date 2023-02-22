@@ -206,7 +206,7 @@ window.addEventListener("DOMContentLoaded", loadFn);
         // 2. 타임아웃도 지우지 않으면 쌓여서 타임아웃 쓰나미 실행이 발생
         clearTimeout(autoT);
 
-        // 3. 잠시 후 다시 작동하도록 타임아웃으로 인터발함수 호출
+        // . 잠시 후 다시 작동하도록 타임아웃으로 인터발함수 호출
         // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
         autoT = setTimeout(autoSlide, 5000);
     }

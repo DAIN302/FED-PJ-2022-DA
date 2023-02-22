@@ -1,6 +1,5 @@
-// 쇼핑몰 배너 JS - 02.세로방향 배너 슬라이드 //
+// JS실험실 : 03.배너스타일 JS - ban.js
 
-// HTML태그 로딩후 loadFn함수 호출! ///
 window.addEventListener("DOMContentLoaded", loadFn);
 
 /***************************************************** 
@@ -9,20 +8,22 @@ window.addEventListener("DOMContentLoaded", loadFn);
     2. 이벤트 대상: 이동버튼(.abtn)
     3. 변경 대상: 슬라이드 박스(#slide)
     4. 기능 설계:
+        -> left 이동의 기준값이 -220% 인것이 포인트
+        (이유 : 2장의 슬라이드가 앞에 나가있음, 잘라내는 것이 숨겨져야 하므로 세팅한 것)
 
-        (1) 아래쪽 버튼 클릭시 다음 슬라이드가
-            나타나도록 슬라이드 박스의 top값을
-            -100%로 변경시킨다.
+        (1) 오른쪽 버튼 클릭시 다음 슬라이드가
+            나타나도록 슬라이드 박스의 left값을
+            -330%로 변경시킨다.
             -> 슬라이드 이동후!!! 
             바깥에 나가있는 첫번째 슬라이드
             li를 잘라서 맨뒤로 보낸다!
-            동시에 top값을 0으로 변경한다!
+            동시에 left값을 -220%으로 변경한다!
 
-        (2) 윗쪽버튼 클릭시 이전 슬라이드가
+        (2) 왼쪽버튼 클릭시 이전 슬라이드가
             나타나도록 하기위해 우선 맨뒤 li를
-            맨앞으로 이동하고 동시에 top값을
-            -100%로 변경한다.
-            그 후 top값을 0으로 애니메이션하여
+            맨앞으로 이동하고 동시에 left값을
+            -330%로 변경한다.
+            그 후 left값을 -220%으로 애니메이션하여
             슬라이드가 왼쪽에서 들어온다.
 
         (3) 공통기능: 슬라이드 위치표시 블릿
@@ -36,8 +37,8 @@ window.addEventListener("DOMContentLoaded", loadFn);
     함수명: loadFn
     기능: 로딩 후 버튼 이벤트 및 기능구현
 ******************************************/
- //////////////// loadFn 함수 ///////////////
 
+ //////////////// loadFn 함수 ///////////////
  function loadFn() {
     // console.log("로딩완");
 
@@ -85,19 +86,19 @@ window.addEventListener("DOMContentLoaded", loadFn);
         if(seq) {
             console.log("난 오");
             // (1) 오른쪽 버튼 클릭시 다음 슬라이드가
-            // 나타나도록 슬라이드 박스의 top값을
-            // -100%로 변경시킨다.
+            // 나타나도록 슬라이드 박스의 left값을
+            // -330%로 변경시킨다.
 
             // 이동대상 :  slide 변수
-            slide.style.top = "-100%"; 
-            slide.style.transition = "top .4s ease-in-out";         
+            slide.style.left = "-330%"; 
+            slide.style.transition = "left .4s ease-in-out";   
             
             // (2) 슬라이드 이동후!!! (0.4초후) 
             setTimeout(()=>{
                 // (2-1) 바깥에 나가있는 첫번째 슬라이드 li를 잘라서 맨뒤로 보낸다!
                 slide.appendChild(clist[0]);
-                    // (2-2) 동시에 top값을 0으로 변경한다!
-                    slide.style.top = "0";
+                    // (2-2) 동시에 left값을 0으로 변경한다!
+                    slide.style.left = "-220%";
                     // (2-3) 트랜지션 없애기
                     slide.style.transition = "none";         
         },400);// 타임아웃구간
@@ -111,18 +112,18 @@ window.addEventListener("DOMContentLoaded", loadFn);
             // slide.insertBefore(넣을놈, 넣을놈전놈)
             // slide.insertBefore(맨끝li, 맨앞li)
             slide.insertBefore(clist[clist.length-1], clist[0])
-            // (2) 동시에 top값을 -100%로 변경한다.
-            slide.style.top = "-100%";
+            // (2) 동시에 left값을 -330%로 변경한다.
+            slide.style.left = "-330%";
             // 이때 트랜지션 없애기(한번실행후부터 생기므로)
             slide.style.transition = "none"; 
 
-            // (3) 그 후 top값을 0으로 애니메이션하여
+            // (3) 그 후 left값을 0으로 애니메이션하여
             // 슬라이드가 왼쪽에서 들어온다.            
-            // 동일 속성 top가 같은 코딩처리 공간에 동시에 있으므로 분리해야 효과 있음
+            // 동일 속성 left가 같은 코딩처리 공간에 동시에 있으므로 분리해야 효과 있음
             // setTimeout 사용
             setTimeout(()=>{
-                slide.style.top = "0";
-                slide.style.transition = "top .4s ease-in-out"; 
+                slide.style.left = "-220%";
+                slide.style.transition = "left .4s ease-in-out"; 
             },0); ///// 타임아웃구간
 
         }// else문(왼쪽버튼클릭시)
@@ -206,7 +207,7 @@ window.addEventListener("DOMContentLoaded", loadFn);
         // 2. 타임아웃도 지우지 않으면 쌓여서 타임아웃 쓰나미 실행이 발생
         clearTimeout(autoT);
 
-        // 3. 잠시 후 다시 작동하도록 타임아웃으로 인터발함수 호출
+        // . 잠시 후 다시 작동하도록 타임아웃으로 인터발함수 호출
         // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
         autoT = setTimeout(autoSlide, 5000);
     }
