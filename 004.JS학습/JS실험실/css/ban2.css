@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* JS실험실 : 03.배너스타일 CSS - ban.css */
+/* JS실험실 : 03.배너스타일2 CSS - ban2.css */
 
 html, body, h1 {
     margin: 0;
@@ -95,9 +95,15 @@ ol {
     /* height 값은 flex박스 자식요소에서
     등분할시 자동 100%임! */
     outline: 2px dashed #f00;
-    /* opacity: 0.5; */
+    filter: brightness(70%);
 }
 
+#slide li:nth-child(3) {
+    transform : scale(1.2);
+    transition: .3s;
+    filter: brightness(100%);
+    z-index: 1;
+}
 
 #slide li img {
     /*이미지는 박스에 맞춤!*/
@@ -113,6 +119,7 @@ ol {
     top: 50%;
     transform: translateY(-50%);
     /*Y축 중앙이동*/
+    z-index: 2;
 }
 
 /*왼쪽버튼*/
@@ -132,6 +139,7 @@ ol {
     position: absolute;
     bottom: 50px;
     left: 80px;
+    z-index: 2;
 }
 
 .indic li {
