@@ -114,7 +114,7 @@ body * {
     border-width: 20px;
 }
 
-/* 2-4. 컨텐츠 타이틀 박스 */
+/* 3. 컨텐츠 타이틀 박스 */
 .cbx h2 {
     position: absolute;
     bottom: 0;
@@ -131,6 +131,17 @@ body * {
     text-shadow: 1px 1px 1px #000;
 }
 
+/* 4. 스크롤 등장액션 클래스 */
+.scAct {
+    transform: translateY(20%);
+    opacity: 0;
+    transition: .8s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+/* 등장클래스+.on */
+.scAct.on {
+    transform: translateY(0);
+    opacity: 1;
+}
 
 /* 글자 숨김 클래스(IR배경이미지 설명 등  숨기기) */
 .ir {
