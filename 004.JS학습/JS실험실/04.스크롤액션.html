@@ -4,34 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JS실험실 : 04.스크롤액션</title>
     <script>
         ////// 로드구역 //////////
         window.addEventListener("DOMContentLoaded",()=>{
+            // 새로고침 시 맨위로 보내기
+            // scrollTo(가로, 세로) -> 스크롤위치이동 내장함수
+            // 브라우저가 스크롤 위치 캐싱을 적용한 후 위로 이동
+            setTimeout(()=>{
+                window.scrollTo(0,0);
+            }, 100) // 0.1초 정도는 줘야 효과가 있다
+
             // 등장액션 대상 : .setit
             const setit = document.querySelectorAll(".setit");
             // console.log(setit);
 
-            // 화면높이값의 절반구하기
-            const hv = window.innerHeight/2
+            // 화면높이값의 2/3구하기
+            const hv = window.innerHeight/3*2;
             // console.log(hv);
+            // 윈도우 높이값
+            const winH = window.innerHeight;
+
+            // 전체 문서 높이값
+            const docH = document.body.clientHeight;
+            console.log("문서전체높이", docH); 
+
+            // 스크롤한계값
+            const scLimit = docH - winH
+            console.log("스크롤한계값", scLimit); 
+            // 스크롤한계값은 전체문서길이 - 윈도우높이
+            // 단, body의 기본마진 8px을 초기화해야 정확히 일치
 
             // 등장액션 대상 위치값 리턴함수
-            const retVal = ele => ele.getBoundingClientRect().top;
+            const retVal = ele => ele.getBoundingClientRect().top; // 리턴이 생략된거
+            // const retVal = ele => {return ele.getBoundingClientRect().top;} 
             // [ 보이는 화면을 기준한 위치값 리턴 : getBoundingClientRect() ]
             // top속성값은 Y축 위치값을 나타냄
             // left속성값은 X축 위치값을 나타냄
             // 보이는 화면 상단에 닿을 경우 0
             // 통과하여 위로 올라가면 음수값
+            // [ 메서드명 구성 ]
+            // get 가져와 Bounding 한계에서 ClientRect 사용자브라우저화면으로부터
 
             // 클래스 넣기 함수
             const showIt = x => { // x는 등장요소
+                // 대상요소의 현재 스크롤 위치
+                let xval = retVal(x)
                 // 화면 높이값의 절반값에 왔을때 첫번째 박스 등장
                 // hv변수 -> 화면 높이값의 절반값
-                if(retVal(x) < hv && retVal(x) > 0) {
+                if(xval < hv && xval > 0) {
                     x.classList.add("on");
                 }
             };
+
+            // 스크롤 시 이동할 타이틀 대상
+            // .tit 
+            const tit = document.querySelector(".tit");
+            // 트랜지션 설정
+            tit.style.transition = ".8s ease-in-out"
+
+            // 떨어지는 핀 대상선정
+            const finn = document.querySelector("#finn");
 
 
             // 스크롤 이동 시 윈도우에 세로 스크롤 위치값 찍기
@@ -40,13 +73,83 @@
             window.addEventListener("scroll", ()=>{
                 // 스크롤 등장 요소 개수만큼 for문 돌리기
                 for(let x of setit) showIt(x);
+                // 순서 :
+                // 1. 스크롤 이벤트 시 setit에 담긴 요소 수집
+                // 2. 요소만큼 x에 하나씩 순서대로 담김
+                // 3. showIt(x) 호출 시 x, 즉 요소자신을 보냄
+                // 4. showIt() 함수는 그 x의 위치값을 조사해서 
+                // if문 구간에 해당하는지 검사 후 해당요소애 클래스 "on"을 넣음
+
                 // 스크롤 시 스크롤 위치값 찍기
                 // => window.scrollY
-                // let scTop = window.scrollY;
+                let scTop = window.scrollY;
+                // scTop = document.scrollingElement.scrollTop;
+                // scTop = document.documentElement.scrollTop;
+                // scTop = document.querySelector('html').scrollTop;
+                // console.log(scTop); 
+
+    //             ★[[ 현재 스크롤바 위치값 가져오기 ]]★
+                // 1. window.scrollY (IE6~11지원안함)
+                // 2. document.scrollingElement.scrollTop
+                // 3. document.documentElement.scrollTop
+                // 4. document.querySelector('html').scrollTop
+
+                // ★★ 스크롤 위치에 따른 타이틀 위치 이동 애니
+                // 1. 스크롤바 위치 0이상 300미만일때 원위치
+                if(scTop < 300 ) tit.style.top = "0";
+                // 2. 스크롤바 위치 300이상 500미만 일때 첫번째 위치 변경
+                if(scTop >= 300 && scTop < 500) tit.style.top = "20vh";
+                // 3. 스크롤바 위치 500이상 700미만 일때 첫번째 위치 변경
+                if(scTop >= 500 && scTop < 700) tit.style.top = "45vh";
+
+                // retVal()함수를 이용하여 해당요소의 위치를 구함
 
                 // 첫번째 박스 위치값
-                // let bxpos = retVal(setit[0]);
-                // console.log(bxpos);
+                let obj1 = retVal(setit[0]);
+                // 두번째 박스 위치값
+                let obj2 = retVal(setit[1]);
+                // 세번째 박스 위치값
+                let obj3 = retVal(setit[2]);
+                
+                // 1. 첫번째/세번째 포스터 구간일때
+                if ((obj1 < winH/2 && obj1 > 0)||(obj3 < winH/2 && obj3 > 0)) {
+                    tit.style.left = "5%";
+                    tit.style.transform = "translateX(0)";
+                }
+                // 2. 두번째 포스터 구간일때
+                else if (obj2 < winH/2 && obj2 > 0) {
+                    tit.style.left = "45%";
+                    tit.style.transform = "translateX(0)";
+                }
+                // 원래 값으로 돌아감
+                else {
+                    tit.style.left = "50%";
+                    tit.style.transform = "translateX(-50%)";
+                }
+
+                // ★★ 떨어지는 핀 스크롤 시작부터 끝까지 애니
+                // 구현내용 : 핀이미지가 맨위서부터 보이는 화면에서 스크롤 맨아래까지
+                // 동일한 비율로 떨어지게함
+
+                // 비례식으로 비율 계산
+                // 페이지전체길이 : 윈도우높이 = 스크롤이동값 : 이미지이동값
+                // 이미지이동값 = 윈도우높이 * 스크롤이동값 / 페이지전체길이
+                //  x = winH * scTop / docH
+                // -> 페이지전체길이는 사실 스크롤한계값으로 해야함(스크롤이 거기까지만 이동하니깐)
+                // 페이지전체길이(docH) 대신 스크롤한계값(scLimit) 사용
+                //  x = winH * scTop / scLimit
+
+                // 떨어지는 핀 top위치값 계산
+                let ftop = winH * scTop / scLimit;
+                // console.log(ftop);
+
+                // 떨어지는 핀의 top값에 적용
+                finn.style.top = ftop + "px";
+
+                // 맨위일때 위쪽으로 숨기기
+                if(scTop === 0) finn.style.top = "-20%";
+                
+
 
 
 
@@ -104,14 +207,22 @@
     </script>
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
         body{
             height: 350vh;
             background-image: linear-gradient(to bottom,lightcoral,lightgreen,lightblue);
         }
+        /* 타이틀 */
         .tit{
             position: fixed;
             top: 0;
-            width: 100%;
+            /* width: 100%; */
+            left: 50%;
+            transform: translateX(-50%);
             font-family: 'Nanum Brush Script', cursive;
             margin: 0;
             padding: 3vh;
@@ -120,7 +231,18 @@
             z-index: 1;
             text-shadow: 0 0 20px #ccc;
             color : #fff;
+            white-space: nowrap;
         }
+
+        /* 떨어지는 핀 */
+        #finn {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10vw;
+        }
+
         /* 스크롤액션박스 */
         .scact{
             position: absolute;
@@ -185,9 +307,13 @@
     </style>
 </head>
 <body>
+    <!-- 타이틀 -->
     <h1 class="tit stage"></h1>
+    <!-- 포스터 박스들 -->
     <div class="scact sa1 setit"></div>
     <div class="scact sa2 setit"></div>
     <div class="scact sa3 setit"></div>
+    <!-- 떨어지는 핀 -->
+    <img src="./imgs/icons8-finn-64.png" alt="핀" id="finn">
 </body>
 </html>
