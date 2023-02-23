@@ -33,13 +33,57 @@ function loadFn() {
     /*********************************************
          스크롤 등장액션 기능 구현
      *********************************************/
-    // 대상 .scAct
+    // 스크롤 등장 대상 .scAct
     const scAct = q(".scAct");
+
+    // 상단메뉴 대상 : #top
+    const topA = q("#top");
+    // cg(topA);
+
+    // 위로가기버튼 대상 : .tbtn
+    const tbtn = q(".tbtn");
+
+    // 화면높이값의 2/3구하기
+    const hv = window.innerHeight/3*2;
+
+    // 클래스 넣기 함수
+    const showIt = x => { // x는 등장요소
+        // 대상요소의 현재 스크롤 위치
+        let xval = retVal(x)
+        // 화면 높이값의 절반값에 왔을때 첫번째 박스 등장
+        // hv변수 -> 화면 높이값의 절반값
+        if(xval < hv && xval > 0) {
+            x.classList.add("on");
+        }
+        // 되돌리기는 else문으로
+        // else {
+        //     x.classList.remove("on");
+        // }
+    };
+
+    // 현재스크롤 위치변수
+    let scTop;
 
     // 스크롤 이벤트 세팅 /////
     window.addEventListener("scroll", ()=>{
+        // 현재 스크롤 위치
+        scTop = window.scrollY;
+        // cg(scTop);
+
+        // 상단메뉴에 클래스 on 넣기
+        if(scTop >= 100) topA.classList.add("on");
+        else topA.classList.remove("on");
+        
+        // 상단 이동버튼에 클래스 on 넣기
+        if(scTop >= 300) tbtn.classList.add("on");
+        else tbtn.classList.remove("on");
+
         // 값 확인
-        cg("박스1"+retVal(scAct[0]));
+        // cg("박스1"+retVal(scAct[0]));
+
+        // 함수호출
+        // 스크롤 등장 요소 개수만큼 for문 돌리기
+        for(let x of scAct) showIt(x);        
     }) ///////// 스크롤 이벤트 //////////
 
 

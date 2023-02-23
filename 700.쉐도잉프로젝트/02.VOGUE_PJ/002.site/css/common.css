@@ -175,17 +175,64 @@
 }
 
 /* a 요소 마우스 오버시 */
-.gnb a:hover {
+.gnb a:hover, #top.on .gnb a:hover {
     color : red;
 }
 
+/* ★상단영역 슬림디자인★ */
+/* #top.on 인 경우 슬림디자인 상단영역 적용 */
+/* 0. 상단영역 최상위박스 fixed고정 */
+/* 1. 상단영역 최소높이 해제 */
+#top.on {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+}
+#top.on .top {
+    min-height: 50px;
+}
+/* 2. 상단메뉴 없애기 */
+#top.on .tmenu {
+    display: none;
+}
+/* 3. 로고 왼쪽끝으로 보내기 */
+/* 로고박스 */
+#top.on .logo {
+    position: absolute;
+    left: 0;
+    height: auto;
+    padding: 10px;
+}
+/* 로고 이미지 */
+#top.on .logo img {
+    width: 100px;
+}
 
-/* 2. 메인영역 */
+/* 4.gnb */
+#top.on .gnb {
+    min-height: 45px;
+    padding-top: 5px;
+    /* 미디어쿼리로 할 예정 */
+    /* padding: 5px 30px 0 120px; */
+}
+#top.on .gnb ul {
+    gap: 0 35px;
+}
+#top.on .gnb a {
+    color : #333;
+    font-size: 14px;
+}
+
+
+/******************* 2. 메인영역 *******************/
 .cont {
     /* 최소높이 */
     min-height: 600px;
 }
-/* 3. 하단영역 */
+/****************** 3. 하단영역 ******************/
 .info {
     /* 최소높이 */
     min-height: 286px;
@@ -223,4 +270,35 @@
 /* 마지막 링크 두껍게 */
 .blink li:last-child a {
     font-weight: bold;
+}
+
+
+/* 위로가기 버튼 */
+.tbtn {
+    position: fixed;
+    bottom: -35px; /* 아랫쪽에 나가있음 */
+    right: 75px;
+    width: 48px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background-color: #333;
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+    z-index: 9999;
+    font-size: 12px;
+    opacity: 0; /* 처음에 투명 */
+    /* 트랜지션 - bottom엔 적용되면 안되므로 별도지정함 */
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+/* 위로가기 버튼 보이기상태 */
+.tbtn.on {
+    opacity: 1;
+    bottom: 0;
+}
+
+/* 위로가기 버튼 오버시 */
+.tbtn:hover {
+    background-color: red;
 }
