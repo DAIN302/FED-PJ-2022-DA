@@ -59,12 +59,17 @@ window.addEventListener("DOMContentLoaded", ()=>{
             }
             // 기타 내부시스템 페이지 이동
             else {
-                // [ 페이지 이동 ]
-                // 현재창 열기 window.location.href = 이동할주소 (window 생략 가능)
-                // 새창 열기 window.open().location.href = 이동할주소
-                // -> window.open() 은 원래 팝업창 띄우기
-                location.href = url+".html";
+                // 메인페이지 이동일 경우
+                // html?code=m 을 보내주자
+
+                location.href = url+".html"+(atxt==="tvn로고"?"?code=m":"");
             } //else 
+            // [ 페이지 이동 ]
+            // 현재창 열기 window.location.href = 이동할주소 (window 생략 가능)
+            // 새창 열기 window.open().location.href = 이동할주소
+            // -> window.open() 은 원래 팝업창 띄우기
+
+
             // a요소의 기본 이동 기능을 막음
             return false;
             // 이 함수를 호출한 곳으로 돌아갈 때 false를 가지고 돌아가라
