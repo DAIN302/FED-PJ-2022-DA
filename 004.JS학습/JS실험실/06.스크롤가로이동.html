@@ -6,12 +6,67 @@
     <title>JS실험실: 06.스크롤가로이동</title>
     <style>
       html,
-      body {
+      body,
+      ul {
         margin: 0;
         padding: 0;
       }
+
       body {
         overflow-x: hidden;
+        background-image: linear-gradient(
+          to bottom,
+          orange,
+          lightpink,
+          lightyellow
+        );
+      }
+
+      .gnb {
+        position: fixed;
+        top: 5vh;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        border-radius: 50px;
+        z-index: 9999;
+      }
+
+      /* 가상요소로 움직이는 배경박스 만들기 */
+      .mbg {
+        position: absolute;
+        /* 변경내용 : left, width
+           -> li의 수치를 기준함 */
+        left: 0;
+        width: 206px;
+        height: 78px;
+        background: rgb(255, 197, 88);
+        border-radius: 50px;
+        opacity: 0;
+        transition: 0.4s ease-in-out;
+      }
+      .gnb ul {
+        position: relative;
+        /* 가상요소보다 위 */
+        display: flex;
+        list-style: none;
+      }
+
+      .gnb a {
+        display: block;
+        padding: 23px 35px;
+        text-decoration: none;
+        color: #000;
+        font-size: 24px;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      /* 마우스 오버시 글자색 변경 */
+      .gnb a:hover {
+        color: #fff;
+        transition-delay: 0.2s;
+        /* 오버시 지연시간 결정 */
       }
 
       .pg {
@@ -67,27 +122,130 @@
         // 1. 대상선정 :
         // (1) 타겟박스
         const tpg = document.querySelector(".tpg");
-        // (2) 가로 이동박스 : .slidePg
+        // (2) sticky박스 : .slidePg
         const spg = document.querySelector(".slidePg");
 
-        // html코드 변수
-        let hcode = "<ul>";
-        // 2. 가로이동박스에 디자인 요소 넣기
-        for (let x = 1; x < 8; x++) {
-          hcode += `
+        // 리스트 넣기 함수 호출
+        makeList();
+        // (3) 가로이동박스 : .slidePg ul
+        const mvbx = spg.querySelector("ul");
+        console.log(mvbx);
+
+        /********************************************************************************
+          스크롤 시 스티키 구간에서 가로방향 이동 구현
+        ********************************************************************************/
+        // 대상 : mvbx
+        // 이벤트: scroll
+        /////scroll 이벤트 설정
+        window.addEventListener("scroll", movePage);
+
+        /********************************************************************************
+          함수명 : retVal
+          기능 :  getBoundingClientRect()값 리턴
+        ********************************************************************************/
+        const retVal = (x) => x.getBoundingClientRect().top;
+
+        /********************************************************************************
+          함수명 : movePage
+          기능 :  가로방향이동
+        ********************************************************************************/
+        function movePage() {
+          // 스크롤 위치값 확인
+          // console.log(window.scrollY);
+
+          // 1. 타겟박스의 바운딩위치값 찍기
+          // 타겟박스 -> 스티키박스의 부모박스(멈추는 구간)
+          let tgpos = retVal(tpg);
+          console.log("바운딩값:", tgpos);
+
+          // 2. 가로이동박스(mvbx)의 left값 변경
+          // 타겟박스의 바운딩값을 left값으로 넣어준다
+          // 이유 : 바운딩수치 === left값 이동 수치 === -3000px
+          // -> 최대이동값이 마이너스로 한계값이 일치
+          // 적용구간 설정 0 이하 -3000px 이상
+          if (tgpos <= 0 && tgpos > -3000) {
+            mvbx.style.left = tgpos + "px";
+          } else if (tgpos > 0) {
+            mvbx.style.left = 0;
+          }
+        } //// movePage함수
+        /********************************************************************************
+          함수명 : makeList
+          기능 :  리스트넣기
+        ********************************************************************************/
+        function makeList() {
+          // html코드 변수
+          let hcode = "<ul>";
+          // 2. 가로이동박스에 디자인 요소 넣기
+          for (let x = 1; x < 8; x++) {
+            hcode += `
             <li>
                 <img src="./images/dance/${x}.jpg" alt="댄스">
-            </li>    
+            </li>
           `;
-        } /// for
-        hcode += "</ul>";
+          } /// for
+          hcode += "</ul>";
 
-        // 가로이동박스에 코드넣기
-        spg.innerHTML = hcode;
+          // 가로이동박스에 코드넣기
+          spg.innerHTML = hcode;
+        } ////makeList 함수
+
+        /*************************************************************************
+          GNB메뉴 오버시 움직이는 배경
+        *************************************************************************/
+        // 1. 대상선정
+        // (1) 이벤트대상 .gnb li
+        const gnb = document.querySelectorAll(".gnb li");
+        // (2) 변경대상 .mbg
+        const mbg = document.querySelector(".mbg");
+        // 2. 이벤트 설정 : mouseenter 이벤트
+        gnb.forEach((ele) => {
+          ele.onmouseenter = (e) => {
+            // 1. 요소 정보 알아내기
+            // (1) left위치값
+            let eLeft = ele.offsetLeft;
+            // (2) width 값
+            let eWidth = ele.offsetWidth;
+            // 대상요소의 위치값은  nav.gnb 요소가 relative를 가진 요소를 기준한 offset정보
+            // console.log(eleft, ewidth);
+
+            // 2. 움직이는 배경박스 변경
+            mbg.style.opacity = 1;
+            mbg.style.left = eLeft + "px";
+            mbg.style.width = eWidth + "px";
+          }; /// mouseenter
+
+          //  마우스 나가면 투명도 0으로 사라짐
+          ele.onmouseleave = (e) => {
+            // 변경대상 : .mbg
+            // 변경내용 : opacity 0
+            mbg.style.opacity = 0;
+          }; //mouseleave
+        }); /// forEach
       }); ////////// load /////////////////
     </script>
   </head>
   <body>
+    <!-- 네비게이션 -->
+    <div class="gnb">
+      <!-- 움직이는 메뉴배경박스 -->
+      <div class="mbg"></div>
+      <!-- 메뉴리스트 -->
+      <ul>
+        <li>
+          <a href="#">Let's explore</a>
+        </li>
+        <li>
+          <a href="#">Let's meet</a>
+        </li>
+        <li>
+          <a href="#">Let's attend</a>
+        </li>
+        <li>
+          <a href="#">Let's dance</a>
+        </li>
+      </ul>
+    </div>
     <div class="pg"></div>
     <div class="pg"></div>
     <!-- 타겟 페이지(스크롤 시 가로이동) -->
