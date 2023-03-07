@@ -212,12 +212,34 @@ function loadFn() {
     console.log("초기화", seq);
     // 2. 해당요소 스타일속성 선택
     let sty = ele.style;
-    // 3. 각 요소별 초기화
-    if(seq===0){ // 1번 페이지
 
+    // 3. 각 요소별 초기화
+    sty.transition = "none";
+
+    // 페이지별 초기화
+    if(seq===0){ // 1번 페이지
+        sty.left = "150%";
     }
     else if(seq===1){ // 2번 페이지
         // 투명하게
+        sty.opacity = 0;
+    }
+    else if(seq===2){ // 3번 페이지
+        // 투명하게
+        sty.top = "-50%";
+    }
+    else if(seq===3){ // 4번 페이지
+        sty.transform = "translate(-50%, -50%) scale(0)";
+    }
+    else if(seq===4){ // 5번 페이지
+        sty.transform = "translate(-50%, -50%) rotateY(180deg)";
+        sty.opacity = 0;
+    }
+    else if(seq===5){ // 6번 페이지
+        sty.transform = "translate(-50%, -50%) scale(0) rotate(720deg)";
+    }
+    else if(seq===6){ // 7번 페이지
+        sty.transform = "translate(-50%, -50%) scaleX(3)";
         sty.opacity = 0;
     }
    } /// initCSS 
@@ -238,15 +260,42 @@ function loadFn() {
     
     // 4. 해당페이지 액션주기
     if(seq===0){ // 1번 페이지
-
+        sty.left = "50%";
+        // 트랜지션
+        sty.transition = ".8s cubic-bezier(0.455, 0.030, 0.740, 1.650)";
     }
     else if(seq===1){ // 2번 페이지
         // 투명도 복원
         sty.opacity = 1;
         // 트랜지션
-        sty.transition = "1s ease-in";
+        sty.transition = ".8s ease-in";
+    }
+    else if(seq===2){ // 3번 페이지
+        sty.top = "50%";
+        // 트랜지션
+        sty.transition = ".8s cubic-bezier(0.455, 0.030, 0.740, 1.650)";
+    }
+    else if(seq===3){ // 4번 페이지
+        sty.transform = "translate(-50%, -50%) scale(1)";    
+        sty.transition = ".8s ease-in-out";
+    }
+    else if(seq===4){ // 5번 페이지
+        sty.transform = "translate(-50%, -50%) rotateY(0deg)";
+        sty.opacity = 1;
+        sty.transition = ".8s ease-in-out";
+    }
+    else if(seq===5){ // 6번 페이지
+        sty.transform = "translate(-50%, -50%) scale(1) rotate(0)";
+        sty.transition = ".8s ease-in-out";
+    }
+    else if(seq===6){ // 7번 페이지
+        sty.transform = "translate(-50%, -50%) scaleX(1)";
+        sty.opacity = 1;
+        sty.transition = ".8s ease-in-out";
     }
    } // pageAction
 
+   // 첫페이지 페이지액션 적용 위해 최초 호출
+   setTimeout(()=>pageAction(0),800);
     
 } // 로드 함수

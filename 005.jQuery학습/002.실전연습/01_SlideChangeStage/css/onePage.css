@@ -45,6 +45,7 @@
     /* 한페이지 보이는 화면 채우기 */
     height: 100vh;
     position: relative;
+    overflow: hidden;
   }
 
   /* IR(배경이미지 설명 숨기기) class */
