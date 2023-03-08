@@ -8,37 +8,50 @@
 
 
 /* 배너전체박스 */
-.banbx {
+.banbx{
     position: relative;
     /* 부모자격 */
-    height: 100vh;
+    /* height: 100vh; */
+    aspect-ratio: 1 / 0.4;
+    /* background: red; */
+    padding: 100px 0;
+}
+
+/* 가상요소로 배경색 넣기 */
+.banbx::before {
+    content: '';
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    background-color: #222;
 }
 /* 배너컨텐츠박스 */
 .bancont {
     /*슬라이드부모*/
-    position: absolute;
+    position: relative;
     /* 부모? .page */
-    top: 50%;
-    transform: translateY(-50%);
+    /* top: 10%; */
+    /* transform: translateY(-50%); */
     /* 세로중앙 */
     left: 25vw;
     width: 50vw;
     aspect-ratio: 1/0.55;
     box-sizing: border-box;
-    outline: 3px solid #00f;
+    /* outline: 3px solid #00f; */
 }
 
 .slide {
     display: flex;
     /* 플렉스박스!!! */
-    gap: 0 5vw;
+    gap: 0 10vw;
 
     /*사진을 싸고 있는 슬라이드*/
     position: absolute;
     top: 0;
-    left: -220%;
+    left: -240%;
     /* 2장이 앞쪽에 나가있음 
-    원래는 -200%인데 양쪽사이간격을 5%씩 줬기 때문에 10%더해서 값을 줌(하나당 110%) */
+    원래는 -200%인데 양쪽사이간격을 10%씩 줬기 때문에 20%더해서 값을 줌(하나당 120%) */
     width: 100%;
     height: 100%;
 }
@@ -50,8 +63,9 @@
     /* 가로크기를 부모박스 크기에 맞춤! */
     /* height 값은 flex박스 자식요소에서
     등분할시 자동 100%임! */
-    outline: 2px dashed #f00;
-    filter: brightness(70%);
+    /* outline: 2px dashed #f00; */
+    /* filter: brightness(70%); */
+    box-shadow: 0 10px 20px rgba(34, 34, 34, 0.295);
 }
 
 .slide li:nth-child(3) {
@@ -72,18 +86,27 @@
 /*이동버튼*/
 .abtn {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     /*Y축 중앙이동*/
     z-index: 2;
+    width: 24px;
+    height: 51px;
+    /* background-color: #000; */
+    background-image: url(../img_nav06/main.png);
+    background-size: 190px 175px;
+    background-repeat: no-repeat;
+    /* outline: 1px solid red; */
 }
 
 /*왼쪽버튼*/
 .ab1 {
-    left: 50px;
+    left: 16.5vw;
+    background-position: -26px -124px;
 }
 
 /*오른쪽버튼*/
 .ab2 {
-    right: 50px;
+    right: 16.5vw;
+    background-position: -166px -53px;
 }
