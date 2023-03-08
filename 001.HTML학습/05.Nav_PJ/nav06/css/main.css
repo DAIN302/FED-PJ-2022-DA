@@ -14,11 +14,11 @@
     /* height: 100vh; */
     aspect-ratio: 1 / 0.4;
     /* background: red; */
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 /* 가상요소로 배경색 넣기 */
-.banbx::before {
+.banbx.ban1::before {
     content: '';
     top: 0;
     position: absolute;
@@ -40,6 +40,9 @@
     box-sizing: border-box;
     /* outline: 3px solid #00f; */
 }
+
+
+
 
 .slide {
     display: flex;
@@ -68,7 +71,7 @@
     box-shadow: 0 10px 20px rgba(34, 34, 34, 0.295);
 }
 
-.slide li:nth-child(3) {
+.ban1 .slide li:nth-child(3) {
     transform : scale(1.2);
     transition: .3s;
     filter: brightness(100%);
@@ -109,4 +112,25 @@
 .ab2 {
     right: 16.5vw;
     background-position: -166px -53px;
+}
+
+/* 2번배너 셋팅 */
+.ban2{
+    width: 50%;
+    margin: 100px auto;
+    padding: 0;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+.ban2 .bancont{
+    width: 100%;
+    aspect-ratio: 1/1;
+    transform: translateX(-50%);
+}
+/* 버튼위치 */
+.ban2 .ab1{
+    left: 20px;
+}
+.ban2 .ab2{
+    right: 20px;
 }
