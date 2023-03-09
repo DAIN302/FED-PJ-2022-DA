@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title> 태그 선택자  </title>
-<!-- jQuery library 가장 위에 위치 -->
-<script src="../jquery-3.6.3.min.js"></script>
-	<script>
-
-    /*
+  <head>
+    <meta charset="utf-8" />
+    <title>태그 선택자</title>
+    <!-- jQuery library 가장 위에 위치 -->
+    <script src="../jquery-3.6.3.min.js"></script>
+    <script>
+      /*
       [ 제이쿼리 라이브러리 사용법 ]
       1. 제이쿼리 함수 호출
          -> 제이쿼리 함수명 : jQuery() -> $()
@@ -40,73 +39,58 @@
          (1) 제이쿼리 라이브러리 가져오기(반드시 코드위에 위치해야함)    
          (2) 제이쿼리 UI 가져오기(라이브러리 아래에)
          (3) 제이쿼리 사용코드 작성(제이쿼리 로딩구역에 작성)
-      7.     
+      7. 주의사항 : 제이쿼리 문법과 JS문법은 같은 명령문에서 혼용불가    
+         예) $(".my").classList.add("on") -> X
+             $(".my").click() -> O
+             document.querySelector(".my").click() -> X
+             document.querySelector(".my").classList.add("on") -> O
     */
-	
-	$(document).ready(function(){
-		// 미션: header태그를 클릭하면 큰제목 배경색을 노란색으로 변경하시오.
-		// 추가미션: 동시에 nav태그의 배경색은 녹색, 테두리는 2px 빨간색선, 글자크기는 40px, 글자색은 파란색으로 변경하시오.
-    $("header").click(()=>{
-      // 큰제목은 h2태그
-      $("h2").css("background-color", "yellow");
-      $("nav").css({
-        backgroundColor : "green", 
-        border : "2px solid red", 
-        fontSize : "40px", 
-        color : "blue",
-        transition : "2s"})
-    }); /// click
 
-    // 추가미션 : nav li 요소에 마우스 오버시
-    // 글자색 라임색으로 변경, 글자 크기 30px, 트랜지션 3초
-    $("nav li").mouseover(function(){
-      // 마우스 오버된 li자신은? this 키워드
-      $(this).css({
-        color : "lime",
-        fontSize : "30px",
-        transition : "3s"
-      })
-    })
+      $(document).ready(function () {
+        // 미션: header태그를 클릭하면 큰제목 배경색을 노란색으로 변경하시오.
+        // 추가미션: 동시에 nav태그의 배경색은 녹색, 테두리는 2px 빨간색선, 글자크기는 40px, 글자색은 파란색으로 변경하시오.
+        $("header").click(() => {
+          // 큰제목은 h2태그
+          $("h2").css("background-color", "yellow");
+          $("nav").css({
+            backgroundColor: "green",
+            border: "2px solid red",
+            fontSize: "40px",
+            color: "blue",
+            transition: "2s",
+          });
+        }); /// click
 
-		
-	
-	});/////////// jQB ////////////////////////////////
-	
-	
-			
-	
-	</script>
-	
-	
-	
-	
-	
-	
-</head>
-  
-<body>
+        // 추가미션 : nav li 요소에 마우스 오버시
+        // 글자색 라임색으로 변경, 글자 크기 30px, 트랜지션 3초
+        $("nav li").mouseover(function () {
+          // 마우스 오버된 li자신은? this 키워드
+          $(this).css({
+            color: "lime",
+            fontSize: "30px",
+            transition: "3s",
+          });
+        });
+      }); /////////// jQB ////////////////////////////////
+    </script>
+  </head>
 
-<div id="container">
+  <body>
+    <div id="container">
+      <header>
+        <h2>Click me</h2>
+      </header>
 
- <header>
-   <h2> Click me </h2>
- </header>
+      <nav>
+        <ul class="list">
+          <li id="first">One</li>
+          <li id="second">Two</li>
+          <li id="third">Three</li>
+        </ul>
+      </nav>
+    </div>
 
- <nav>
-   <ul class="list">
-    <li id="first">One</li>
-    <li id="second">Two</li>
-    <li id="third">Three</li>
-   </ul>
- </nav>
-
-</div>
-
-<!---------- jQuery code Start ---------->
-<script>
-
-</script>
-
-</body>
+    <!---------- jQuery code Start ---------->
+    <script></script>
+  </body>
 </html>
-
