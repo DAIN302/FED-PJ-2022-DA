@@ -8,8 +8,48 @@
 	<script>
 	$(function(){// jQB //////////////////////////
 		// 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
-	
-	
+
+		// 변경대상 - #container
+		const tg = $("#container");
+		// 이미지 넣기 함수
+		const appendImg = () => {
+			// 1~5사이의 랜덤수 만들기
+			let rdm = Math.ceil(Math.random()*5);
+			tg.append(`
+				<img src="th_pic${rdm}.jpg" alt="이미지">
+			`)
+		}
+		$("#append").click(()=>{
+			appendImg()
+		})
+		
+		// 추가미션 : 자동버튼(#auto) 클릭 시 인터벌함수로 
+		// 랜덤수 이미지 계속 추가하기 기능
+		// 멈춫버튼(#stop)클릭 시 인터발 함수 멈추기
+		
+		// 인터발용 변수
+		let autoI;
+		// 인터벌관련 JS 내장함수 : setInterval, clearInterval
+
+		// 자동 버튼 클릭 시
+		$("#auto").click(()=>{
+			// 인터벌 중복 실행 방지
+			if(autoI) return;
+			// autoI가 할당되면 true로 처리 할당전에는 undefined 이므로 false처리
+			autoI = setInterval(appendImg, 500)
+			// $("append").trigger("click");
+			// trigger(이벤트명) 메서드
+			// -> 선택요소에 이벤트를 강제로 발생시키는 메서드
+		})
+
+		// 멈춤 버튼 클릭 시
+		$("#stop").click(()=>{
+			// 인터벌 멈추기
+			clearInterval(autoI)
+			// 다시 인터벌 처리하도록 autoI값 설정
+			autoI = false;
+		})
+
 		
 		
 	});/// jQB ////////////////////////////////////
