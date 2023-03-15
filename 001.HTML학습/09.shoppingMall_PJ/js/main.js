@@ -210,6 +210,9 @@ window.addEventListener("DOMContentLoaded", loadFn);
         // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
         autoT = setTimeout(autoSlide, 5000);
     }
+
+
+
   
 
     
