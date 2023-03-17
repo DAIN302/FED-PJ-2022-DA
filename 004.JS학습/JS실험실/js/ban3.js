@@ -407,8 +407,8 @@ function loadFn() {
         else { 
             console.log("제자리");
             obj.style.left = -tgPoint+"px";
-        }
-        
+            obj.style.transition = "left .2s ease-in-out";
+        }      
 
    } // goWhere 함수 ///////
 
