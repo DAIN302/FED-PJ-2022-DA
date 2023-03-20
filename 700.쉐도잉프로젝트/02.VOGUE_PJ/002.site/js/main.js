@@ -91,8 +91,12 @@ function loadFn() {
 
     tbtn.onclick = () =>{
         event.preventDefault();
+        // 위치이동
+        window.scrollTo(0,0);
         // 부드러운 스크롤 전역 스크롤값을 0으로 변경하여 최상단으로 이동
+        
         pos=0;
+        
 
     } // click
 
