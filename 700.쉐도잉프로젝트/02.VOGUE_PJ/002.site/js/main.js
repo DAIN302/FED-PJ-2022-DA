@@ -86,6 +86,16 @@ function loadFn() {
         for(let x of scAct) showIt(x);        
     }) ///////// 스크롤 이벤트 //////////
 
+    // 상단이동버튼 (.tbtn) 클릭 시 상단 이동
+    // 부드러운 스크롤 pos 스크롤 위치값도 업데이트 필요 
+
+    tbtn.onclick = () =>{
+        event.preventDefault();
+        // 부드러운 스크롤 전역 스크롤값을 0으로 변경하여 최상단으로 이동
+        pos=0;
+
+    } // click
+
 
     
 

@@ -276,7 +276,8 @@
 /* 위로가기 버튼 */
 .tbtn {
     position: fixed;
-    bottom: -35px; /* 아랫쪽에 나가있음 */
+    bottom: 50px; 
+    /* 아랫쪽에 나가있음 */
     right: 75px;
     width: 48px;
     height: 35px;
@@ -295,7 +296,7 @@
 /* 위로가기 버튼 보이기상태 */
 .tbtn.on {
     opacity: 1;
-    bottom: 0;
+    /* bottom: 0; */
 }
 
 /* 위로가기 버튼 오버시 */
