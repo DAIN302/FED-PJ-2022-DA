@@ -4,14 +4,39 @@
 <meta charset="utf-8">
 <title> Traversal- prev </title>
 <!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
-<script src="jquery-ui-1.8.23.custom.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script src="../jquery-ui.min.js"></script>
 <script>
 $(document).ready(function(e) {
+
+  // [ 3. prev() - 선택요소 이전 형제 요소 선택 ]
+  // [ 4. prevAll() - 선택요소 이전 형제 요소 모두 선택 ]
+
 	
 	// 미션: 마지막 p태그를 클릭하면 0.5초 간격으로 이전 형제요소의 배경색을 차례로 넣으시오.
-	// animate() 사용.
+	// animate() 사용. animate({CSS설정}, 시간, 이징, 함수)
 	// first(), last() 사용
+  $("#container").children("p").last().click(function(){
+    $(this).animate({backgroundColor : "red"},500)
+    .prev().delay(500).animate({backgroundColor : "yellow"},500)
+    .prev().delay(1000).animate({backgroundColor : "lime"},500)
+    .prev().children("p").delay(1500).animate({backgroundColor : "green"},500)
+  })
+  // 추가미션:
+  // .sub 아래 마지막 p태그를 클릭하면
+  // 이전 p태그 모두를 배경색 yellow, 
+  // 가로,세로 크기 100px로 원으로 변경
+  // 애니메이션 하시오!
+  // prevAll() 사용!
+  $(".sub").find("p").last().click(function(){
+    $(this).prevAll().animate({
+      backgroundColor:"yellow", 
+      width : "100px",
+      height : "100px",
+      borderRadius : "50%"  
+    }, 1000)
+  })
+
 	
 	
 });//jQuery실행구역
@@ -25,14 +50,19 @@ $(document).ready(function(e) {
 </head>
 <body>
 <div id="container">
-
     <div id = "sub">
       <p>div p</p>
     </div>
     <p id="part1">p</p>
     <p>p</p>
     <p>p:나를클릭해!</p>
-
+</div>
+<div class="sub">
+  <p>p</p>
+  <p>p</p>
+  <p>p</p>
+  <p>p</p>
+  <p>p:나도클릭!</p>
 </div>
 <!---------- jQuery code Start ---------->
 <script>
