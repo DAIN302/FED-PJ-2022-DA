@@ -3,13 +3,70 @@
 <head>
 <meta charset="utf-8">
 <title> html() / html(String)  </title>
-<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
 	<script>
 	$(document).ready(function(){
+		/*
+			html() 메서드
+			- html 선택요소 내부에 자손요소를 삽입하거나 
+			  읽어올때 사용함
+			  -> $(선택자).html(요소) : 요소삽입
+			  -> 변수 = $(선택자).html() : 태그 읽어오기
+			  -> JS의 innerHTML과 유사
+
+		*/
 		
-		// 미션: #main 을 클릭하면 
+		// 미션: #main>p중 첫번째 p를 클릭하면 
 		// 두번째 p태그 내부에 img태그를 5개 만들고 
 		// css설정을 absolute로 하여 차례대로 left이동 애니메이션을 하시오.
+		$("#main").find("p").first().click(function(){
+			// console.log("ㅎㅇ");
+			$(this).next().html(`
+			<img src="pic1.jpg" alt="이미지"/>
+			<img src="pic2.jpg" alt="이미지"/>
+			<img src="pic3.jpg" alt="이미지"/>
+			<img src="pic4.jpg" alt="이미지"/>
+			<img src="pic5.jpg" alt="이미지"/>
+			`).find("img").css({
+				position : "absolute", 
+				left : "0"
+			}).first().css({
+				width : "300px"
+			}).next().css({
+				width : "250px"
+			}).next().css({
+				width : "200px"
+			}).next().css({
+				width : "150px"
+			}).next().css({
+				width : "100px"
+			})
+			/////애니메이션 주기 ///////////////
+			///// 마지막 이미지에서 부모로 이동 ///
+			.parent().find("img") // 5개의 이미지 선택
+			.eq(1) // 2번째 이미지
+			.delay(1000).animate({left : "300px"}, 400) // 1초 후 왼쪽으로 이동하는 애니메이션
+			.next().delay(1400).animate({left : "550px"}, 300)
+			.next().delay(1700).animate({left : "750px"}, 200)
+			.next().delay(1900).animate({left : "900px"}, 100)
+			// 추가 짝홀수 이동애니메이션
+			// 마지막 이미지로부터 다시 부모로 이동하여 선택
+			.parent().find("img:even") // 짝수이미지 선택(0부터)
+			.delay(2000) // 위의 총 딜레이 시간 + 2초 딜레이
+			.animate({top : "200px"}, 500) // 아래로 이동 액션
+			.parent().find("img:odd").first() // 홀수이미지 중 첫번째 선택(1)
+			.delay(2000) // 위의 총 딜레이 시간 + 2초 딜레이
+			.animate({top : "-50px"}, 500) // 위로 이동 액션
+			.parent().find("img:odd").last() // 홀수이미지 중 두번째 선택(3)
+			.delay(2000) // 위의 총 딜레이 시간 + 2초 딜레이
+			.animate({top : "50px"}, 500); // 위로 이동 액션
+
+			// html 태그 찍어보기 /////
+			console.log($("#main").html());
+
+
+
+		}) // click
 		
 	
 		
