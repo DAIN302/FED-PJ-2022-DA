@@ -3,19 +3,44 @@
 <head>
 <meta charset="utf-8">
 <title> empty  </title>
-<script src="jquery-1.7.2.min.js"></script>
-<script src="jquery-ui-1.8.23.custom.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script src="../jquery-ui.min.js"></script>
 	<script>
 		$(function(){/// jQB ///
+
+			// empty() 메서드
+			// - 선택요소의 text 내용을 지우는 메서드
 			
 			
 			// 미션: .container의 p태그를 클릭하면
 			// 클릭된 p태그의 문자를 지우고
 			// 각각 순서대로 아래와 같은 글로 변경한다.
-			
-			// "자바스크립트는"
-			// "무지 많이 복잡하게 쓰고"
-			// "적게 일한다."
+
+			// 순서에 맞는 텍스트 배열
+			const txt = 
+			["자바스크립트는",
+			"무지 많이 복잡하게 쓰고",
+			"적게 일한다."];
+
+			// 순번에 맞는 글자색 배열
+			const color = ["red", "blue", "green"]
+
+			$(".container p").css({
+				fontSize : "54px",
+				height : "60px"
+			}).click(function(){
+				// 클릭된 p태그의 순번 알아오기
+				// index() 메서드
+				let idx = $(this).index();
+				// console.log(idx);
+				// 글자 변경
+				// 1. 내용 비우기
+				$(this).empty().css({opacity:0}).text(txt[idx]).delay(300)
+				.animate({
+					opacity : 1,
+					color : color[idx]
+				},300)
+			})
 			
 			
 			

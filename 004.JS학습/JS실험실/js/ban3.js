@@ -312,7 +312,11 @@ function loadFn() {
                 // 트랜지션 없애기
                 obj.style.transition = "none";
                 // 드래그 상태에서 움직일 때 위치값 : mvx, mvy
-                mvx = event.pageX;
+                mvx = event.pageX || event.changedTouches[0].pageX;
+                // 모바일일때는 뒤의 것이 유효하므로 할당되어 사용됨
+                // 모바일에서는 위치값을 changeTouches 컬렉션에 수집
+                // changedTouches[0] -> 첫번째 컬렉션에 pageX값이 존재
+                // changedTouches[0].pageX 
                 mvy = event.pageY;
                 // 움직일때 위치값 - 처음 위치값 : rx, ry
                 // x축은 left값, y축값은  top값 이동
@@ -333,8 +337,11 @@ function loadFn() {
         };
         // (4) 첫번째 위치포인트 세팅함수
         const firstPoint = () => {
-            fx = event.pageX;
-            fy = event.pageY;
+            fx = event.pageX || event.changedTouches[0].pageX;
+            // 변수 = 할당값1 || 할당값2
+            // -> undefined / null 값이 아닌값으로 할당됨
+            // -> 우선순위로 DT쪽을 먼저 써준다
+            // fy = event.pageY;
         };
 
         // (5) 첫번째 위치포인트 세팅함수
@@ -345,8 +352,17 @@ function loadFn() {
         // 최종 이동결과 값인 rx, ry를 항상 대입연산하여 값을 업데이트
 
         // 이벤트 등록
+        // DT용 이벤트와 Mobile이벤트를 모두 등록해줘야 모바일에도 작동
+        // mousedown -> touchstart 
+        // mouseup -> touchend
+        // mousemove -> touchmove
         // (1) 마우스 내려갈 때 : 드래그 true+첫번째 위치값
         obj.addEventListener("mousedown", () => {
+            dTrue();
+            firstPoint();
+        });
+        // 모바일 : touchstart
+        obj.addEventListener("touchstart", () => {
             dTrue();
             firstPoint();
         });
@@ -358,8 +374,14 @@ function loadFn() {
             // 슬라이드 마지막위치는 항상 일정하므로
             goWhere(obj);
         });
+        // 모바일 : touchend
+        obj.addEventListener("touchend", () => {
+            dFalse();
+            goWhere(obj);
+        });
         // (3) 마우스 움직일 때
         obj.addEventListener("mousemove", dMove);
+        obj.addEventListener("touchmove", dMove);
         // (4) 마우스 벗어날 때
         obj.addEventListener("mouseleave", dFalse);
 
