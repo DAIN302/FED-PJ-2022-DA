@@ -3,47 +3,136 @@
 <head>
 <meta charset="utf-8">
 <title> addClass_removeClasss </title>
-<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-	<script>
-		$(function(){/// jQB ///
-			
-		
-		// 미션: img태그를 클릭하면 img의 class를 랜덤으로 변경하시오.(type1~type5 의 class중 하나)
-		
-		
-			
-		});/////// jQB ////////////////////////////
-		
-	</script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script>
+  $(function(){/// jQB ///
+    /**********************************************************
+        [ 제이쿼리 class 컨트롤 메서드 ]
+
+        1. addClass(클래스명)
+        - 선택요소에 class를 추가하는 메서드
+
+        2. removeClass(클래스명)
+        - 선택요소에 class를 제거하는 메서드
+        - 클래스명을 쓰지 않으면 모든 class제거 
+
+        3. toggleClass(클래스명)
+        - 선택요소에 특정 class 없으면 넣고 있으면 제거
+
+        4. hasClass(클래스명)
+        - 선택요소에 특정 class가 있으면 true, 없으면 false 리턴
+
+        ※ 비교
+        [ JS에서 클래스 관련 메서드 ]
+        -> classList 객체 하위 메서드
+        1. add(클래스명) : 클래스 넣기
+        2. remove(클래스명) : 클래스 제거
+        3. toggle(클래스명) : class 없으면 넣고 있으면 제거
+        4. contains(클래스명) : 특정 class가 있으면 true, 없으면 false 리턴
+
+    **********************************************************/
+  
+    // 미션: img태그를 클릭하면 img의 class를 랜덤으로 변경하시오.
+    // (type1~type5 의 class중 하나)
+
+    
+    
+    $("img").click(function(){
+      // 랜덤수 만들기
+      let rdm = Math.ceil(Math.random()*5);
+      // console.log(rdm);
+
+      // 클릭된 img 태그에 클래스 넣기
+      // 하나의 클래스만 남기기 위해 먼저 removeClass()
+      $(this).removeClass().addClass("type"+rdm);
+
+      // 만약 클래스가 "type1" 이면 top값을 200px로 설정 
+      // 클릭된 요소의 클래스 여부는 hasclass 사용 
+      // console.log($(this).hasClass("type1"));
+      if($(this).hasClass("type1")) {
+        $(this).animate({top:"200px"});
+        // animate 시간 안쓰면 기본값 400(0.4초)
+      } 
+      else {
+        $(this).animate({top:"0"});
+      }
+    }) // 클릭
+  
+
+    $(".my").click(function() {
+      $(this).toggleClass("pos")
+    })
+  
+    
+  });/////// jQB ////////////////////////////
+  
+</script>
 	
 	
 <style>
  
-  img{ padding:5px; background:#666;}
-  img.type1 { padding:5px; background:#EF4018;}
-  img.type2 { padding:5px; background:#9AB92E;}
-  img.type3 { padding:5px; background:#05184D;}
-  img.type4 { padding:5px; background:#FF184D;}
-  img.type5 { padding:5px; background:#0518FF;}
+ img {
+      position: relative;
+      padding: 15px;
+      background: #666;
+      transition: .8s ease-in-out;
+    }
+
+    img.type1 {
+      background-image:
+        linear-gradient(45deg, red, green);
+    }
+
+    img.type2 {
+      background-image:
+        linear-gradient(45deg, lime, purple);
+    }
+
+    img.type3 {
+      background-image:
+        linear-gradient(45deg, orange, blue);
+    }
+
+    img.type4 {
+      background-image:
+        linear-gradient(45deg, navy, pink);
+    }
+
+    img.type5 {
+      background-image:
+        linear-gradient(45deg, lightgreen, hotpink);
+    }
+
+    /* 토글적용박스 */
+    .my {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      border: 2px dotted orange;
+      transition: left 2s ease-in-out;
+
+    }
+
+    /* 위치이동 클래스 */
+    .pos {
+      left: 70%;
+    }
 
 </style>
 </head>
 
 <body>
-<img src="th1.jpg" alt="" >
-<img src="th2.jpg" alt="" >
-<img src="th3.jpg" alt="" >
+<img src="th1.jpg" alt="이미지" >
+<img src="th2.jpg" alt="이미지" >
+<img src="th3.jpg" alt="이미지" >
+<div class="my">
+  <img src="th1.jpg" alt="이미지">
+</div>
 
-<!---------- jQuery code Start ---------->
-
-<script>
-
-
-
-</script>
 
 </body>
 </html>
+
 
 
 
