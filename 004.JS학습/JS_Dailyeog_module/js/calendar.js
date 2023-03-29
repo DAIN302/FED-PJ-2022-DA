@@ -145,6 +145,7 @@ function MakeDallyeok(sel) { // sel -  달력 넣을 요소
                 // 클릭한 날짜 데이터
                 let comp = cyear + "-" + addZero(cmonth) + "-" + addZero(cdate);
                 console.log(comp);
+                console.log(typeof(comp));
                 // 달력의 히든필드에 저장
                 qs(sel+" .dinfo").value = comp;
 

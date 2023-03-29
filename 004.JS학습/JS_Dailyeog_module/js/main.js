@@ -40,6 +40,8 @@ $(".calender").on("click mouseenter", function(){
         // this -> 싸고있는 .calendar
         let val = $(this).find(".dinfo").val();
         // val() 메서드 - input의 value값을 읽어옴
+
+        // console.log(val);
         $(this).parent().prev().val(val);
         // val(값) -> input에 내용넣기
         $(this).parent().hide();
@@ -57,6 +59,8 @@ $(".calender").on("click mouseenter", function(){
             // 대상 : #myinput, #myinput2
             let val1 = $("#myinput").val()
             let val2 = $("#myinput2").val()
+
+            console.log(typeof(val1), typeof(val2));
             // 함수는 생성자 함수 안에 있음
             // new 키워드로 인스턴스를 생성한 변수하위로 접근가능
             let res = calbx2.getDateDiff(val1, val2);
