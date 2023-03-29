@@ -24,6 +24,7 @@ $(document).ready(function () {
     // 이전달로 이동
     $('.go-prev').on('click', function () {
         const startDate = $('.start-year-month').html().split('.');
+        console.log(startDate);
 
         // 달력이 현재 년 월 보다 같거나 작을경우 뒤로가기 막기
         if (getLimitMonthCheck(parseInt(startDate[0]), parseInt(startDate[1])) <= 0) {

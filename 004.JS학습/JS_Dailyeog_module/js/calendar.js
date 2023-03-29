@@ -89,7 +89,7 @@ function MakeDallyeok(sel) { // sel -  달력 넣을 요소
             if(this.today.getDate()===dset[i]&&
             this.today.getMonth()===this.curr_date.getMonth()&&
             this.today.getFullYear()===this.curr_date.getFullYear()) {
-                hcode += `<div class="date this.today">${dset[i]}</div>`;
+                hcode += `<div class="date today">${dset[i]}</div>`;
             }
             else{
                 hcode += `<div class="date">${dset[i]}</div>`;
@@ -213,6 +213,16 @@ function MakeDallyeok(sel) { // sel -  달력 넣을 요소
         </div>
         `;
     } //// insertHcode
+
+    // (5) 날짜 기간 계산 함수
+    this.getDateDiff = (dt1, dt2) => {
+        const date1 = new Date(dt1);
+        const date2 = new Date(dt2);
+        
+        const diffDate = date1.getTime() - date2.getTime();
+        return Math.abs(diffDate / (1000 * 60 * 60 * 24)); 
+        // 밀리세컨 * 초 * 분 * 시 = 일
+    } // getDateDiff
 
 
     
