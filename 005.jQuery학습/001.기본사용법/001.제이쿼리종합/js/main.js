@@ -128,7 +128,7 @@ $(() => {
         .next().click(function(){
             let fn = () => {
                 // 좀비 나타나기(2초 후)
-                bd.eq(9).find(".mz").delay(2000).fadeIn(400, function(){
+                bd.eq(9).find(".mz").delay(2000).fadeIn(400, ()=>{
                     // 메세지 넣고 나타나기
                     msg.text("악!!!! 좀비당!!! 어서 피하자!")
                     .css({left : "-144%"})
