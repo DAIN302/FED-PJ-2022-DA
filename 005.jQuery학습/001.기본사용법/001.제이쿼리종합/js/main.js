@@ -112,7 +112,7 @@ $(() => {
             // 이동 후 콜백 함수
             let fn = () => {
                 // 5. 메세지 넣고 나타나기
-                msg.text("와! 아늑하당! 옆방으로 가보자").fadeIn(300);
+                msg.html("와! 아늑하당! 옆방으로 가보자").fadeIn(300);
                 // console.log(this);
                 // 다음 버튼 보이기
                 // this 사용 (현재 화살표 함수이기 때문에 이 상위인 btns 가 this로 잡힌다)
@@ -130,8 +130,8 @@ $(() => {
                 // 좀비 나타나기(2초 후)
                 bd.eq(9).find(".mz").delay(2000).fadeIn(400, ()=>{
                     // 메세지 넣고 나타나기
-                    msg.text("악!!!! 좀비당!!! 어서 피하자!")
-                    .css({left : "-144%"})
+                    msg.html("악!!!! 좀비당!!! 어서 피하자!")
+                    .css({left : "-50%"})
                     .fadeIn(300);
                     // 다음 버튼 보이기
                     $(this).next().delay(500).slideDown(300)
@@ -140,5 +140,152 @@ $(() => {
             } // fn 함수
             actMini(this, 9, fn)
         }) // "옆방으로 버튼 끝"
+
+        // 6."윗층으로 도망가!" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 메세지 보이기
+                msg.html(`여긴없겠지?`).fadeIn(300);
+
+                // 좀비보이기
+                bd.eq(7).find(".mz").delay(1000).fadeIn(400, ()=>{
+                    // 좀비 등장 후 메세지와 버튼
+                    // 메세지 변경
+                    msg.html(`악! 여기도!!`);
+                    // 다음 버튼 보이기
+                    $(this).next().delay(500).slideDown(300)
+                })
+
+            } // fn 함수
+            // 공통함수 호출! 7번방으로
+            actMini(this, 7, fn)                
+        }) // "윗층으로 도망가" 버튼 끝
+
+        // 7."다시 옆방으로" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 메세지 보이기
+                msg.html(`여긴없겠지?`).fadeIn(200).delay(1000).fadeIn(200,()=>{
+                    // 두번째 메세지
+                    msg.html(`그래도 무서우니 위층으로 가자!`)
+                    // 다음 버튼 보이기
+                    $(this).next().delay(500).slideDown(300)                
+                })
+
+            } // fn 함수
+            // 공통함수 호출! 
+            actMini(this, 6, fn)                
+        }) // "다시 옆방으로" 버튼 끝
+
+        // 8."무서우니 윗층으로" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 무.서.워...  메시지
+                msg.html(`무`)
+                .fadeIn(200)
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서.`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서.워`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서.워.`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서.워..`))
+                .delay(500)
+                .fadeIn(200,()=>msg.html(`무.서.워...`))
+                .delay(500)
+                .fadeIn(200,()=>{
+                    // 7번방 좀비가 올라와서
+                    // 달겨든다!
+                    bd.eq(7).find(".mz").animate({// 윗층으로 올라옴
+                        bottom : bd.eq(7).height()+"px"
+                        // li 높이값 만큼 bottom 올려주기
+                    }, 500, "easeOutElastic").delay(500) // 기다림
+                    .animate({
+                        // 달려들기
+                        right : bd.eq(7).width()*1.1+"px"
+                    },1000, "easeOutBounce",()=>{
+                        // 물린 후 대사
+                        msg.html(`악!! 물렸다! 어서 치료주사방으로!!`)
+                        // 미니언즈 좀비 이미지 변경(1초후)
+                        setTimeout(()=>{
+                            mi.find("img").attr("src", "images/mz1.png")
+                            .css({filter : "grayscale(100%)"})
+
+                            // 다음 버튼 보이기
+                            $(this).next().delay(500).slideDown(300)                
+                        },1000)
+                    })
+                })
+            } // fn 함수
+            // 공통함수 호출! 
+            actMini(this, 4, fn)                
+        }) // "무서우니 윗층으로" 버튼 끝
+
+        // 9."치료주사방으로" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 주사기 돌리기(animate는 transform이 적용이 안됨)
+                $(".inj").css({
+                    transform : "rotate(-150deg)",
+                    transition : ".5s .5s",
+                    zIndex : "9999", // 미니언즈보다 위
+                })
+                // 미니언즈 다시 태어나다(ㅋㅋㅋㅋㅋㅋㅋㅋㅋ)(1초 후)
+                setTimeout(()=>{
+                    // 이미지 변경
+                    mi.find("img").attr("src", "images/m2.png")
+                    .css({filter : "grayscale(0)"});
+                    // 대사
+                    msg.html(`이제 좀만 더 가면 탈출이닷!`).fadeIn(200)
+
+                    // 주사기 없애기
+                    $(".inj").hide();
+                    
+                    // 다음 버튼 보이기
+                    $(this).next().delay(500).slideDown(300)                
+                },1000)
+
+            } // fn 함수
+            // 공통함수 호출! 
+            actMini(this, 2, fn)                
+        }) // "치료주사방으로" 버튼 끝
+
+        // 10."3번방으로" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 다음 버튼 보이기
+                $(this).next().delay(500).slideDown(300)                
+
+            } // fn 함수
+            // 공통함수 호출! 
+            actMini(this, 3, fn)                
+        }) // "3번방으로" 버튼 끝
+
+        // 11."1번방으로" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 다음 버튼 보이기
+                $(this).next().delay(500).slideDown(300)                
+
+            } // fn 함수
+            // 공통함수 호출! 4번방으로
+            actMini(this, 1, fn)                
+        }) // "1번방으로" 버튼 끝
+
+        // 12."헬기를 호출" 버튼 클릭 시
+        .next().click(function(){
+            let fn = () => {
+                // 다음 버튼 보이기
+                $(this).next().delay(500).slideDown(300)                
+
+            } // fn 함수
+            // 공통함수 호출! 
+            actMini(this, 0, fn)                
+        }) // "헬기를 호출" 버튼 끝
 
 }); /////////////// jQB ////////////////////
