@@ -331,16 +331,14 @@ $(() => {
                     // 추가 구현 : 건물 무너진 후 좀비 하나 올라와 오른쪽으로 사라짐
                     setTimeout(() => {
                         // 건물 기울기 원복
-                        bd.parent().css({
-                            transform : "rotate(0deg) !important"
-                            // 애니메이션에 걸린 설정이 더 우선순위가 높기 떄문에 !important 설정
-                        })
+                        bd.parent().attr("style","transform : rotate(0deg) !important")
+                        // 애니메이션에 걸린 설정이 더 우선순위가 높기 떄문에 !important 설정
                         bd.eq(9).find(".mz").animate({
                             bottom : "586%"
                         }, 5000).delay(3000).animate({
                             right : "-244%"
                         }, 5000)
-                    }, 12000);
+                    }, 18000);
                 })
             } // fn 함수
             // 공통함수 호출! 
