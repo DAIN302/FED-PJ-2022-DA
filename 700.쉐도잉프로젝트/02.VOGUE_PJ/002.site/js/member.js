@@ -47,6 +47,9 @@ $(()=>{
        if(cv==="") {
             // 메세지 출력
             $(this).siblings(".msg").text("필수입력").removeClass("on")
+
+            // 불통과
+            pass=false;
        } // if문
         /************************************************
            4. 아이디일 경우 유효성 검사
@@ -57,6 +60,8 @@ $(()=>{
             if(!vReg(cv, cid)) { // false 일때 !(NOT연산자)로 true 변경
                 /// 불통과일때 메세지
                 $(this).siblings(".msg").text("영문자로 시작하는 6~20글자 영문자/숫자").removeClass("on")
+                // 불통과
+                pass=false;
             }
             else {
                 // 1. DB에 아이디가 있는지 조회후 결과로 처리해야함(보류)
@@ -75,6 +80,8 @@ $(()=>{
             if(!vReg(cv, cid)) { // false 일때 !(NOT연산자)로 true 변경
                 /// 불통과일때 메세지
                 $(this).siblings(".msg").text("특수문자,문자,숫자포함 형태의 5~15자리")
+                // 불통과
+                pass=false;
             }
             else {
                 $(this).siblings(".msg").empty()
@@ -88,18 +95,24 @@ $(()=>{
             if(cv!==$("#mpw").val()) { // false 일때 !(NOT연산자)로 true 변경
                 /// 불통과일때 메세지
                 $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.")
+                // 불통과
+                pass=false;
             }
             else {
                 $(this).siblings(".msg").empty()
             }
        } // else if : 비밀번호확인 검사 시
         /************************************************
-           7. 이메일 검사
-              - 검사기준 : 
+           7. 이메일 유효성 검사
+              - 검사기준 : 이메일 형식에 맞는지 검사 
         ************************************************/ 
        else if(cid==="email1") {
-            
-       } // else if : 이메일 검사 시
+            // 1. 이메일 주소만들기 : 앞주소@뒷주소
+            let comp = eml1.val() + "@" + (seleml.val() ==="free"?eml2.val():seleml.val())
+
+            // 2. 이메일 주소 호출
+            resEml(comp);
+       } // else if : 비밀번호확인 검사 시
        //모두 통과일 경우 메시지 지우기       
        else{
             // 메세지 출력
@@ -109,6 +122,169 @@ $(()=>{
         console.log(cv);
    }); ///// blur
 
+   // 이메일 관련 대상 선정
+   // 이메일 앞주소
+   const eml1 = $("#email1");
+   // 이메일 뒷주소
+   const eml2 = $("#email2");
+   // 이메일 선택박스
+   const seleml = $("#seleml");
+
+   /**************************************************
+    선택박스 변경 시 이메일 검사하기
+    _______________________________
+    검사시점 : 선택박스 변경할 때 
+    이벤트 : change -> 제이쿼리 change() 메서드
+    이벤트 대상 : #seleml -> seleml 변수
+   **************************************************/
+  seleml.change(function(){
+    // 1. 선택박스 변경된 값 읽어오기
+    let cv = $(this).val()
+    console.log("선택값", cv)
+    //2. 선택옵션별 분기문
+    if(cv==="init") {
+        // "선택해주세요"
+        // 1. 메시지 출력
+        eml1.siblings(".msg").text("이메일 옵션 선택 필수").removeClass("on")
+        // 2. 직접 입력창 숨기기
+        eml2.fadeOut(200);
+    } //// if "선택해주세요"
+    else if(cv==="free") {
+        // "직접입력"
+        // 1. 직접입력창 보이기
+        eml2.fadeIn(200).val("").focus();
+        // val(값) -> 입력창에 값 넣기(빈문자값은 기존값을 지워줌)
+        // focus() -> 입력창에 포커스(커서깜박임)
+
+        // 2. 기존 메세지 지우기
+        eml1.siblings(".msg").empty();
+
+        
+    } // else if "직접입력"
+    else {
+        // 1. 직접 입력창 숨기기
+        eml2.fadeOut(200);
+
+        // 2. 이메일 전체 주소 조합
+        let comp = eml1.val() + "@" + cv;
+        // cv는 select의 option의 value
+
+        // 3. 이메일 유효성 검사함수 호출
+        resEml(comp);
+    }
+  }) //// change
+
+  /*************************************************
+    키보드 입력 시 이메일 체크
+    _____________________________________________
+
+    - 키보드 관련 이벤트 : keypress, keyup, keydown
+    1. keypress : 키가 눌려졌을 때
+    2. keyup : 키가 눌렸다가 올라올때
+    3. keydown : 키가 눌려져서 내려가있을때
+    -> 과연 글자가 입력되는 순간은 어떤 키보드 이벤트를 적용해야할까?
+    ->>> keyup 실시간으로 적용됨 나머지는 한템포씩 느리당
+
+    - 이벤트 대상 : #email1, #email2
+    -> 모든 이벤트와 함수와 연결하는 jQuery 메서드?
+    on(이벤트명, 함수)
+  *************************************************/
+ $("#email1,#email2").on("keyup", function(){
+    // 1. 현재 이벤트 대상 아이디 읽어오기
+    let cid = $(this).attr("id");
+    // 2. 현재 입력된 값 읽어오기
+    let cv = $(this).val();
+    // 3. 이메일 뒷주소 세팅하기
+    let backeml = cid==="email1"?seleml.val():eml2.val();
+    // 현재 아이디가 email1인가? 맞으면 선택박스 
+    // 아니면 두번째 이메일 뒷주소를 입력하는 중이므로 그것을 선택
+    // 변수 = 조건연산자(조건식?값1:값2)
+    
+    // 4. 만약 선택박스값이 free(직접입력)이면 이메일 뒷주소 변경
+    if(seleml.val()==="free") backeml = eml2.val();
+    
+    // 5. 이메일 전체 주소 조합
+    let comp = eml1.val()+"@"+backeml;
+
+    // 6. 이메일 유효성 검사함수 호출
+    resEml(comp);
+ });
+  /*************************************************
+    함수명 : resEml (result Email)
+    기능 : 이메일 검사결과 처리
+  *************************************************/
+ const resEml = (comp) => {
+    // comp - 완성된 이메일 주소
+    // console.log("이메일 주소", comp)
+    // console.log("이메일 검사결과", vReg(comp, "eml"))
+
+    // 이메일 정규식 검사에 따른 메세지 보이기
+    if(vReg(comp, "eml")) {
+        eml1.siblings(".msg").text("적합한 이메일 형식입니다.").addClass("on");
+    } /// if 통과시
+    else {
+        eml1.siblings(".msg").text("잘못된 이메일 형식입니다.").removeClass("on");
+        // 불통과
+        pass=false;
+    } // else 불통과시
+ }; ////// resEml 함수
+
+ /******************************************************************************
+    가입하기(submit) 버튼 클릭 시 처리
+    ________________________________________________________________________
+
+    전체 검사의 원리 : 
+    전역변수 pass를 설정하여 true 를 할당하고 검사 중간에 불통과 사유 발생 시 false로 변경
+    유효성 검사 통과 여부 판단
+
+    검사방법 :  
+    기존 이벤트 blur 이벤트를 강제로 발생시킴
+    이벤트를 강제 발생시키는 메서드 -> trigger(이벤트명)
+
+
+ ******************************************************************************/
+
+// 검사용 변수
+let pass = true;
+
+// 이벤트 대상 : #btnj
+// 원래 submit 버튼은 클릭 시 싸고 있는 form태그의 action 설정 페이지로 
+// 모든 입력창의 값을 전송하도록 설계되어 있음
+// 기본 서브밋 이동을 막고 우리가 검사 후 전송
+$("#btnj").click(e=>{
+    // 0. 호출확인
+    // console.log("가입");
+    // 1. 기본 이동 막기
+    e.preventDefault();
+    // 2. pass 통과 여부 변수에 true 를 할당
+    // 처음에 true로 시작하여 검사 중간에 한번이라도 
+    // false로 할당되면 결과는 false
+    pass = true;
+
+    // 3. 입력창 blur 이벤트 강제 발생
+    // 대상 : blur 이벤트 발생했던 요소들
+    $(`input[type=text][id!=email2][class!=search],input[type=password]`).trigger("blur")
+
+    // 최종통과 여부
+    console.log("통과여부", pass);
+
+    // 4. 검사결과에 따른 메세지 보이기
+    if(pass) {
+        // 원래는 post 방시으로 DB에 회원가입 정보를 전송하여 입력 후 DB처리 완료시
+        // 성공 메세지나 로그인 페이지로 넘겨줌
+        alert("회원가입을 축하드립니다!")
+        // 로그인 페이지로 리디렉션
+        // location.href = "login.html"
+        // 브라우저 캐싱 히스토리를 지우려면 -> 뒤로가기 버튼 비활성화됨
+        // location.replace(url)사용
+        location.replace("login.html")
+    } /// if : 통과 시
+    else {
+        alert("입력 내용을 확인해주세요")
+    }
+
+}) // click
+
 
 });/// jQB
 
@@ -116,6 +292,8 @@ $(()=>{
     함수명: vReg (validation with Regular Expression)
     기능: 값에 맞는 형식을 검사하여 리턴함
     (주의: 정규식을 따옴표로 싸지말아라!-싸면문자가됨!)
+    -> w3c 참조 : 
+    https://www.w3schools.com/jsref/jsref_obj_regexp.asp
 */ ////////////////////////////////////////////////////////
 function vReg(val, cid) {
     // val - 검사할값, cid - 처리구분아이디
