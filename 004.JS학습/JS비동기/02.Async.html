@@ -22,7 +22,20 @@
             이 때문에 대부분의 최신 비동기 JavaScript 메서드는 콜백을 사용하지 않음! 
             대신 JavaScript에서 비동기 프로그래밍은 Promise를 대신 사용하여 해결됨!
          *******************************************************************/
-            
+         function 화면뿌려(이거) {
+                document.getElementById("show").innerHTML += 이거 + "<br>";
+         }
+         
+         // 1. 일정 시간 후 함수 실행 - 비동기함수 호출
+         setTimeout(()=>setInterval(킬링타임,1000), 6000);
+         setTimeout(()=>화면뿌려(`킬링타임<div id="time" stlye="font-size:5vh"></div>`),5000);
+         setTimeout(()=>화면뿌려(`<img src="https://images.khan.co.kr/article/2023/03/03/news-p.v1.20230303.139d5a1324fd43e9b750689a1c57af4e_P1.jpg" style="height:70vh" alt="길복순">`),4000);
+         setTimeout(()=>화면뿌려("나는 전도연이다"),2000);
+
+         function 킬링타임() {
+                let d = new Date();
+                document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+         }         
         </script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap");
