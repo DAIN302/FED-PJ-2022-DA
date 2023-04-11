@@ -76,9 +76,40 @@
                 dg.draggable({
                     cursor : "move", // 커서모양 "이동중"표시
                     stack : ".draggable", // 드래그 대상 상위처리
-                    opacity : 0.7, // 이동중 투명도
-                    
+                    opacity : 0.7, // 이동중 투명도  
                 })
+                // [ 커스터마이징 요구사항 반영하기 ]
+                // 1. 드래그시 포스트잍 이미지 변경
+                //(1) 드래그 시작 이벤트 발생시 이미지 변경 위해 클래스 .invert 넣기
+                // 드래그 시작 이벤트 : dragstart
+                // 제이쿼리 메서드 : on(이벤트명, 함수)
+                dg.on("dragstart", function(){
+                    $(this).addClass("invert");
+                }) /// dragstart
+                //(2) 드래그 끝날때 이벤트 발생시 이미지 변경 위해 클래스 .invert 빼기
+                // 드래그 시작 이벤트 : dragstop
+                // 제이쿼리 메서드 : on(이벤트명, 함수)
+                dg.on("dragstop", function(){
+                    $(this).removeClass("invert");
+                }) // dragstop
+
+                // 2. 드롭대상박스에 드롭될때 동영상 보여주기
+                // droppable() 메서드 : 드롭되는 요소처리
+                // 이벤트 대상 : .dropshow
+                $(".dropshow").droppable({
+                    drop : function(evt, ele){ // evt - 이벤트 전달 변수, ele - 드롭관련객체
+                        
+                        // 1. 드롭영역의 배경이미지 변경
+                        // 드롭된 요소 - ele.draggable
+                        let isrc = ele.draggable.find("img").attr("src");
+                        console.log(isrc)
+
+                        $(this).css({
+                            backgroundImage : `url(${isrc})`
+                        })
+
+                    }
+                });
             }) ////////////jQB
         </script>
         
