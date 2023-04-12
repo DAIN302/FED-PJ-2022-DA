@@ -11,7 +11,7 @@
 
                 "생성코드"는 시간이 걸릴 수 있는 코드이다.
                 "사용코드"는 결과를 기다려야 하는 코드이다.
-                Promise는 생성 코드와 소비 코드를 연결하는 JavaScript 객체다!
+                Promise는 생성 코드와 사용 코드를 연결하는 JavaScript 객체다!
                 __________________________________________________________
 
                 ((구문))
@@ -27,9 +27,142 @@
                 function(변수) { 성공시코드 },
                 function(변수) { 실패시코드 }
                 );
+                _________________________________________________________
 
+                [ AJAX 비동기 파일처리 전송객체 ]
+                AJAX(Asynchronous Javascript And XML)
+                -> XMLHttpRequest객체
+                1. 특징 :
+                   (1) 웹서버의 데이터 읽기(페이지 로드 후)
+                   (2) 페이지로 리로드하지 않고 웹페이지 부분 업데이트
+                   (3) 백그라운드 웹서버로 데이터 전송기능 
+                2. 사용법 :
+                   (1) 인스턴스를 생성하여 변수에 할당해서 사용  
+                   예) let ajax = new XMLHttpRequest();
+                   (2) 인스턴스를 열어서 전송준비를 한다
+                   -> open(방식, 요청URL, 아이디, 비번, 비동기옵션)
+                   -> 핵심 : open(방식, 요청URL) 
+                      1) 방식 : GET/POST 
+                         -> GET 방식을 더 선호함 이유는 가볍고 빠르게 처리함
+                         -> POST 방식은 보안에 민감한 데이터 처리시 사용
+                      2) 요청URL : 웹서버의 페이지나 파일경로주소
+                      3) 아이디/비번 : 웹서버 접근시 인증이 필요한 경우 사용
+                      4) 비동기옵션 : 기본값 true -> 비동기처리
+                         -> 아무것도 안쓰면 true로 비동기처리
+                         만약 false 라고 하면 동기적 처리를 함
+                         -> 비동기적으로 처리해야 페이지가 멈추지 않고 요청파일만
+                            별도로 처리함      
+                      예) ajax.open("GET", "https://my.com/my.pdf")
+                   (3) 비동기전송 후 처리를 위한 로드함수구역 만들기
+                   -> 인스턴스변수.onload = function(){처리소스};
+                   -> 여기서 onload라는 것은 서버에서 결과를 로드한다는 의미
+                   -> 결과처리 상태값은 : 인스턴스변수.status 값으로 한다
 
+                    [ status 결과값 종류 ] 
+                      1) 200 : "OK" - 처리완료됨
+                      2) 403 : "Forbidden" - 파일 접근 거부
+                      3) 404 : "Not Found" - 파일 없음(찾을 수 없음)
+                      -> statusText 로 받으면 위의 문자형으로 리턴 
+
+                    [ response 결과 내용 종류 ]  
+                      1) responseText : 데이터를 문자 형식 받기 
+                      2) responseXML : 데이터를 XML 형식 받기 
+                      3) responseURL : 데이터를 전송 URL 받기 
+
+                   (4) 오픈 세팅된 요청 객체를 전송
+                       인스턴스.send()
+                       -> open() -> onload -> send() 순으로 코딩
          *******************************************************************/
+         function 화면뿌려(이거) {
+            document.getElementById("show").innerHTML += 이거 + "<br>";
+         }        
+
+         //// 로드구역 /////////////
+         window.addEventListener('load', ()=>{
+            // 1. 기본 약속 객체 만들기
+            // 처음약속이라는 변수에 promise가 인스턴스 생성
+            let 처음약속 = new Promise(function(성공함수, 실패함수){
+                let 통과 = 1; // 1 - 성공테스트, 0 - 실패테스트
+
+                // 이 자리에는 시간이 걸리는 실행코드가 위치
+                if(통과) {
+                    성공함수("성공");
+                } 
+                else {
+                    실패함수("에러");
+                }
+            }) /// promise
+
+            // 프라미스에서 호출되는 처리 후 실행 메서드 : then(함수1, 함수2)
+            // 함수1 - 성공시 실행구역
+            // 함수2 - 실패시 실행구역
+            처음약속.then(
+                function(전달변수){
+                    // 성공 시 실행함수
+                    화면뿌려(전달변수);
+                }, 
+                function(전달변수){
+                    // 실패 시 실행함수
+                    화면뿌려(전달변수);
+                }) //// then 메서드
+
+            // 2. 시간이 걸리는 코드를 약속 객체에 넣고 처리하기
+            // new Promise(function(변수){}) -> 하나의 변수는 성공처리함수
+            let 약속기다림 = new Promise(function(성공){
+                // 처리시간이 걸리는 코드
+                setTimeout(function(){
+                    // 성공함수 호출
+                    성공("오마이갓김치");
+                }, 3000) // setTimeout
+            }) // 약속기다림 promise    
+
+            // 약속객체로부터 처리후 then 메서드에 실행코드 넣기
+            // then(함수) -> 하나의 함수만 쓰면 성공처리함수를 받음
+            약속기다림.then(function(값){
+                화면뿌려("와~~우"+값)
+                화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`)
+            }) /////// then 메서드
+
+            // 3. 파일을 전송 받은 후 실행하는 약속객체 생성
+            let 파일약속 = new Promise(function(성공함수, 실패함수){
+                // 아작스(비동기통신) 서버 파일 요청
+                // (1) XMLHttpRequest 객체 인스턴스 만들기
+                let ajax = new XMLHttpRequest();
+
+                // (2) 비동기 파일 요청 열기(전송 기능 메모리 생성)
+                ajax.open("GET", "https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
+
+                // (3) 결과를 리턴받는 onload이벤트 함수 구역 만들기
+                ajax.onload = function(){
+                    console.log(ajax.status);
+                    if(ajax.status===200) {
+                        성공함수(ajax.responseURL);
+                        // 성공시 전송받은 파일 URL을 받는다
+                    }
+                    else {
+                        실패함수(ajax.statusText);
+                        // 실패 결과를 문자형으로 리턴
+                    }
+                }; //// onload
+
+            // 4. 비동기 요청 보내기 : send()
+            ajax.send();
+            }); ////// 파일약속 Promise
+
+            파일약속.then(
+                function(성공메시지){
+                    화면뿌려("파일로딩완료", 성공메시지)
+                    document.getElementById("doc").innerHTML = `
+                        <iframe src="${성공메시지}" style="width:100%; height:100%;"></iframe>
+                    `
+                }, 
+                function(실패메시지){
+                    화면뿌려(실패메시지)
+                })
+
+         }) // 로드구역
+
+         
             
         </script>
         <style>
