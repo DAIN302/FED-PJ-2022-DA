@@ -2,6 +2,94 @@
 
 // 제이쿼리 코드블록 /////////////
 $(()=>{
+    // 약관동의 html 코드 넣기
+    $("#conf").html(mcode.conf);
+
+    /*********************************************
+        약관동의 전체 체크시 모든 체크박스 변경
+     *********************************************/     
+    // 1. 대상선정
+    // 대상 : 모두 동의 체크박스 -> #chk_all
+    const chkall = $("#chk_all");
+    // 대상 : 개별 체크 박스 -> .chk
+    const chkeach = $(".chk");
+
+    // 2. 체크박스 변경이벤트 함수만들기
+    chkall.change(function(){
+        //1. 체크박스 체크 여부 확인
+        let chk = $(this).prop("checked");
+        // console.log("체크임", chk)
+
+        // 2. 전체 체크박스가 체크 상태(true)이면 개별 체크 박스도 모두 true 로 체크상태 변경
+        // 미체크상태(false)면 개별 체크 박스도 모두 false로 체크 상태 변경
+        // chkeach.attr("checked", chk); -> 세팅할떄는 사용가능 
+        chkeach.prop("checked", chk); 
+        // for문 없이 자동으로 개수만큼 속성 모두 변경
+
+
+        /*
+            [ 속성값을 읽어오는 2가지 메서드 ]
+            1. attribute 단어의 메서드 : attr(속성명)
+            2. property 단어의 메서드 : prop(속성명)
+            -> 둘의 차이는 일반 속성값을 읽어올때는 차이 X
+            체크박스의 checked 속성인 경우 true/false를 리턴해주는 것은 prop() 메서드
+
+            [ 속성값을 세팅하는 2가지 메서드 ]
+            1. attr(속성명, 값)
+            2. prop(속성명, 값)
+        */
+
+    }); //// change
+
+    /*********************************************
+        개별체크박스 체크시 전체 체크박스 변경
+    *********************************************/   
+   // 원리 : 개별체크박스가 모두 체크되면 전체 체크
+   // 대상 : .chk -> chkeach 변수
+   chkeach.change(function(){
+        // 1. 체크갯수 알아오기 : length - 개수리턴속성
+        let num = $(".chk:checked").length;
+        // console.log("개별체크", num)
+
+        // 2. 체크개수가 3개일때 전체 체크박스 체크
+        if(num===3) chkall.prop("checked", true);
+        else chkall.prop("checked", false);
+        
+   }); ////// change
+    
+   /*********************************************
+    동의 / 비동의 버튼 클릭시 처리  
+    *********************************************/   
+   // 대상 : .YNbox button
+   // 통과조건 #termsService, #termsPrivacy 모두 체크
+   $(".YNbox button").click(function(){
+        // 1. 버튼 종류 구분 : is("#btnY") 동의 버튼?
+        let isB = $(this).is("#btnY");
+        // console.log("버튼", isB);
+        // 2. 동의 버튼 클릭일 경우 : 필수체크확인후 회원가입허가
+        if(isB) {
+            // (1) 필수 항목이 모두 체크된 경우
+            if($("#termsService").prop("checked")&&$("#termsPrivacy").prop("checked")){
+                // 약관 동의 박스 숨기고 회원가입박스 보이기
+                $("#conf").fadeOut(200, ()=>{
+                    $(".scont").fadeIn(300);
+                });
+
+            } ///// if
+            // (2) 필수 항목이 안된 경우
+            else {
+                alert("필수항목을 모두 체크하셔야 합니다.")
+            }
+        } ////// if
+        // 3. 비동의 버튼 클릭 시
+        else {
+            alert("메인페이지로 이동합니다.");
+            location.href = "index.html";
+        } ///// else
+
+   }); ///// click
+
+
     /********************************************* 
         [ 사용자 입력폼 유효성 검사 ]
         - 이벤트종류 : blur(포커스가 빠질때 발생)
