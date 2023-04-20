@@ -84,31 +84,45 @@
           </a>
         </h1>
         <!-- 1-3. gnb박스 -->
-        <nav class="gnb">
+        <nav class="gnb" id="gnb">
           <ul>
             <li>
-              <a href="#">FASHION</a>
+              <a href="#" v-on:click.prevent="chgMenu">FASHION</a>
+              <!-- 
+                  [ v-on 이벤트 디렉티브 ]
+                  1. 기본형 v-on:이벤트명=값
+                  2. 축약형 @이벤트명=값
+                  3. 추가옵션(장식자)
+                     (1) 기본기능 막기
+                         @이벤트명.prevent=값
+                         -> event.preventDefault() 설정
+                     (2) 이벤트 버블링 막기
+                         @이벤트명.stop=값
+                         -> event.stopPropergation() 설정
+                     (3) 이벤트가 한번만 적용되게 하기 
+                         @이벤트명.once=값
+               -->
             </li>
             <li>
-              <a href="#">BEAUTY</a>
+              <a href="#" v-on:click.prevent="chgMenu">BEAUTY</a>
             </li>
             <li>
-              <a href="#">LIVING</a>
+              <a href="#" v-on:click.prevent="chgMenu">LIVING</a>
             </li>
             <li>
-              <a href="#">PEOPLE</a>
+              <a href="#" v-on:click.prevent="chgMenu">PEOPLE</a>
             </li>
             <li>
-              <a href="#">VIDEO</a>
+              <a href="#" v-on:click.prevent="chgMenu">VIDEO</a>
             </li>
             <li>
-              <a href="#">RUNWAY</a>
+              <a href="#" v-on:click.prevent="chgMenu">RUNWAY</a>
             </li>
             <li>
-              <a href="#">TIME &amp; GEM</a>
+              <a href="#" v-on:click.prevent="chgMenu">TIME &amp; GEM</a>
             </li>
             <li>
-              <a href="#">SHOPPING</a>
+              <a href="#" v-on:click.prevent="chgMenu">SHOPPING</a>
             </li>
             <li>
               <!-- 돋보기 검색버튼 -->
@@ -135,30 +149,41 @@
             {{v.제목}}
           </h2>
           <!-- 2-1-2.서브메뉴(LNB : local navigation bar) -->
-          <nav class="lnb"></nav>
+          <nav class="lnb" v-if="v.메뉴!=='없음'">
+            <ul>
+              <li v-for="(m, u) in v.메뉴"> 
+                <a href="#">{{m}}</a> 
+              </li>
+            </ul>
+          </nav>
         </header>
         <!-- 2-2. 카테고리 페이지 컨텐츠영역 -->
         <div class="icont">
           <section class="pt pt2">
             <div class="cbx bgi bg1-1">
-              <h2></h2>
+              <!-- 
+                  v-html은 html 코드 디렉티브
+                  v-text는 문자데이터 디렉티브
+
+               -->
+              <h2 v-html="v.타이틀[0]"></h2>
             </div>
             <div class="cbx bgi bg1-2">
-              <h2></h2>
+              <h2 v-html="v.타이틀[1]"></h2>
             </div>
             <div class="cbx bgi bg1-3">
-              <h2></h2>
+              <h2 v-html="v.타이틀[2]"></h2>
             </div>
           </section>
           <section class="pt pt2">
             <div class="cbx bgi bg2-1">
-              <h2></h2>
+              <h2 v-html="v.타이틀[3]"></h2>
             </div>
             <div class="cbx bgi bg2-2">
-              <h2></h2>
+              <h2 v-html="v.타이틀[4]"></h2>
             </div>
             <div class="cbx bgi bg2-3">
-              <h2></h2>
+              <h2 v-html="v.타이틀[5]"></h2>
             </div>
           </section>
         </div>
