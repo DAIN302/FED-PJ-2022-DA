@@ -72,12 +72,18 @@
                                         console.log(isNow);
                                         if (isNow) return;
                                         // 같으면(마지막 노드면) return
-                                        cele = ele;
+                                        // cele = ele;
                                         ele.classList.remove("on");
+                                        // 바로 다음것을 on 변경하면 forEach문에서
+                                        // 다음 요소를 돌때 다시 on이 걸리게 되고 if문으로 들어오게됨 -> 계속 걸림
+                                        // 해결책 : on을 조금있다가 넣어주기(setTimeout)
+                                        setTimeout(() => {
+                                            ele.nextElementSibling.classList.add("on");
+                                        }, 10);
                                     }
                                 }); //// forEach //////
-                            if (!isNow)
-                                cele.nextElementSibling.classList.add("on");
+                            // if (!isNow)
+                            //     cele.nextElementSibling.classList.add("on");
                                 // nextElementSibling 선택요소의 다음 요소
                             break;
                         case "앞으로":

@@ -12,7 +12,6 @@
 
 */
 
-
 // 자동스크롤 기능 함수 가져오기
 import autoScroll from "./jquery-autoscroll.js";
 
@@ -82,7 +81,6 @@ slide.on("dragstop", function(){
 
     // 슬라이드 left 위치값
     let sleft = $(this).offset().left;
-    console.log(sleft);
 
     // 1. 왼쪽으로 이동 : -110% 미만
     if(sleft < -winW*1.1) {
@@ -93,8 +91,13 @@ slide.on("dragstop", function(){
             slide.append(slide.find("li").first()).css({left : "-100%"})
             // 커버 제거
             cover.hide();
-        })
-    }
+            // 배너타이틀 함수
+            showTit();
+        });
+
+        // 블릿변경함수호출
+        addOn(2);
+    } // if
     // 2. 오른쪽 이동 : -90% 초과
     else if(sleft > -winW*0.9) {
         slide.animate({
@@ -104,18 +107,127 @@ slide.on("dragstop", function(){
             slide.prepend(slide.find("li").last()).css({left : "-100%"})
             // 커버 제거
             cover.hide();
-        })
-    }
+            // 배너타이틀 함수
+            showTit();
+        });
+
+        // 블릿변경함수호출
+        addOn(0);
+    } // else if
     // 3. 제자리로 이동 : -110% ~ -90%
     else {
         slide.animate({
             left : -winW +"px"
         }, 200, "easeOutQuint", ()=>{
             // 커버 제거
-            cover.hide()
+            cover.hide();
         })
-    }
+    } // else
 }) ; ///////// slide
+
+/***********************************************************************
+    [ 터치 배너 이동 시 블릿 변경 ]
+    - 방법 : 잘라서 이동되는 li에 고유 순번을 사용자 정의 속성으로 처음에 설정 후
+      슬라이드 이동하면 그 속성값을 읽어서 블릿 순번에 반영
+***********************************************************************/
+
+// 사용자 정의 순번 속성 대상 : .slide li
+// 제이쿼리 each() 메서드 사용 : each(순번, 요소)
+// 배너 li
+const blist = slide.find("li");
+// 배너 갯수
+const bcnt  = blist.length;
+blist.each((idx, ele)=>{
+    // 처음 것을 마지막 순번으로 넣기
+    if(idx===0) $(ele).attr("data-seq", bcnt-1)
+    // 두번째 부터 끝까지 0부터 적용(1작음)
+    else $(ele).attr("data-seq", idx-1)
+}); /// each
+
+/*************************************************************************
+    블릿 "on" 넣기 함수
+    1) 오른쪽 이동일 경우
+    -> 0번째 슬라이드의 data-seq값
+    2) 왼쪽 이동일 경우
+    -> 2번째 슬라이드의 data-seq값
+    3) 위의 선택값으로 블릿의 li순번에 on넣고 나머지는 뺀다
+*************************************************************************/
+// 대상선정 : .bindic li
+const bindic = $(".bindic li")
+function addOn(seq) { // seq - 슬라이드 순번
+    // seq : 0 오른쪽 / 2 왼쪽
+    // 1. 해당 슬라이드 data-seq 읽어오기
+    let dseq = slide.find("li").eq(seq).attr("data-seq")
+    // console.log(dseq)
+
+    // 2. 해당 슬라이드와 동일한 순번 블릿에 "on" 넣기
+    bindic.eq(dseq).addClass("on").siblings().removeClass("on");
+
+}////////addOn
+
+///////////////////////////////////////
+////// 각 배너 등장 타이틀 셋팅 /////////
+///////////////////////////////////////
+let bantxt = {
+    "ban1": "Men's Season<br>Collection",
+    "ban2": "2023 Special<br>Collection",
+    "ban3": "GongYoo<br>Collection",
+    "ban4": "T-Shirt<br>Collection",
+    "ban5": "Shoes<br>Collection",
+    "ban6": "Wind Jacket<br>Collection"
+}; ///////////// bantxt객체 //////////////
+
+/*
+    함수명 : showTit
+    기능 :각 배너 타이틀 보이기
+    호출 : 배너 이동 후 콜백함수에서 호출
+*/
+
+function showTit() {
+    // 배너 이동 후 호출하여 해당 배너의 순번에 맞는 타이틀을 동적으로 생성하여 애니메이션 함
+
+    // 주인공 배너
+    const mainBan = slide.find("li").eq(1);
+
+    // 1. 항상 도착후엔 두번째 슬라이드가 주인공
+    // 슬라이드 순번은 1번 
+    // 슬라이드 클래스명 읽어오기(타이틀이 클래스명과 연관)
+    let clsnm = mainBan.attr("class");
+    
+    // 2. 클래스명에 해당하는 객체값 읽어오기
+    let bantit = bantxt[clsnm]
+    // console.log(bantit);
+
+    // 모든 추가 타이틀 지우기
+    $(".btit").remove();
+
+    // 3. 타이틀 넣을 요소를 배너에 추가
+    mainBan.append(`<h2 class="btit"></h2>`);
+
+    // 타이틀 left 위치 변수 처리
+    // ban2, ban3 오른쪽 위치
+    let lval = "30%";
+    if(clsnm==="ban2"||clsnm==="ban3") lval = "70%" 
+
+
+    // 4. h2태그에 배너타이틀 넣기
+    mainBan.find(".btit").html(bantit).css({
+        position : "absolute",
+        top : "55%",
+        left : lval,
+        transform : "translate(-50%, -50%)",
+        font : "bold 4.5vmax Verdana",
+        color : "#fff",
+        textShadow : "1px 1px 3px #777",
+        whiteSpace : "nowrap",
+        opacity : 0
+    }).animate({
+        top : "50%",
+        opacity : 1
+    }, 600, "easeInOutQuart")
+    
+} ////// showTit
+
 
 
 
