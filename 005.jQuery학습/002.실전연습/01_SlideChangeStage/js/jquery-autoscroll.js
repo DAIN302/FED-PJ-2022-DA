@@ -126,7 +126,7 @@ function chkCrazy(seq){ // 관리변수 순번
     기능 : 페이지 이동 애니메이션
 *******************************************************************/
 function movePg(){
-    $("html,body").animate({
+    $("html,body").stop().animate({
         scrollTop:$(window).height()*pno+"px"
     }, 500, "easeInOutQuint", showEle);
 
