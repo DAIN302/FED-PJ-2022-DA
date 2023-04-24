@@ -244,7 +244,7 @@ const clearAuto = () => {
 }
 
 // 배너 이동 시 자동넘김 지우기 세팅
-slide.on("mousemove dragstart dragstop", clearAuto)
+slide.on("drag dragstart dragstop", clearAuto)
 
 // 자동넘김 인터발 세팅
 let banAuto;
