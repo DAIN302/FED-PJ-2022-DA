@@ -229,6 +229,46 @@ function showTit() {
 } ////// showTit
 
 
+// 첫번째 배너를 위한 타이틀 함수 최초호출
+setTimeout(showTit, 10);
+
+// 타임아웃 변수
+let banAgain;
+
+
+//자동넘김 지우기 함수
+const clearAuto = () => {
+    clearInterval(banAuto);
+    clearTimeout(banAgain);
+    banAgain = setTimeout(banAutoSlide, 5000);
+}
+
+// 배너 이동 시 자동넘김 지우기 세팅
+slide.on("mousemove dragstart dragstop", clearAuto)
+
+// 자동넘김 인터발 세팅
+let banAuto;
+const banAutoSlide = () => {
+    banAuto = setInterval(()=>{
+        slide.animate({
+            left : -winW*2 + "px"
+        }, 600, "easeOutQuint", ()=>{
+            // 이동 후  맨앞 li 맨뒤로 이동
+            slide.append(slide.find("li").first()).css({left : "-100%"})
+            // 커버 제거
+            cover.hide();
+            // 배너타이틀 함수
+            showTit();
+        });
+    
+        // 블릿변경함수호출
+        addOn(2);
+    },3000)
+}; 
+
+banAutoSlide();
+
+
 
 
 
