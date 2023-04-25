@@ -267,9 +267,3 @@ const banAutoSlide = () => {
 }; 
 
 banAutoSlide();
-
-
-
-
-
-
