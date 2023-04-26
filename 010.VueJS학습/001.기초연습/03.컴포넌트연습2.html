@@ -219,7 +219,7 @@
           // v-on:click="goPapa" 로 부모이벤트 접근 시작
           template: `
                     <div>
-                        <img v-bind:src="gsrc" v-on:click="goPapa" alt="dress" >
+                        <img v-bind:src="gsrc" v-on:click="goPapa" v-on:mouseover="ovNow" alt="dress" >
                         <aside>
                             <h2 v-text="gname"></h2>
                             <h3>{{gprice}}</h3>
@@ -249,6 +249,10 @@
               // $emit(부모가 만든 이벤트명)
               this.$emit("hull");
             },
+            ovNow() {
+              this.$emit("gotkimchi");
+              // 부모 요소에 v-on:gotkimchi=메서드명 을 만들어서 사용
+            },
             //정규식함수(숫자 세자리마다 콤마해주는 기능)
             insComma(x) {
               return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -265,6 +269,9 @@
             // 자식 이벤트 전달 후 실행 메서드
             goMsg(){
               alert("자식이 부모에게 이벤트 전달 성공");
+            },
+            ovMsg(){
+              console.log("갓김치 마시따");
             }
           }
         }); /////// Vue
@@ -304,6 +311,7 @@
         v-bind:myseq="i"
         v-bind:endlet="'WD'"
         v-on:hull="goMsg"
+        v-on:gotkimchi="ovMsg"
       ></list-comp>
       <!-- 
         v-on:hull="goMsg"
