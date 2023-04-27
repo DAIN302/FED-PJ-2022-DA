@@ -1,16 +1,14 @@
 // 쇼핑몰 갤러리 JS - small.js
 
+// 템플릿 html 코드 객체 JS 가져오기
+import hcode from "./hcode.js";
+
     // 뷰 JS 인스턴스 생성용 함수
     const makeVue = (x) => new Vue({ el: x });
 
     // 1. 제목에 넣을 전역 컴포넌트 만들기
     Vue.component("tit-comp", {
-      template: `
-                <strong>
-                    <span>🌟쇼핑몰🌟</span><br>
-                    🌟Shopping Mall🌟
-                </strong>
-            `,
+      template: hcode.tit,
     }); // 전역 컴포넌트1 /////
 
     // 뷰 인스턴스 생성하기 : 반드시 컴포넌트 아래에서 함
@@ -31,15 +29,7 @@
     // 여기가 자식
     Vue.component("list-comp", {
       // v-on:click="goPapa" 로 부모이벤트 접근 시작
-      template: `
-                <div>
-                    <img v-bind:src="gsrc" v-on:click="goPapa" v-on:mouseover="ovNow" alt="dress" >
-                    <aside>
-                        <h2 v-text="gname"></h2>
-                        <h3>{{gprice}}</h3>
-                    </aside>
-                </div>
-            `,
+      template: hcode.list,
       // 부모에서 v-bind:속성명=값 으로 전달한 속성변수를 props:[]/{}로 받음
       props: ["haha", "myseq", "endlet"],
       // props : {"haha":Number}, -> 데이터형 일치
@@ -47,13 +37,18 @@
       // 컴포넌트 내부 변수 세팅
       data: function () {
         return {
+          // 1. 상품 이미지 경로
           gsrc: `img_gallery/${this.haha}.jpg`,
+          // 2. 상품명
           gname:
             `Sofia23` +
             this.haha +
             this.endlet +
             (this.myseq % 2 ? "💝" : "🌙"),
-          gprice: this.insComma(1554 * this.haha) + `원`,
+          // 3. 단위가격(원래 가격)
+          gprice: this.insComma(1540 * this.haha) + `원`,
+          // 4. 할인된 가격 : 30% 할인
+          sale: this.insComma(Math.round((1554 * this.haha)*0.7)) + `원`,
         };
       },
       // 컴포넌트 내부 메서드 세팅
@@ -71,6 +66,11 @@
         insComma(x) {
           return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
+        // 세일표시여부 리턴메서드
+        condiRet() {
+          return this.haha==3 || this.haha==11 || this.haha==20 ||
+          this.haha==26 || this.haha==31 || this.haha==47 || this.haha==50
+        }
       },
     });
 
@@ -92,31 +92,7 @@
 
   // 큰이미지 보기 배경박스 컴포넌트 /////
   Vue.component("win-comp", {
-    template : `
-        <!-- 큰이미지 배경박스 -->
-        <div id="bgbx">
-            <!-- 오른쪽버튼 -->
-            <a href="#" class="abtn rb">
-                <span class="ir">오른쪽버튼</span>
-            </a>
-            <!-- 왼쪽버튼 -->
-            <a href="#" class="abtn lb">
-                <span class="ir">왼쪽버튼</span>
-            </a>
-            <!-- 닫기버튼 -->
-            <a href="#" class="cbtn">
-                <span class="ir">닫기버튼</span>
-            </a>
-            
-            <!-- 큰이미지 박스 -->
-            <div id="imbx">
-                <!-- 큰 이미지 -->
-                <img src="img_gallery/50.jpg" alt="큰 이미지">
-                <!-- 이미지 설명 -->
-                <h4></h4>
-            </div>
-        </div>
-    `
+    template : hcode.big
   }) //////////// win-comp 컴포넌트
 
   ////// win-comp 뷰JS 인스턴스 생성
@@ -133,9 +109,10 @@
             e.preventDefault();
             // 1. 클릭된 이미지 경로 읽어오기
             let isrc = $(this).find("img").attr("src");
+            
 
             // 2. 클릭된 이미지 경로를 큰 이미지에 src로 넣기
-            $("#imbx img").attr("src", isrc);
+            $(".gimg img").attr("src", isrc);
 
             //큰 이미지 보이기
             $("#bgbx").show();
@@ -144,23 +121,27 @@
             nowNum = $(this).attr("data-num");
             console.log(nowNum);
 
-
-            // let isrcNum = $("#imbx").find("img").attr("src").split("/")[1].split(".")[0];
-            // // 오른쪽 (다음) 버튼 클릭 시
-            // $(".rb").click(function(){
-            //     isrcNum++;
-            //     if(isrcNum > 50) isrcNum=1;
-            //     $("#imbx img").attr("src", `img_gallery/${isrcNum}.jpg`);
-            // })
+            // 5. 상품명 및 가격 큰 박스에 넣기 
+            setVal();
             
-            // // // 왼쪽 (이전) 버튼 클릭 시
-            // $(".lb").click(function(){
-            //     isrcNum--;
-            //     console.log(isrcNum);
-            //     if(isrcNum === 0) isrcNum=50;
-            //     $("#imbx img").attr("src", `img_gallery/${isrcNum}.jpg`);
-            // })
+
         }); //// click
+
+        // 상품명 및 가격 등 데이터 셋업 함수
+        function setVal(){
+          let tg = $(`.grid>div[data-num=${nowNum}]`)
+
+          // 상품명 큰박스에 넣기
+          $("#gtit, #gcode").text(tg.find("h2").text());
+          // 상품가격 큰박스에 넣기
+          // 세일인 경우와 아닌 경우 나누기
+          if(tg.find("h3 span").first().is(".del")) { // 세일일때
+            $("#gprice, #total").html(("<small>30% 세일가</small>"+tg.find("h3 span").last().text()));
+          }
+          else { // 세일 아닐때
+            $("#gprice, #total").text(tg.find("h3 span").first().text());
+          }
+        } /// setVal
 
         // 2. 닫기 버튼 클릭 시 큰이미지박스 숨기기
         $(".cbtn").click(function(e){
@@ -184,7 +165,10 @@
             }
 
             // 4. 큰 이미지 변경
-            $("#imbx img").attr("src", `img_gallery/${nowNum}.jpg`)
+            $(".gimg img").attr("src", `img_gallery/${nowNum}.jpg`)
+
+            // 5. 값 세팅
+            setVal();
         })
     }
 
