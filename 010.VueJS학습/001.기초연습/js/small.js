@@ -136,7 +136,7 @@ import hcode from "./hcode.js";
           // 상품가격 큰박스에 넣기
           // 세일인 경우와 아닌 경우 나누기
           if(tg.find("h3 span").first().is(".del")) { // 세일일때
-            $("#gprice, #total").html(("<small>30% 세일가</small>"+tg.find("h3 span").last().text()));
+            $("#gprice, #total").html(("<small>30% 세일가 </small>"+tg.find("h3 span").last().text()));
           }
           else { // 세일 아닐때
             $("#gprice, #total").text(tg.find("h3 span").first().text());
