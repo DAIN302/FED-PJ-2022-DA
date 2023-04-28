@@ -23,10 +23,11 @@ $(()=>{
             // 자동넘김설정
             delay: 0, // 시간간격(1/1000초)
             disableOnInteraction: false,
-            pauseOnMouseEnter : true
+            pauseOnMouseEnter : true,
+            waitForTranstion : true
             // 상호작용(건드리는 것!)이 없으면 다시 재시작(false일때)
         },
-        pauseOnMouseEnter : true,
+        
         // 사이즈별 슬라이드 개수, 간격 동적변경 세팅
         // Responsive breakpoints
         breakpoints: {
@@ -47,14 +48,14 @@ $(()=>{
             }
         }
       });
-
       $(".mySwiper").hover(function(){
         console.log("마우스엔터")
-        swiper.autoplay.paused;
+        swiper.autoplay.stop();
       } , function(){
         console.log("마우스아웃")
-        swiper.autoplay.resume();
+        swiper.autoplay.start();
       })
+
 
       // 테스트 : 스와이퍼의 인스턴스를 생성 후 특정 기능의 속성과 메서드 사용 가능
       // 예) Gallery라는 제목을 클릭하면 다음 슬라이드 보이기 기능 구현
