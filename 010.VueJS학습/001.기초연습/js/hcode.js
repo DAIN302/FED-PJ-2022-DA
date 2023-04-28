@@ -15,8 +15,12 @@ const hcode = {
         <aside>
             <h2 v-text="gname"></h2>
             <h3>
-                <span v-bind:class="{del:condiRet()}">{{gprice}}</span>
-                <span class="sale" v-if="condiRet()">{{sale}}</span>
+                <span v-bind:class="{del:condiRet()}" v-bind:data-price="orgprice">
+                {{gprice}}
+                </span>
+                <span class="sale" v-if="condiRet()">
+                {{sale}}
+                </span>
             </h3>
         </aside>
     </div>
@@ -108,7 +112,7 @@ const hcode = {
                             <li>
                                 <span>구매수량</span>
                                 <span>
-                                    <input type="text" id="sum" value="1" readonly />
+                                    <input type="text" id="sum" value="1"/>
                                     <!--
                                     readonly 속성은 직접입력을 막음
                                     disable 속성은 입력창의 비활성화

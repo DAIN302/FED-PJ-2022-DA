@@ -40,6 +40,10 @@
     margin: 0 auto;
 }
 
+.swiper-wrapper {
+    transition-timing-function: linear;
+}
+
 /* swiper 개별 슬라이드 list */
 .swiper-slide {
     text-align: center;
