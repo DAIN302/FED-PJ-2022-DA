@@ -250,31 +250,48 @@ import hcode from "./hcode.js";
 
           // 대상  : #sum
           // 이벤트 : keyup(입력 즉시 반응)
-          $("#sum").keyup(function(){
-            // 0. 요소 자신
+          $("#sum").keyup(function () {
+            // 0. 요소자신
             let ele = $(this);
-            // 1. 입력된 값
+            // 1. 입력된 값 : input요소는 val() 메서드로!
             let txt = ele.val();
-            // 2. 숫자가 아닌경우 : isNaN() -> 숫자가 아니면 true
-            if(isNaN(txt) || txt < 1 || txt==="" || txt.indexOf(".")!==-1) {
-              ele.val(1);
-              initTot();
-            }
-            // 3. 숫자인 경우 tot업뎃 + setVal() 호출
-            else {
-              tot = txt;
-              if(txt>=100) {
-                alert("100개 이상 구매는 쇼핑몰에 직접 문의주세요 \n Tel : 070-0000-0000")
-              }
-              // 숫자앞에 0을 넣으면 없애기
-              // 문자형 숫자를 숫자형으로 변환하면 됨
-              ele.val(Number(txt));
-            } 
+            // 2. 숫자가 아닌경우 : isNaN() - 숫자가 아니면 treu
+            // - 조건: 숫자가 아니거나 1미만 이거나 빈값이면!
+            // -> 소수점방지 : txt.indexOf(".")!==-1 
+            // 문자열.indexOf(".") -> 점문자가 없으면 -1임
 
+            // 다지우고 숫자를 넣을 경우 다지운상태 허용하기!
+            if(txt === "") return;
+
+            if (isNaN(txt) || 
+            txt < 1 || 
+            txt === "" ||
+            txt.indexOf(".")!==-1) {
+                initTot(); // 초기화!
+            } /// if ///
+            // 3. 숫자인경우 tot업뎃 + setVal()호출!
+            else {
+                tot = txt;
+                if(txt>=100){
+                    alert("100개이상인 경우 \n쇼핑몰에 직접전화주세요~!\nTel:02-333-3333");
+                }
+                // 숫자앞에 0을 넣으면 없애기!
+                // 문자형숫자를 숫자형으로 변환하면 된다!
+                ele.val(Number(txt));
+            } /// else ///
+            
             // 4. 계산수행
             setVal();
-            
-          })
+
+            console.log("직접입력:", txt);
+        })
+        .blur(function(){
+            // 블러시 만약 비어있으면 1로 초기화!
+            if($(this).val().trim() === ""){
+                initTot();
+                setVal();
+            }
+        }); ///// blur로 빈값허용에 대한처리 ////
 
     } /// mounted
 

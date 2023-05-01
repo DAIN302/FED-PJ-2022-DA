@@ -6,6 +6,37 @@
 
 function autoScroll() {
 
+    // 현재 페이지 가로크기 기준 800px 이하일때 모바일로 변경
+    // 모바일 상태변수 0-데스크탑 / 1-모바일
+    let mob = 0;
+    const updateW = () => {
+        if($(window).width()<=800) mob = 1;
+        else mob = 0;
+        // console.log(mob);
+    }/// updateW
+
+    // 로딩 시 실행
+    updateW();
+
+    // 배너초기화 적용함수
+    const callInit = () => {
+        if(!mob) { 
+            // 모바일 아니면 초기화
+            initSet();
+            // 중간페이지일 경우 초기화 제외(지우기)
+            $(".page").eq(pno).find(".imgc", ".txtc a").attr("style", "");
+        }
+        else {
+            $(".imgc", ".txtc a").attr("style", "");
+        }
+    };/// callInit
+
+    // 윈도우 리사이즈 이벤트
+    $(window).resize(()=>{
+        updateW();
+        callInit();
+    }); /// resize
+
     /*******************************************************************
         대상 변수 할당
     *******************************************************************/ 
@@ -46,6 +77,8 @@ function autoScroll() {
     *******************************************************************/ 
 
     function wheelFn() {
+        // 모바일일때 작동 정지
+        if(mob) return;
         // 광휠금지
         if(prot[0]) return;
         chkCrazy(0)
@@ -162,8 +195,8 @@ function autoScroll() {
         }) //// css
     }
 
-    // 초기화 함수 호출
-    initSet();
+    // 초기화 함수 호출 -> 모바일이 아닐때만 호출
+    if(!mob) initSet();
 
     /*******************************************************************
         함수명 : actPage
