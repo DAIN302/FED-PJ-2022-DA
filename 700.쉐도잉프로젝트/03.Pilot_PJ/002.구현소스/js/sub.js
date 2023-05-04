@@ -42,6 +42,9 @@ new Vue({
 
         // 신상품 기능 함수
         sinsangFn();
+
+        // 패럴렉스 기능 함수
+        setParallax(".c2", 0.6);
     }
 }) // 상단영역 뷰 인스턴스
 
@@ -200,5 +203,11 @@ function sinsangFn(){
 
         
     }) //// scroll
-
 } //// sinsangFn
+
+// 패럴렉스 플러그인 적용
+function setParallax(ele, speed){
+    // 대상 : .c2
+    $(ele).parallax("50%",speed)
+
+} ///// setParallax
