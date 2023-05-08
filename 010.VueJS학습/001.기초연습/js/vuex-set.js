@@ -39,6 +39,11 @@ Vue.component("top-area", {
 // 스토어 변수 내부접근은 영역까지 모두 써줌
 // 예) $store.state.imgsrc
 Vue.component("main-area", {
+    // 컴포넌트 영역은 뷰JS에서 해석되는 부분이므로 
+    // 뷰엑스 스토어의 변수 store를 전역표시 $store라고 표기해야 유효함
+    // 더 정확한 문법은 this.$store라고 써야함
+    // 이 파일은 일반 JS에서 실행되므로 변수 할당된 뷰JS 인스턴스가 영역안에서 실행되므로
+    // 뷰인스턴스 자신인 this를 쓰지 않아도 자동적으로 this를 적용시켜줌
     template : `
     <main>
         <img v-bind:src="$store.state.imgsrc" alt="지역이미지">
@@ -82,7 +87,7 @@ new Vue({
     // created 메서드 구역에 세팅
     created(){
         // 스토어에 있는 initSet 메서드 호출 방법
-        // 스토어 호출 메서드가 따로 있음 -> store.commit("메서드명, 파라미터값")
+        // 스토어 호출 메서드가 따로 있음 -> store.commit("메서드명", "파라미터값")
         // 1. 메서드명 : 반드시 문자형으로 입력
         // 2. 파라미터 : 단일값 또는 객체형식을 보낼 수 있음
         // 인스턴스 내부구역에 코딩 시 store 앞에 $를 붙이지 않음
@@ -92,7 +97,10 @@ new Vue({
         store.commit('initSet',{
             url : "https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg",
             txt : "도시소개에 어서오세요!"
-        })
+        });
+        // actions 메서드 호출 : dispatch("메서드명", 전달값)
+        store.dispatch('myAct', "나야나")
+
     }, //// created
     //제이쿼리는 DOM에 직접 작용하므로 mounted에 구현
     mounted(){
