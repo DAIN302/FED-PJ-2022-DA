@@ -2,16 +2,44 @@
 
 // 자동스크롤 기능 함수 가져오기
 import menuFn from "./mainjs/menu.js";
+// 공통데이터
 import comData from "./tempData/data-common.js";
+// 서브데이터
+import subData from "./tempData/data-sub.js";
+// 신상정보
 import sinsang from "./gdsdata/sinsang.js";
+// 뷰엑스 스토어 JS 가져오기
+// 반드시 메인JS파일 한군데서 불러와서 써야 상태관리 됨
+// -> 이 JS파일에 Vue 인스턴스 생성코드가 같이 있어야함
+import store from "./store.js";
 
 let swiper
+
+//########## 서브영역 뷰 템플릿 세팅
+Vue.component("ban-comp", {
+    template : subData.banner,
+})  ///// 서브영역 Vue component
+
+//########## 서브영역 뷰 인스턴스 세팅
+new Vue({
+    el : "#cont",
+    store, // 뷰엑스 스토어 등록 필수
+    created(){
+    }, 
+    mounted(){
+    }
+    
+}) //// 서브영역 뷰 인스턴스
+
+
 
 //########## 상단영역 메뉴 뷰 템플릿 세팅
 // Vue.component(내가지은요소명, {옵션})  
 Vue.component("top-comp", {
     template : comData.tareaSub,
 })  ///// 상단영역 Vue component
+
+//########## 하단영역 뷰 템플릿 세팅
 Vue.component("foot-comp", {
     template : comData.barea,
 })  ///// 하단영역 Vue component
@@ -20,6 +48,7 @@ Vue.component("foot-comp", {
 // new Vue({옵션})
 new Vue({
     el : "#top",
+    store, // 뷰엑스 스토어 사용하려면 뷰인스턴스에 등록 필요
     data : {},
     // created 실행 구역 : DOM 연결 전 (가상DOM-실제DOM 연결 전)
     created : function() {
@@ -48,6 +77,11 @@ new Vue({
 
         // 스크롤리빌 플러그인 적용 호출
         $.fn.scrollReveal();
+
+        // 메뉴 클릭 시 전체 메뉴창 닫기
+        $(".mlist a").click(()=>$(".ham").trigger('click'))
+        // $(선택요소).trigger(이벤트) -> 선택요소의 이벤트 강제 발생
+        // 참고 JS클릭이벤트 강제발생 document.querySelector(요소).click();
     }
 }) // 상단영역 뷰 인스턴스
 
