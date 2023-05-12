@@ -16,8 +16,14 @@ import store from "./store.js";
 let swiper
 
 //########## 서브영역 뷰 템플릿 세팅
+// 1. 배너파트 컴포넌트
 Vue.component("ban-comp", {
     template : subData.banner,
+})  ///// 서브영역 Vue component
+
+//
+Vue.component("cont1-comp", {
+    template : subData.cont1,
 })  ///// 서브영역 Vue component
 
 //########## 서브영역 뷰 인스턴스 세팅
