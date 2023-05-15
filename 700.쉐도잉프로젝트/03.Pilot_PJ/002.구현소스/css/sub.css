@@ -147,8 +147,19 @@ body {
 /* 컨텐츠영역2 - 스페셜 영역 */
 .c2 {
     height: 50vh;
-    background: url(../images/sub/men/02.special.jpg) no-repeat fixed center top/cover;
+    background: url(../images/sub/men/02.special.png) no-repeat fixed center top/cover;
     text-align: center;
+}
+
+/* 신상품 배경이미지 카테고리 클래스추가 */
+.c2.men{
+    background-image: url(../images/sub/men/02.special.png);
+}
+.c2.women{
+    background-image: url(../images/sub/women/02.special.png);
+}
+.c2.style{
+    background-image: url(../images/sub/style/02.special.png);
 }
 
 .c2tit {

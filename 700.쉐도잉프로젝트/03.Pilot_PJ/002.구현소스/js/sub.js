@@ -15,15 +15,56 @@ import store from "./store.js";
 
 let swiper
 
+// 바로 실행 구역 함수
+// 바로 실행 구역 쓰는 이유 : 변수나 명령어를 다른 영역과 구분하여 코딩할 때 주로 사용
+// GET방식 데이터를 store에 초기값으로 세팅하는 것을 인스턴스 생성 전에 해야 아래쪽에
+// 빈값으로 세팅된 값이 들어가서 에러나는 것을 막을 수 있다.
+(()=>{
+    let pm;
+    // GET방식으로 넘어온 데이터 처리하여 분류별 서브페이지 구성
+    // location.href 상단 url 읽어오기
+    // indexOf("?")!==-1 물음표가 있으면 
+    if(location.href.indexOf("?")!==-1){
+        pm = location.href.split("?")[1].split("=")[1];
+        // 물음표로 잘라서 뒤의 것, 이퀄로 잘라서 뒤의 것
+        // 파라미터 값만 추출
+        // pm에 할당이 되었다면 undefined가 아니므로 true
+        if(pm) {
+            store.commit("chgData", decodeURI(pm))
+            // decodeURI() - 변경할 문자열만 변경
+            // decodeURIComponent() - url 전체에 섞여 있어도 모두 변환
+        }
+        // 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성" 세팅
+        else {
+            store.commit("chgData", "남성");
+        }
+    }
+})();
+
 //########## 서브영역 뷰 템플릿 세팅
-// 1. 배너파트 컴포넌트
+// 1. 배너영역
 Vue.component("ban-comp", {
     template : subData.banner,
 })  ///// 서브영역 Vue component
 
-//
+// 2. 컨텐츠1
 Vue.component("cont1-comp", {
     template : subData.cont1,
+})  ///// 서브영역 Vue component
+
+// 3. 컨텐츠2
+Vue.component("cont2-comp", {
+    template : subData.cont2,
+})  ///// 서브영역 Vue component
+
+// 4. 컨텐츠3
+Vue.component("cont3-comp", {
+    template : subData.cont3,
+})  ///// 서브영역 Vue component
+
+// 5. 컨텐츠4
+Vue.component("cont4-comp", {
+    template : subData.cont4,
 })  ///// 서브영역 Vue component
 
 //########## 서브영역 뷰 인스턴스 세팅
@@ -60,6 +101,8 @@ new Vue({
     created : function() {
         // DOM 연결 전 데이터 가공 작업
         console.log("created구역")
+        // 파라미터 변수
+
     },
     // mounted 실행구역 : DOM 연결 후 실행 (가상DOM-실제DOM 연결 후)
     mounted : function(){
@@ -85,9 +128,41 @@ new Vue({
         $.fn.scrollReveal();
 
         // 메뉴 클릭 시 전체 메뉴창 닫기
-        $(".mlist a").click(()=>$(".ham").trigger('click'))
+        $(".mlist a").click(()=>{
+            // 1. 전체 메뉴창 닫기
+            $(".ham").trigger('click');
+            // 2. 부드러운 스크롤 위치값 업데이트
+            sc_pos=0;
+            // 3. 스와이퍼 첫번째 슬라이드로 이동
+            swiper.slideTo(0);
+            // 첫슬라이드는 0번: 스와이퍼 API 이용
+            // 4. 등장액션 스크롤리빌 다시 호출
+            $.fn.scrollReveal();
+        })
         // $(선택요소).trigger(이벤트) -> 선택요소의 이벤트 강제 발생
         // 참고 JS클릭이벤트 강제발생 document.querySelector(요소).click();
+
+        // GNB 메뉴 클릭 시 해당위치로 스크롤이동 애니메이션
+        // 각 .gnb a 에는 href="#c2" 이런식으로 아이디 요소가 있음
+        // a요소의 #아이디명 기본 위치이동은 되지만 스크롤이동 애니메이션이 안됨
+        // 제이쿼리로 스크롤이동 애니메이션 구현
+        $(".gnb a").click(function(e){
+            // 1. 기본 이동 막기
+            e.preventDefault();
+            // 2.클릭된 a요소의 href값 읽어오기
+            let aid = $(this).attr("href");
+            // 3. 아이디요소 박스 위치구하기
+            let newpos = $(aid).offset().top;
+            // 4. 애니메이션 이동
+            $("html, body").animate({
+                scrollTop : newpos + "px"
+            }, 600, "easeOutQuint")
+            // 5. 부드러운 스크롤 변수에 현재 위치값 업데이트
+            sc_pos = newpos
+
+        })
+        // 로고 클릭 시 첫 페이지 이동
+        $("#logo").click(()=>location.href="index.html");
     }
 }) // 상단영역 뷰 인스턴스
 
@@ -186,8 +261,10 @@ function sinsangFn(){
         function(){ // over 시
             // 1. 클래스 정보 알아내기
             let clsnm = $(this).attr("class");
+            // 중간 객체속성명 상위부모박스 #c1의 data-cat 속성값 읽어오기
+            let cat = $(this).parents(".c1").attr("data-cat")
             // 2. 클래스 이름으로 세팅된 신장 정보 객체 데이터 가져오기
-            let gd_info = sinsang[clsnm];
+            let gd_info = sinsang[cat][clsnm];
             // 3. 상품정보박스 만들고 보이게 하기 
             $(this).append(`<div class="ibox"></div>`)
             // .ibox에 상품 정보 넣기

@@ -5,7 +5,7 @@ const store = new Vuex.Store({
         subData : {
             "남성" : {
                 // 남성메뉴
-                menu : ['NEW ARRIVAL','WINDBREAKER','BEACH STYLE','SPORT STYLE'],
+                menu : ["NEW MEN'S ARRIVAL",'WINDBREAKER','BEACH STYLE','SPORT STYLE'],
                 // 배너 갯수
                 cnt : 3,
                 // 카테고리명
@@ -13,7 +13,7 @@ const store = new Vuex.Store({
             },
             "여성" : {
                 // 여성메뉴
-                menu : ['NEW ARRIVAL','SPORTY FASHION','FREE STYLE','COMFORTABLE STYLE'],
+                menu : ["NEW WOMEN'S ARRIVAL",'SPORTY FASHION','FREE STYLE','COMFORTABLE STYLE'],
                 // 배너 갯수
                 cnt : 3,
                 // 카테고리명
@@ -29,14 +29,15 @@ const store = new Vuex.Store({
             },
         },
         // 공통 처리 메뉴 변수
-        menu : ['NEW ARRIVAL','WINDBREAKER','BEACH STYLE','SPORT STYLE'],
+        menu : [],
         // 공통 처리 배너 개수 변수
-        cnt : 3,
+        cnt : 0,
         // 공통 처리 카테고리명 변수
-        cat : "men",
+        cat : "",
     }, // state
     // state 변경 메서드 구역
     mutations : {
+        // 데이터 초기
         // 데이터 변경 셋업 메서드
         chgData(dt, pm){ // dt- state 데이터, pm-전달값
             console.log("데이터변경", pm)
