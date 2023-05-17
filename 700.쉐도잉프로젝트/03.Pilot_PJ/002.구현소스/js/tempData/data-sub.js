@@ -25,7 +25,10 @@ const subData = {
         -> 제이쿼리에서 DOM 세팅 속성을 읽어서 sinsang 객체의 하위 속성 카테고리명을 사용하기 위해 세팅 
     -->
         <!-- 2-2-1. 신상품 타이틀 -->
-        <h2 class="c1tit js-reveal">{{$store.state.menu[0]}}</h2>
+        <h2 class="c1tit js-reveal">
+            {{$store.state.menu[0]}}
+            <button onclick="location.href='glist.html'">전체리스트 보러가기</button>
+        </h2>
         <!-- 2-2-2. 신상품 박스 -->
         <div class="flowbx js-reveal">
             <!-- 리스트박스 -->
