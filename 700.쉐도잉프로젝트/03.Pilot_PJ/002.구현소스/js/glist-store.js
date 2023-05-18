@@ -42,10 +42,10 @@ const store = new Vuex.Store({
          }, // updatePaging
          // 모어 변수 업데이트 메서드
          updateMore(dt, pm){
-            // mnum 은 모어 범위수
-            dt.mnum = pm;
+            // mnum 은 모어 범위수 : += 로 여러번 모어진행
+            dt.mnum += pm;
             // 업데이트 후 모어 버튼 없애기
-            dt.mbtn = false
+            if(dt.mnum>=25) dt.mbtn = false;
          }// updateMore
 
     } // mutations
