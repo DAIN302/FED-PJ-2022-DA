@@ -260,6 +260,59 @@ $(function () { //// jQB2 //////////////////////////
     ////////// video태그 기능 컨트롤 ////////////////
     ////////////////////////////////////////////////
 
+    // 2. 동영상 컨트롤 기능 구현 
+    // 2-1. 재생/멈춤 기능 //////////////////
+    // 2-1-1. 마우스 오버/아웃 시 이미지 변경
+    // 대상 : .btnpp img
+    // 제이쿼리 메서드 : hover(함수1, 함수2)
+    $(".btnpp img").hover(
+        function(){ // 마우스 오버시 - 진한 이미지
+            // 이미지 경로 읽어오기
+            let csrc = $(this).attr("src")
+            // console.log(csrc)
+            // 이미지 경로 변경 : .png -> -1.png
+            // replace() 사용 -> replace(바뀔값, 바꿀값)
+            csrc = csrc.replace(".png", "-1.png");
+            // 실제 이미지 변경 
+            $(this).attr("src", csrc)
+        }, 
+        function(){ // 마우스 아웃시 - 흐린 이미지
+            // 이미지 경로 읽기
+            let csrc = $(this).attr("src")
+            // console.log(csrc)
+            // 이미지 경로 변경
+            csrc = csrc.replace("-1.png", ".png");
+            // 실제 이미지 변경
+            $(this).attr("src", csrc)
+        }
+    ); // hover
+
+    // 2-1-2. 재생/멈춤 기능 구현
+    // 대상 : .btnpp img
+    // 원리 : 재생 상태면 멈추고 멈춤 상태면 재생
+    // 핵심 : 동영상의 멈춤 상태를 알아낼 수 있음
+    $(".btnpp img").click(function(){
+        // 동영상 멈춤 상태 알아내기 - paused 속성으로 알아냄
+        // 결과 : true - 멈춤,  false - 재생중
+        let paused_sts = mv.get(0).paused;
+
+        // 1. 멈춤 아니면(false) 동영상 멈추기
+        if(!paused_sts){ // false 일때 들어오려면 NOT(!) 연산자 사용
+            // 비디오 멈추기 -> pause()
+            mv.get(0).pause();
+            // 멈춤 상태면 진한 재생 버튼으로 변경
+            $(this).attr("src", "images/vbt2-1.png")
+        }
+        // 2. 멈춤 상태일 경우
+        else {
+            mv.get(0).play();
+            $(this).attr("src", "images/vbt1-1.png")
+        }
+
+        console.log(paused_sts)
+    })
+
+
     
 
 
