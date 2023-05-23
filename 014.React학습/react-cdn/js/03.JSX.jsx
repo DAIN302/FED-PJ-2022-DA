@@ -85,6 +85,85 @@ const myele4 =
 // 네번째 div요소에 출력
 ReactDOM.render(myele4, document.querySelectorAll("#root>div")[3])    
 
+// 5번에는 내가 원하는 태그를 출력해봄
+const myData = [
+    {idx : "1", name : "달빛술사 쿠키", type :"마법형"},
+    {idx : "2", name : "바다요정 쿠키", type :"폭발형"},
+    {idx : "3", name : "홀리베리맛 쿠키", type :"방어형"},
+    {idx : "4", name : "퓨어바닐라맛 쿠키", type :"치유형"},
+    {idx : "5", name : "다크카카오맛 쿠키", type :"돌격형"},
+]
+// map(value, index, array)을 사용한 태그생성
+// map(배열값, 순번, 배열객체전체자신)
+// 파라미터 구성은 forEach 메서드와 유사
+const clist = myData.map(val=>
+        <li>{val.name}:{val.type}</li>
+)
+
+
+const myele5 = 
+    <React.Fragment>
+        <h1>쿠키리스트</h1>
+        <div>
+            <ul>{clist}</ul>
+        </div>
+    </React.Fragment>
+// 다섯번째 div 요소에 출력
+ReactDOM.render(myele5, document.querySelectorAll("#root>div")[4])    
+
+/*******************************************************************
+    [ JSX는 홀로태그라도 끝에 닫기를 해줘야함 ]
+    예) <br> -> <br/>
+    <input type="text"> -> <input type="text"/>
+*******************************************************************/
+const myele6 = <input type="text" value="홀로태그는 스스로 닫기" />
+
+ReactDOM.render(myele6, document.querySelectorAll("#root>div")[5])    
+
+
+/*******************************************************************
+    [ JSX는 속성 클래스는 className으로 표기 ]
+    <태그 class="클래스명">
+    class는 JS에서 키워드이므로 사용못함 대신
+    <태그 className="클래스명">
+*******************************************************************/
+const myele7 = <h1 className="myclass">className으로 class 세팅</h1>
+
+ReactDOM.render(myele7, document.querySelectorAll("#root>div")[6])    
+
+
+/*******************************************************************
+    [ JSX에서 조건문 사용 - if문 ]
+    리액트는 if명령문을 지원하지만 JSX 내부에서는 지원X
+
+    JSX에서 조건문을 사용하려면?
+    JSX외부에서 if문을 사용하거나 내부에서 삼항연산자를 사용
+*******************************************************************/
+// JSX외부에서 if문 사용
+const x = 1000;
+let txt = "이 돈으로 가능"
+if(x<10000){
+    txt = "돈이 부족해서 안됨"
+}
+
+const myele8 = 
+<div>
+    <h1>현재 내가 가진돈은 {x}원</h1>
+    <h1>{txt}</h1>
+</div>
+
+ReactDOM.render(myele8, document.querySelectorAll("#root>div")[7])    
+
+// JSX 표현식에 삼항연산자 사용
+let time = 8;
+const myele9 = (
+    <React.Fragment>
+        <h1>지금 몇시임? {time}시!</h1>
+        <h1>{time>9? "집에 들어와":"더 놀다와"}</h1>
+    </React.Fragment>
+)
+
+ReactDOM.render(myele9, document.querySelectorAll("#root>div")[8])    
 
 /*******************************************************************
 
