@@ -210,22 +210,22 @@ const store = new Vuex.Store({
                     $("#cartlist")
                         // (1) html 테이블 태그 넣기
                         .html(
-                            `
-            <a href="#" class="cbtn cbtn2"></a>
-            <table>
-                <caption><h1>카트 리스트</h1></caption>
-                <tr>
-                    <th>번호</th>
-                    <th>상품</th>
-                    <th>상품명</th>
-                    <th>상품코드</th>
-                    <th>단가</th>
-                    <th>수량</th>
-                    <th>합계</th>
-                    <th>삭제</th>
-                </tr>
-                ${rec}
-            </table>`
+                                            `
+                            <a href="#" class="cbtn cbtn2"></a>
+                            <table>
+                                <caption><h1>카트 리스트</h1></caption>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>상품</th>
+                                    <th>상품명</th>
+                                    <th>상품코드</th>
+                                    <th>단가</th>
+                                    <th>수량</th>
+                                    <th>합계</th>
+                                    <th>삭제</th>
+                                </tr>
+                                ${rec}
+                            </table>`
                 )
                 // (2) 카트박스 CSS 설정
                 .css({
