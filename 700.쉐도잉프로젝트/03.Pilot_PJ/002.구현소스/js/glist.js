@@ -28,16 +28,18 @@ new Vue({
     store, 
     router,
     data : {},
-    mounted(){
+    // 뷰인스턴스 생성 직후 세팅구역
+    created(){ // 뷰 데이터 프리세팅
         // 첫번째 라우터 강제실행
         this.$router.push('/glist');
         // push(실행할 뷰라우터 경로)
         // $router 전체 라우터 객체
         // $route 개별 경로 정보 객체
-
+    
         // 최초 체크박스 체크 메서드 실행해야 리스트 나옴
         store.commit('resCheck');
-        
+    },
+    mounted(){
         menuFn();
 
         $("#logo").click(() => (location.href = "index.html"));
