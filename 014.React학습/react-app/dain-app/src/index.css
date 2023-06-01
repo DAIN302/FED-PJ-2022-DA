@@ -1,10 +1,14 @@
 @charset "utf-8";
 /* 전체페이지 공통 CSS - index.html 전체에 적용 */
-html,body {
+html,body, ul, ol, dt,dd,p, figure,figcaption,h1,h2,h3,h4,h5,h6 {
   margin: 0;
   padding: 0;
 }
 
 body {
   background-color: rgb(210, 237, 248);
+}
+
+ul, ol {
+  list-style: none;
 }

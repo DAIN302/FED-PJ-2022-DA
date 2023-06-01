@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* 메인배너용 CSS -ban.css*/
+
+.banner{
+    position: relative;
+}
+
+.bantit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding : 25px;
+    color : #fff;
+    text-shadow: 0 0 3px #000;
+}
+
+/* 배너슬라이드 */
+.slider{
+    position: relative;
+    left: 0;
+}
+
+.slider li {
+    position: relative;
+}
+
+/* 배너 컨텐츠 버튼 */
+.bantit button {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: transparent;
+    color : #fff;
+    border: 1px solid #fff;
+    transition: all .3s;
+}
+
+.bantit button:hover {
+    background-color: #0d6efd;
+}
+
+.banimg { 
+    width: 100%;
+}
+
