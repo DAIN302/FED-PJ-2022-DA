@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판 리스트 페이지</title>
-    <link rel="stylesheet" href="board.css">
-</head>
+    <link rel="stylesheet" href="./css/board.css">
+    <script src="./js/jquery-3.6.3.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/data.json"></script>
+    <script src="./js/list.js"></script>
 
 <body>
     
 
     <!--게시판 리스트-->
-    <table class="dtbl">
+    <table class="dtbl" id="board">
         <caption>방명록 게시판</caption>
         <!--상단 컬럼명 표시영역-->
         <thead>
@@ -62,10 +65,9 @@
         <!--하단 페이징 표시부분-->
         <tfoot>
             <tr>
-                <td colspan="5">
-                    <!--PHP에서 페이징을 구성하여 표시한다!-->
-                  
-
+                <td colspan="5" class="paging">
+                    <!-- 페이징번호 위치 -->
+                    
                 </td>
             </tr>
         </tfoot>
