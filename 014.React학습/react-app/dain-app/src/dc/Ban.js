@@ -28,7 +28,7 @@ function Ban(props){
         <div className="banner">
             <ul className="slider">
                 {
-                    sel_data.map(x=><MakeList rec={x}/>)
+                    sel_data.map((x,i)=><MakeList rec={x} key={i}/>)
                 }   
             </ul>
         </div>
