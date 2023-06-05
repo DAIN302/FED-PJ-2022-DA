@@ -332,7 +332,41 @@ $(function () { //// jQB2 //////////////////////////
         // sound가 true 면 반대로 했으므로 소리남 아이콘 
         if(sound) $(this).attr("src", "./images/speaker_blue.png");
         else $(this).attr("src", "./images/speaker-mute_blue.png");
-    })
+    }) // click
+
+    // 2-3. 재생위치변경 기능(클릭/드래그)
+    // 2-3-1. 비디오 현재 진행바 기능(시간경과표시)
+    // 변경대상 : .tBar
+    const tBar = $(".tBar")
+    // 사용할 이벤트 : timeupdate(비디오 요소의 시간이 변경될때 발생)
+    // on(이벤트, 함수) 메서드 사용
+    mv.on("timeupdate", function(){
+        // 목표 : 비디오가 재생중일때 진행바가 움직이게 함
+        // 원리 : 진행바의 진행비율을 퍼센트(%)로 나타내야함
+        // 계산법 : 현재시간 / 전체시간 * 100
+
+        // 1. 비디오 현재시간 가져오기 : currentTime속성(비디오 현재시간)
+        let ctime = mv[0].currentTime;
+        // let ctime = $(this)[0].currentTime;
+        // mv[0] === mv.get(0)
+        // 비교) document.querySelectorAll(".my").item(0) === document.querySelectorAll(".my")[0]
+
+        // 2. 비디오 전체재생 시간
+        let ftime = mv[0].duration;
+
+        // 3. 진행바 변경
+        // 퍼센트 진행율 : 현재시간 / 전체시간 * 100 
+        // 현재시간이 0일경우 전체시간이 안나옴(if문으로 막기)
+        if(!isNaN(ftime)){
+            let percent = ctime / ftime * 100
+            // 소수점변수.toFixed(자릿수) -> 특정 자릿수까지만 소수점 표시
+    
+            // 4. 진행바의 width를 %값으로 변경
+            tBar.css({
+                width : percent.toFixed(2) + "%"
+            })
+        }
+    }) // timeupdate
 
     
 
