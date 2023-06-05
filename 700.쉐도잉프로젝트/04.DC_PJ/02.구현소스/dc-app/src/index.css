@@ -1,13 +1,16 @@
-body {
+@charset "utf-8";
+/* 전체페이지 공통 CSS - index.html 전체에 적용 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+html,body, ul, ol, dt,dd,p, figure,figcaption,h1,h2,h3,h4,h5,h6 {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  /* background-color: rgb(210, 237, 248); */
+}
+
+ul, ol {
+  list-style: none;
 }

@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* 메인배너용 CSS -ban.css*/
+
+.banner{
+    position: relative;
+    overflow: hidden;
+}
+
+.bantit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding : 25px;
+    color : #fff;
+    text-shadow: 0 0 3px #000;
+}
+
+/* 배너슬라이드 */
+.slider{
+    position: relative;
+    left: 0;
+    display: flex;
+}
+
+.slider li {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    /* 부모크기에 맞춰서 강제로 축소되는 옵션 해제 */
+}
+
+/* 배너 컨텐츠 버튼 */
+.banner button {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: transparent;
+    color : #fff;
+    border: 1px solid #fff;
+    transition: all .3s;
+}
+
+.banner button:hover {
+    background-color: #0d6efd;
+}
+
+.banimg { 
+    width: 100%;
+}
+
+/* 이동버튼 */
+.banner .abtn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 0;
+    box-sizing: content-box;
+    line-height: 40px;
+    cursor: pointer;
+}
+.lb{
+    left: 3vw;
+}
+.rb{
+    right: 3vw;
+}
+/* 블릿 */
+.indic{
+    position: absolute;
+    left: 50%;
+    bottom: 3vh;
+    transform: translateX(-50%);
+    display: flex;
+}
+.indic li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    text-shadow: 0 0 2px #000;
+}
+.indic li.on{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
