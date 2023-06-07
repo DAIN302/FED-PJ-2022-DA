@@ -1,7 +1,7 @@
 // 메뉴 버튼 모듈
 import $ from "jquery";
-import "./css/menubtn.css"
-import menu_data from "./data/menubtn";
+import "../css/menubtn.css"
+import menu_data from "../data/menubtn";
 import { Link } from "react-router-dom";
 
 // 제이쿼리 로드구역 함수

@@ -1,8 +1,8 @@
 // 배너 컴포넌트 Ban.js
 // 배너 css
-import "./css/ban.css"
+import "../css/ban.css"
 // 배너 data
-import ban_data from "./data/banner";
+import ban_data from "../data/banner";
 // 제이쿼리 가져오기
 import $ from "jquery";
 

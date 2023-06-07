@@ -1,4 +1,6 @@
 // MenuBtn 컴포넌트용 데이터 - menubtn.js
+// 메인페이지에서 한번만 사용되므로 객체형으로 페이지별 데이터 구분이 필요없으므로
+// 배열형으로 데이터 세팅
 const menu_data = [
     {
         "isrc" : "./images/menu1.jpg",
