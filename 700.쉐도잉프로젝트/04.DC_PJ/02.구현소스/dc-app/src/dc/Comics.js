@@ -6,7 +6,7 @@ import VidIntro from "./modules/VidIntro";
 const Comics = () => {
     return(
         <>
-            <Ban cat="COMICS"/>
+            {/* <Ban cat="COMICS"/> */}
             <VidIntro cat="COMICS"/>
         </>
     )
