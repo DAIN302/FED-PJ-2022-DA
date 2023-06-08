@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* VidSwipe 모듈용 CSS */
+
+.vidswbox {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.vidswbox .tit{
+    padding: 20px 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+    font-size: 36px;
+}
+
+/* 비디오박스 */
+.videobx {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+.playvid h2 {
+    position: absolute;
+    color : #fff;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+}
+
+.playvid iframe {
+    position: absolute;
+    aspect-ratio: 731/412;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
+.playvid .cbtn {
+    position: absolute;
+    top: 10%;
+    right : 10%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color : #fff;
+    border : 2px solid #fff;
+    border-radius: 50%;
+    line-height: 40px;
+    padding : 0;
+}
