@@ -45,7 +45,9 @@ export default function App(){
             {/* path대신 index만 쓰면 첫페이지 */}
             <Route index element={<Main/>} />
             <Route path="ct" element={<Characters/>} />
-            <Route path="co" element={<Comics/>} />
+            <Route path="co1" element={<Comics sub="0"/>} />
+            <Route path="co2" element={<Comics sub="1"/>} />
+            <Route path="co3" element={<Comics sub="2"/>} />
             <Route path="mv" element={<Movies/>} />
             <Route path="gm" element={<Games/>} />
             <Route path="nw" element={<News/>} />

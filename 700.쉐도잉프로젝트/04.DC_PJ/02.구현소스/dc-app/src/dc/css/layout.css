@@ -1,14 +1,13 @@
 @charset "utf-8";
 .top{
     /* background-image: linear-gradient(to bottom,#CCC,#111); */
-    border: 4px double #000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 58px;
-    background-color: #fff;
     z-index: 9999;
+    background-color: #fff;    
     font-family: 'Roboto Condensed', sans-serif;
 }
 .gnb{
@@ -18,9 +17,8 @@
 .gnb ul{
     display: flex;
     align-items: center;
-    justify-content: center;
     list-style: none;
-    gap: 0 20px;
+    gap: 0 20px
 }
 .gnb>ul>li{
     /* 상위메뉴 부모자격 */
@@ -29,23 +27,18 @@
 }
 .gnb a{
     color: #111;
-    text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
+    transition: .3s;
 }
-.gnb a:hover{
-    color: #0d6efd;
-    text-decoration: underline;
-    text-decoration-style: wavy;
-    text-shadow: 2px 2px 2px #ccc;
-}
-h1{
-    text-align: center;
+.gnb a:hover{    
+    color: #007aff;
 }
 
 .smenu {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(20px);
+    transform: translateX(-50%) translateY(10px);
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -62,7 +55,7 @@ h1{
 .smenu::before {
     content: '';
     position: absolute;
-    top: -17px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     width: 0px;
@@ -74,7 +67,7 @@ h1{
 .smenu::after {
     content: '';
     position: absolute;
-    top: -15px;
+    top: -17px;
     left: 50%;
     transform: translateX(-50%);
     width: 0px;
@@ -84,6 +77,10 @@ h1{
     border-right: 15px solid transparent;
 }
 
+h1{
+    text-align: center;
+}
+
 /* 메인영역 */
 
 
@@ -91,19 +88,32 @@ h1{
 .info{
     text-align: center;
     padding: 30px;
-    /* background-image: linear-gradient(to bottom, #CCC, #777); */
-    background-color: #111;
+    background-color: #000;
     color: #fff;
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-.bmenu {
     display: flex;
-    gap: 0 10px;
-    justify-content: center;
+    flex-direction: column;
 }
-
-.bmenu a {
-    color : #fff;
+.info>ul>li:last-child{
+    font-weight: bold;
+}
+.bmenu{
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+.bmenu li{
+    padding: 0 10px;
+}
+.bmenu li + li{
+    border-left: 2px solid #fff;
+}
+.bmenu a{
+    color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+.bmenu a:hover{
+    color: #007aff;
 }

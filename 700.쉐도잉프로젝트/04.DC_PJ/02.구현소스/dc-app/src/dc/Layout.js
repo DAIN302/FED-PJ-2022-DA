@@ -29,19 +29,19 @@ const Layout = () => {
         },
         {
             txt : "COMICS",
-            link : "/co",
+            link : "/co1",
             sub : [
                 {
                     txt : "LATEST COMICS",
-                    link : "/lc",
+                    link : "/co1",
                 },
                 {
                     txt : "DC UNIVERSE INFINITE",
-                    link : "/dui",
+                    link : "/co2",
                 },
                 {
                     txt : "ALL COMICS SERIES",
-                    link : "/acs",
+                    link : "/co3",
                 },
             ],
         },
@@ -51,15 +51,15 @@ const Layout = () => {
             sub : [
                 {
                     txt : "DC MOVIES",
-                    link : "/dm",
+                    link : "/mv",
                 },
                 {
                     txt : "DC SERIES",
-                    link : "/ds",
+                    link : "/mv",
                 },
                 {
                     txt : "DC ON HBO MAX",
-                    link : "/hbo",
+                    link : "/mv",
                 },
             ],
         },
