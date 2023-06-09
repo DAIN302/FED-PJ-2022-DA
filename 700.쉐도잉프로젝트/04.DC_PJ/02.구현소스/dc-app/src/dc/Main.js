@@ -4,7 +4,7 @@ import Ban from "./modules/Ban";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
 import VidSwipe from "./modules/VidSwipe";
-import SwiperVid from "./plugin/SwiperVid";
+// import SwiperVid from "./plugin/SwiperVid";
 
 const Main = () => {
     return(
@@ -17,6 +17,11 @@ const Main = () => {
             <VidIntro cat="main"/>
             {/* 4. 비디오스와이프모듈 */}
             <VidSwipe pg="main" tit="LATEST TRAILERS, CLIPS & MORE" />
+            {/* 5. 메뉴스와이프모듈 */}
+            {/* 6. 캐릭터 배너모듈 */}
+            <Ban cat="CHARACTERS"/>
+            {/* 7. 메뉴스와이프모듈 */}
+            {/* 8. 메인하단모듈 */}
         </>
     )
 } //// Main 컴포넌트
