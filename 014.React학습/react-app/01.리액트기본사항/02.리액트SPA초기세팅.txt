@@ -63,7 +63,7 @@ npm install react-bootstrap bootstrap
 
 8. 제이쿼리 추가설치
 npm install jquery
-사용:
+사용
 import $ from 'jquery';
 
 
