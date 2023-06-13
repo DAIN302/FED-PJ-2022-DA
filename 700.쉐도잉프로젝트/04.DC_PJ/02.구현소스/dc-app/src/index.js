@@ -39,6 +39,7 @@ import ScrollTop from './dc/common/ScrollTop';
 // 스스로 내보내기를 세팅하는 것
 export default function App(){
   return(
+      // <BrowserRouter basename={process.env.PUBLIC_URL}>
       <BrowserRouter>
       {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함 */}
         <ScrollTop />
@@ -48,6 +49,7 @@ export default function App(){
             {/* 하위라우트 세팅 */}
             {/* path대신 index만 쓰면 첫페이지 */}
             <Route index element={<Main/>} />
+            <Route path="main" element={<Main/>} />
             <Route path="ct" element={<Characters/>} />
             <Route path="co1" element={<Comics sub="0"/>} />
             <Route path="co2" element={<Comics sub="1"/>} />

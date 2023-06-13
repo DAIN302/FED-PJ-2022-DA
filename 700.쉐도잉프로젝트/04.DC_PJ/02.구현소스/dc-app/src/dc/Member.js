@@ -102,6 +102,26 @@ function Member(){
         // 업데이트
         setPwd(e.target.value)
     }
+
+    // 3. 비밀번호 확인 유효성 검사
+    const changeChkPwd = e => {
+        // 위에 입력한 비밀번호와 일치 여부 확인
+        if(pwd === e.target.value) setChkPwdError(false);
+        else setChkPwdError(true);
+
+        // 입력값 반영
+        setChkPwd(e.target.value);
+    }
+
+    // 4. 이름 유효성 검사
+    const changeUserName = e => {
+        // 1. 빈값 체크
+        if(e.target.value !== "") setUserNameError(false);
+        else setUserNameError(true);
+ 
+        // 2. 입력값 반영
+        setUserName(e.target.value);
+    }
     
     return(
         <>
@@ -109,36 +129,78 @@ function Member(){
             <section className="membx">
                 <h2>Member</h2>
                 <form>
-                    {/* 1. 아이디 */}
-                    <label>아이디 : </label>
-                    <input type="text" maxLength="20" placeholder="아이디를 입력하세요" value={userId} onChange={changeUserId}/>
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소 -> 조건이 true면 요소 출력
-                        userIdError &&
-                        <div className="msg">
-                            <small style={{color :"red", fontSize:"10px"}}>
-                                사용자 아이디는 5글자 이상 문자 또는 숫자를 포함해야 합니다
-                            </small>
-                        </div>
-                        // value={userId} 값은 setUserId를 통해서만 업데이트되어 실제화면에 반영됨
-                        // onChange={changeUserId} change이벤트 발생시 changeUserId 함수 호출
-                    }
-                    {/* 2. 비밀번호 */}
-                    <label>비밀번호 : </label>
-                    <input type="password" maxLength="20" placeholder="비밀번호를 입력하세요" value={pwd} onChange={changePwd}/>
-                    {
-                        pwdError &&
-                        <div className="msg">
-                            <small style={{color :"red", fontSize:"10px"}}>
-                                비밀번호는 8자 이상이어야 하며 문자와 숫자를 각각 하나 이상 포함해야 합니다.
-                            </small>
-                        </div>
-                    }
-                    {/* 3. 이름 */}
-                    {/* 4. 이메일 */}
-                    {/* 5. 버튼 */}
-                    {/* 6. 로그인 페이지 링크 */}
+                    <ul>
+                        <li>
+                            {/* 1. 아이디 */}
+                            <label>ID : </label>
+                            <input type="text" maxLength="20" placeholder="Please Enter Your ID" value={userId} onChange={changeUserId}/>
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true면 요소 출력
+                                userIdError &&
+                                <div className="msg">
+                                    <small style={{color :"red", fontSize:"10px"}}>
+                                        User ID must contain a minimum 5 characters. 
+                                    </small>
+                                </div>
+                                // value={userId} 값은 setUserId를 통해서만 업데이트되어 실제화면에 반영됨
+                                // onChange={changeUserId} change이벤트 발생시 changeUserId 함수 호출
+                            }        
+                        </li>
+                        <li>
+                            {/* 2. 비밀번호 */}
+                            <label>PASSWORD : </label>
+                            <input type="password" maxLength="20" placeholder="Please Enter Your Password" value={pwd} onChange={changePwd}/>
+                            {
+                                pwdError &&
+                                <div className="msg">
+                                    <small style={{color :"red", fontSize:"10px"}}>
+                                        Password must be at least 8 characters long and must contain at least one letter and one number each.
+                                    </small>
+                                </div>
+                            }
+                        </li>
+                        <li>
+                            {/* 3. 비밀번호 확인 */}
+                            <label>CONFIRM PASSWORD : </label>
+                            <input type="password" maxLength="20" placeholder="Please Enter Your Password" value={chkPwd} onChange={changeChkPwd}/>
+                            {
+                                chkPwdError &&
+                                <div className="msg">
+                                    <small style={{color :"red", fontSize:"10px"}}>
+                                        Password verification does not match.
+                                    </small>
+                                </div>
+                            }
+                        </li>
+                        <li>
+                            {/* 4. 이름 */}
+                            <label>NAME : </label>
+                            <input type="text" maxLength="20" placeholder="Please Enter Your Name" value={userName} onChange={changeUserName}/>
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true면 요소 출력
+                                userNameError &&
+                                <div className="msg">
+                                    <small style={{color :"red", fontSize:"10px"}}>
+                                        This is a required entry.
+                                    </small>
+                                </div>
+                            }  
+                        </li>
+                        <li>
+                            {/* 5. 이메일 */}
+                        </li>
+                        <li>
+                            {/* 6. 버튼 */}
+                        </li>
+                        <li>
+                            {/* 7. 로그인 페이지 링크 */}
+                        </li>
+                    </ul>
+                    
+                    
+                    
                 </form>
             </section>
             {/* 빈루트를 만들고 JS로드함수포함 */}
