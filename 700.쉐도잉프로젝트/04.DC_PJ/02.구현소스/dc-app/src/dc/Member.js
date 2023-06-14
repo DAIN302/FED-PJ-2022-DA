@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import $ from "jquery";
 import "./css/member.css"
+import { Link, json } from "react-router-dom";
 
 // 제이쿼리 로드구역 함수
 function jqFn(){
@@ -62,6 +63,16 @@ function Member(){
     // 5. 이메일에러변수 
     const [emailError, setEmailError] = useState(false);
 
+    // [ 아이디 관련 메시지 프리셋 ]
+    const msgId = [
+        "User ID must contain a minimum 5 characters.",
+        "This ID is already in use!",
+        "That's a great ID!"
+    ];
+
+    // 후크 변수 메시지
+    const [idMsg, setIdMsg] = useState(msgId[0]); 
+
     // [ 3. 유효성 검사 메서드 ]
     // 1. 아이디 유효성 검사
     const changeUserId = e => { // e - 이벤트 전달 변수
@@ -76,7 +87,45 @@ function Member(){
         // 정규식.test() -> 정규식 검사 결과 리턴 메서드
         // 결과 : true 에러상태값 false / false면 에러상태값 true
         if(valid.test(e.target.value)) {
-            setUserIdError(false)
+            // 아이디 형식에는 맞지만 사용중인 아이디인지 검사(아이디 중복검사)
+            let memData = localStorage.getItem("mem-data");
+            // 로컬스토리지 데이터 null이 아닌 경우
+            if(memData){
+                // 로컬스토리지에 기존 아이디 있는지 확인
+                // 문자형 데이터를 객체형 데이터로 변환(배열형)
+                memData = JSON.parse(memData);
+                // 검사하기(배열이니까 forEach사용)
+
+                // 기존아이디가 있으면 상태값 false로 업데이트
+                let isOK = true;
+
+                memData.forEach(v => {
+                    // 기존의 아이디와 같은 경우
+                    if(v["uid"]===e.target.value) {
+                        // 메시지 변경
+                        setIdMsg(msgId[1])
+                        // 아이디에러 상태값 업데이트
+                        setUserIdError(true);
+
+                        isOK = false;
+                    }
+                });
+
+                 // 기존아이디가 없으면 들어감!
+                 if(isOK){
+                    console.log("바깥");
+                    // 메시지변경(처음메시지로 변경)
+                    setIdMsg(msgId[0]);              
+                    // 아이디에러상태값 업데이트
+                    setUserIdError(false);
+
+                } /////////// if : isOK /////////
+            }
+            else {
+                console.log("DB없음")
+            }
+
+            // setUserIdError(false)
         }
         else {
             setUserIdError(true)
@@ -122,13 +171,96 @@ function Member(){
         // 2. 입력값 반영
         setUserName(e.target.value);
     }
+
+    // 5. 이메일 유효성 검사
+    const changeEmail = e => {
+        // 1. 정규식
+        const valid = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+
+        // 2. 유효성 검사 체크
+        if(valid.test(e.target.value)) setEmailError(false);
+        else setEmailError(true);
+ 
+        // 3. 입력값 반영
+        setEmail(e.target.value);
+
+    }
+
+    // 6. 전체 유효성 검사 함수
+    const totalValid = () => {
+        // 모든 입력창 검사(빈 값일 경우 모두 에러를 후크변수에 전달)
+        if(!userId) setUserIdError(true);
+        if(!pwd) setPwdError(true);
+        if(!chkPwd) setChkPwdError(true);
+        if(!userName) setUserNameError(true);
+        if(!email) setEmailError(true);
+
+        // 통과조건:
+        // 1. 빈값이 아님
+        // 2. 에러 후크 변수가 모두 false
+        // 위의 2가지 만족시 treu값 리턴
+        if(userId && pwd && chkPwd && userName && email && !userIdError && !pwdError && !chkPwdError && !userNameError && !emailError) return true;
+        else return false; // 하나라도 에러면 false 리턴
+    }
+
+    // 7. 서브밋 기능 함수
+    const onSubmit = e => {
+        // 기본 서브밋기능 막기!
+        e.preventDefault();
+
+        // 유효성 검사 전체 통과 시
+        if(totalValid()) {
+            // alert("처리페이지로 이동")
+            // 만약 로컬스토리지 "mem-data"가 null이면 만들어준다
+            if(localStorage.getItem("mem-data")===null) {
+                localStorage.setItem("mem-data", `
+                    [
+                        {
+                            "idx" : "1",
+                            "uid" : "dada",
+                            "pwd" : "1111",
+                            "unm" : "dada",
+                            "eml" : "ddddd@naver.com"
+                        }
+                    ]
+                `)
+            }
+            // 로컬스 변수 할당
+            let memData = localStorage.getItem("mem-data")
+            // console.log(memData)
+
+            // 로컬스토리지 데이터 객체로 변환하기
+            memData = JSON.parse(memData)
+            // console.log(memData)
+
+            // 새로운 데이터 구성
+            let newObj = {
+                "idx" : memData.length+1,
+                "uid" : userId,
+                "pwd" : pwd,
+                "unm" : userName,
+                "eml" : email
+            };
+
+            // 데이터 추가하기 : 배열에 데이터 추가 -> push()
+            memData.push(newObj);
+
+            // 로컬스토리지에 반영
+            localStorage.setItem("mem-data", JSON.stringify(memData))
+
+        }
+        // 불통과시
+        else {
+            // alert("입력을 수정하세요")
+        }        
+    }
     
     return(
         <>
             {/* 모듈코드 */}
             <section className="membx">
                 <h2>Member</h2>
-                <form>
+                <form method="post" action="process.php">
                     <ul>
                         <li>
                             {/* 1. 아이디 */}
@@ -137,15 +269,29 @@ function Member(){
                             {
                                 // 에러일 경우 메시지 보여주기
                                 // 조건문 && 요소 -> 조건이 true면 요소 출력
-                                userIdError &&
+                                userIdError && (
                                 <div className="msg">
                                     <small style={{color :"red", fontSize:"10px"}}>
-                                        User ID must contain a minimum 5 characters. 
+                                        {idMsg}
                                     </small>
                                 </div>
+                                )
                                 // value={userId} 값은 setUserId를 통해서만 업데이트되어 실제화면에 반영됨
                                 // onChange={changeUserId} change이벤트 발생시 changeUserId 함수 호출
-                            }        
+                            }     
+                            {
+                                // 아이디 통과
+                                // 아이디에러가 false일때 출력
+                                // 고정데이터 배열 msgId 세번째값 출력
+                                !userIdError && userId &&
+                                (
+                                <div className="msg">
+                                    <small style={{color :"green", fontSize:"10px"}}>
+                                        {msgId[2]}
+                                    </small>
+                                </div>
+                                )
+                            }
                         </li>
                         <li>
                             {/* 2. 비밀번호 */}
@@ -190,17 +336,30 @@ function Member(){
                         </li>
                         <li>
                             {/* 5. 이메일 */}
+                            <label>E-MAIL : </label>
+                            <input type="text" maxLength="50" placeholder="Please Enter Your Email" value={email} onChange={changeEmail}/>
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true면 요소 출력
+                                emailError &&
+                                <div className="msg">
+                                    <small style={{color :"red", fontSize:"10px"}}>
+                                        Please enter a valid email format
+                                    </small>
+                                </div>
+                            }  
                         </li>
-                        <li>
+                        <li style={{overflow : "hidden"}}>
                             {/* 6. 버튼 */}
+                            <button className="sbtn" onClick={onSubmit}>SUBMIT</button>
+                            {/* input submit버튼이 아니어도 form요소 내부의 button은 submit기능이 있다! */}
                         </li>
                         <li>
                             {/* 7. 로그인 페이지 링크 */}
+                            Are you already a member?
+                            <Link to="/login"> Log In </Link>
                         </li>
                     </ul>
-                    
-                    
-                    
                 </form>
             </section>
             {/* 빈루트를 만들고 JS로드함수포함 */}

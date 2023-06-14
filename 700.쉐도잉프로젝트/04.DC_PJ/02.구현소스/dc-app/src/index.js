@@ -41,6 +41,7 @@ export default function App(){
   return(
       // <BrowserRouter basename={process.env.PUBLIC_URL}>
       <BrowserRouter>
+      {/* <HashRouter> */}
       {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함 */}
         <ScrollTop />
         <Routes>
@@ -61,7 +62,8 @@ export default function App(){
             <Route path="signup" element={<Member/>} />
           </Route>
         </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
+      // </HashRouter>
   )
 } /// App 컴포넌트
 
