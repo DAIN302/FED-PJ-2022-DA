@@ -2,14 +2,9 @@
 import React, {useState} from "react";
 import $ from "jquery";
 import "./css/member.css"
-import { Link, json } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import initData from "./fsn/fnMem";
 
-// 제이쿼리 로드구역 함수
-function jqFn(){
-    $(()=>{
-
-    })// jQB
-}// jqFn ////////
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -37,6 +32,17 @@ function jqFn(){
 
 function Member(){
     // 요구사항 : 각 입력항목에 맞는 유효성 검사를 입력하는 순간 실시간으로 체크하여 결과를 화면에 리턴
+
+    // [ 리액트 라우터 이동시 이동메서드 사용 : useNavigate ]
+    // 1. Link 를 사용한 세팅으로 라우터를 이동
+    // -> 코드적으로 이동할 때는? 바로 useNavigate
+    // 2. import 하기 : import { Navigate } from "react-router-dom";
+    // 3. 사용법 : 변수 = useNavigate()
+    // -> 변수(라우터경로)
+
+    // 라우터 이동 네베게이트 생성
+    const goRoute = useNavigate();
+
     // [ 후크 useState 메서드 세팅 ]
     // [ 1. 입력요소 후크변수 ]
     // 1. 아이디변수
@@ -87,6 +93,8 @@ function Member(){
         // 정규식.test() -> 정규식 검사 결과 리턴 메서드
         // 결과 : true 에러상태값 false / false면 에러상태값 true
         if(valid.test(e.target.value)) {
+            initData();
+
             // 아이디 형식에는 맞지만 사용중인 아이디인지 검사(아이디 중복검사)
             let memData = localStorage.getItem("mem-data");
             // 로컬스토리지 데이터 null이 아닌 경우
@@ -211,20 +219,7 @@ function Member(){
         // 유효성 검사 전체 통과 시
         if(totalValid()) {
             // alert("처리페이지로 이동")
-            // 만약 로컬스토리지 "mem-data"가 null이면 만들어준다
-            if(localStorage.getItem("mem-data")===null) {
-                localStorage.setItem("mem-data", `
-                    [
-                        {
-                            "idx" : "1",
-                            "uid" : "dada",
-                            "pwd" : "1111",
-                            "unm" : "dada",
-                            "eml" : "ddddd@naver.com"
-                        }
-                    ]
-                `)
-            }
+            
             // 로컬스 변수 할당
             let memData = localStorage.getItem("mem-data")
             // console.log(memData)
@@ -248,6 +243,14 @@ function Member(){
             // 로컬스토리지에 반영
             localStorage.setItem("mem-data", JSON.stringify(memData))
 
+            // 로그인 페이지로 이동(라우터 이동)
+            // useNavigate 사용
+            $(".sbtn").text("넌 이제 회원이닷");
+            setTimeout(()=>{
+                goRoute('/login')
+            }, 1500)
+
+
         }
         // 불통과시
         else {
@@ -256,10 +259,10 @@ function Member(){
     }
     
     return(
-        <>
+        <div className="outbx">
             {/* 모듈코드 */}
             <section className="membx">
-                <h2>Member</h2>
+                <h2>Join Us</h2>
                 <form method="post" action="process.php">
                     <ul>
                         <li>
@@ -362,9 +365,7 @@ function Member(){
                     </ul>
                 </form>
             </section>
-            {/* 빈루트를 만들고 JS로드함수포함 */}
-            { jqFn() }
-        </>
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* Member 모듈용 CSS - member.css  */
-main.cont{
-    /* padding: 25px; */
+.outbx{
+    padding: 25px;
 }
 /* 전체박스 */
 .membx{

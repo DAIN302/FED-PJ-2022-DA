@@ -18,6 +18,15 @@ const ban_data = {
             "btn":"A WORLD AT STAKE"
         },
     ],
+    "main3" : [
+        {
+            "src" : "./images/dcmb3.jpg",
+            "tit1" : "FLASH FACTS",
+            "tit2" : "THINGS YOU MAY NOT KNOW ABOUT THE FLASH",
+            "cont" : "We've raced through over sixty years of comics to find a collection of trivia that may surprise even his biggest fans.",
+            "btn": "GET TICKETS & SHOWTIMES"
+        },
+    ],
     "CHARACTERS" : [
         {
             "src":"./images/dcm23.jpg",
