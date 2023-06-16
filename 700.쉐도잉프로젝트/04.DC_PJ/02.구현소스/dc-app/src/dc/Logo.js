@@ -5,7 +5,6 @@ import isrc from "./ImgSrc";
 const Logo = (props) => {
     //객체형 스타일적용: 속성명이 틀리면 아예 출력되지 않는다!
     const mystyle = {
-
         top : {
             width: "45px",
             height: "45px",
@@ -22,8 +21,14 @@ const Logo = (props) => {
         bottom:"80px"
     }
 
+    // 자식컴포넌트 처리용 함수
+    const nayana = (x) => {
+        // 속성전달을 통한 부모함수호출 및 값 전달
+        props.tt(x)
+    }
+
     return (
-        <h1 style={mystyle}>
+        <h1 style={mystyle[props.gb]} onClick={()=>nayana("나야나")}>
             <img src={isrc.logo} style={{width:istyle[props.gb]}} />
         </h1>
     )

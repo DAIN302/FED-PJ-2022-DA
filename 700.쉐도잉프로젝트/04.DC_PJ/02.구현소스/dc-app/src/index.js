@@ -43,8 +43,6 @@ export default function App(){
       // <BrowserRouter basename={process.env.PUBLIC_URL}>
       <BrowserRouter>
       {/* <HashRouter> */}
-      {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함 */}
-        <ScrollTop />
         <Routes>
           {/* 죵요!!! : 레이아웃 컴포넌트를 루트로 잡아준다!!!!!  */}
           <Route path="/" element={<Layout/>}>

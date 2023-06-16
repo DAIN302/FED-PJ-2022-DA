@@ -2,7 +2,6 @@
 import $ from "jquery";
 import "../css/vidswipe.css";
 import SwiperVid from "../plugin/SwiperVid";
-import swipervid_data from "../data/swipevid";
 
 
 // 제이쿼리 로드구역 함수
