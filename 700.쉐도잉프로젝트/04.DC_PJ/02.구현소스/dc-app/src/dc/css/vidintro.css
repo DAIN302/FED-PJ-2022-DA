@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.vidswbox{
+    padding-bottom: 50px;
+}
+
 .vidbx {
     padding : 50px 0;
     margin: 30px 0;

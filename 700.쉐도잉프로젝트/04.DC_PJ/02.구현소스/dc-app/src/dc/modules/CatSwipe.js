@@ -11,7 +11,6 @@ function jqFn(){
 }// jqFn ////////
 
 function CatSwipe(props){
-    // props.pg 페이지별 데이터 구분
     // props.tit 페이지별 데이터 구분
     return(
         <>
@@ -20,7 +19,7 @@ function CatSwipe(props){
                 {/* 1.모듈타이틀 */}
                 <h2 className="tit">{props.tit}</h2>
                 {/* 2. 스와이퍼 컴포넌트 */}
-                <Swipercat />
+                <SwiperCat />
             </section>
             {/* 빈루트를 만들고 JS로드함수포함 */}
             { jqFn() }
@@ -28,4 +27,4 @@ function CatSwipe(props){
     )
 }
 
-export default catSwipe;
+export default CatSwipe;
