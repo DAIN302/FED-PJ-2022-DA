@@ -29,6 +29,13 @@
     /* 부모크기에 맞춰서 강제로 축소되는 옵션 해제 */
 }
 
+/* 슬라이드 이미지 */
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* 배너 컨텐츠 버튼 */
 .banner button {
     border-radius: 20px;
