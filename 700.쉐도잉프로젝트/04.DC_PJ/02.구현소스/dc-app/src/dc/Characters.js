@@ -3,6 +3,7 @@ import React from "react";
 import Ban from "./modules/Ban";
 import CatSwipe from "./modules/CatSwipe";
 
+
 const Characters = () => {
     return(
         <>

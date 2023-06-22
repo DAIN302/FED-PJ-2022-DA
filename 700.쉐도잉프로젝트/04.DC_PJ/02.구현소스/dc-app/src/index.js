@@ -16,6 +16,7 @@ import Member from './dc/Member';
 import ScrollTop from './dc/common/ScrollTop';
 import LogIn from './dc/Login';
 import Detail from './dc/Detail';
+import Search from './dc/modules/Search';
 
 /*******************************************************************
   [ 리액트 라우터 ]
@@ -62,6 +63,7 @@ export default function App(){
             <Route path="signup" element={<Member/>} />
             <Route path="login" element={<LogIn/>} />
             <Route path="det" element={<Detail/>} />
+            <Route path="sch" element={<Search/>} />
           </Route>
         </Routes>
         </BrowserRouter>
