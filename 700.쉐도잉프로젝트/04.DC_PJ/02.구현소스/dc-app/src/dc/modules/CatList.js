@@ -2,6 +2,8 @@
 import $ from "jquery";
 import "../css/catlist.css"
 
+import { Link } from "react-router-dom";
+
 // 제이쿼리 로드구역 함수
 function jqFn(){
     $(()=>{
@@ -19,8 +21,14 @@ function CatList(props){
             {
                     sdt.map((v,i)=>
                         <li key={i}>
-                            <img src={v.tmsrc} alt={v.cname}/>
-                            <h3>{v.cname}</h3>
+                            <Link to="/det" state={{
+                            cname:v.cname,
+                            cdesc:v.cdesc,
+                            facts:v.facts
+                            }}>
+                                <img src={v.tmsrc} alt={v.cname}/>
+                                <h3>{v.cname}</h3>
+                            </Link>
                         </li>
                     )
             }

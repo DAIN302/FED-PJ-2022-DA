@@ -1,7 +1,7 @@
 // 메인 레이아웃 컴포넌트
 import Logo from "./Logo";
 import "./css/layout.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import ScrollTop from "./common/ScrollTop";
 
 import { gnb_data, bmenu } from "./data/common"
@@ -22,6 +22,9 @@ import { useState } from "react";
 **************************************************************************/
 
 const Layout = () => {
+    // 라우터 이동메서드 세팅
+    const goNav = useNavigate();
+
     // 자식컴포넌트 값 전달 테스트 함수
     const callMe = (x) => {
         console.log("누구?", x)
@@ -60,8 +63,28 @@ const Layout = () => {
         setLogSts(null)
     }
 
+    const showSearch = (e) => {
+        let tg = document.querySelector(".searchingGnb")
+        // 1. a요소 숨기기
+        document.querySelector(".searchingGnb+a").style.opacity = "0";
+        // 2. 검색창 보이기
+        tg.style.display = "block";
+        tg.querySelector("input").focus();
+    }
 
+    // 검색페이지로 검색어와 함께 이동
+    const goSearch = () => {
+        // 검색어 읽어오기
+        let kw = document.querySelector(".searchingGnb input").value
+        
+        // 라우터 이동하기 : 전달값 가져가기(검색어)
+        goNav("/res",{state:{keyword:kw}})
+    }
 
+    // 입력창에서 엔터키를 누르면 검색함수 호출
+    const enterKey = (e) => {
+        if(e.key==="Enter") goSearch();
+    }
 
     return(
         <>
@@ -114,9 +137,17 @@ const Layout = () => {
                             )
                         }
                         <li style={{marginLeft : "auto"}}>
-                            <Link to ="/sch">
+                            {/* 검색입력박스 */}
+                            {/* 검색박스 */}
+                            <div className="searchingGnb">
+                                <FontAwesomeIcon icon={faSearch} className="schbtnGnb" title="Open Search" onClick={goSearch}/>
+                                {/* 입력창 */}
+                                <input id="schinGnb" type="text" placeholder="Filter by keyword" onKeyUp={enterKey}/>
+                            </div>
+                            {/* 검색기능링크 - 클릭 시 검색창 보이기 */}
+                            <a href="#" onClick={showSearch}>
                                 <FontAwesomeIcon icon={faSearch} />
-                            </Link>
+                            </a>
                         </li>
                         {
                             // 회원가입, 로그인은 로그인 아닌 상태일때만

@@ -1,6 +1,6 @@
 // 어떤 모듈
 import $, { isFunction } from "jquery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/search.css"
 import cat_data from "../data/cat";
 import CatList from "./CatList";
@@ -24,7 +24,7 @@ cat_data.sort((x,y)=>{
     return x.cname===y.cname?0:x.cname>y.cname?1:-1;
 })
 
-function Search(){
+function Search(props){ // props.skw - 전달키워드
     // 데이터 선택하기 : Hook 데이터 구성
     // -> 데이터 정렬을 반영하기 위해 정렬 상태값을 같이 설정
     // 데이터구성 : [배열데이터, 정렬상태값]
@@ -160,9 +160,26 @@ function Search(){
         // Hook 데이터변수 + 데이터건수
         setSdt([newList, 2])
         setTot(newList.length)
-        
-        
     }
+
+    // 검색어가 있으면 검색함수 호출
+    // 검색함수는 검색어 입력창으로부터 검색어를 가져가므로 
+    // 넘어온 검색어는 검색 입력창에 넣은 후 검색함수를 호출
+    const linkSearch = () => {
+        console.log("링크검색어",props.skw)
+        if(props.skw!=""){
+            // 1.검색창 원상복귀
+            document.querySelector(".searchingGnb").style.display = "none";
+            document.querySelector(".searchingGnb+a").style.opacity = "1";
+            // 2.검색페이지 검색창에 키워드 넣기
+            document.querySelector(".searching input").value = props.skw
+            // 3. 검색함수 호출
+            schList();
+        }
+    }
+
+    // 검색어가 있을때 검색함수의 호출은 페이지로딩 후 체크해주는 useEffect를 사용
+    useEffect(linkSearch,[])
 
     return(
         <>
