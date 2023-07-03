@@ -1,15 +1,16 @@
 // 메인 레이아웃 컴포넌트
 import Logo from "./Logo";
 import "./css/layout.css";
+import { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { gnb_data, bmenu } from "./data/common"
+import $ from "jquery";
 import ScrollTop from "./common/ScrollTop";
 
-import { gnb_data, bmenu } from "./data/common"
 
 // 폰트 어썸
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 
 /**************************************************************************
@@ -86,6 +87,16 @@ const Layout = () => {
         if(e.key==="Enter") goSearch();
     }
 
+    // 상단메뉴 변경함수
+    const chgMenu = () => {
+        let topA = $(".top");
+        topA.toggleClass("on")
+    }
+
+    const rmCls = () => {
+        $(".top").removeClass("on")
+    }
+
     return(
         <>
             {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함 + 로그인 세팅함수 호출 전달 
@@ -111,7 +122,7 @@ const Layout = () => {
                         </li>
                         {
                             gnb_data.map((v,i) => 
-                                <li key={i}>
+                                <li key={i} onClick={rmCls}>
                                     <Link to={v.link}>{v.txt}</Link>
                                     {/* v.sub가 없으면 undefined */}
                                     { 
@@ -125,7 +136,7 @@ const Layout = () => {
                                             <ol>
                                                 {
                                                     v.sub.map((v,i)=>
-                                                        <li key={i}>
+                                                        <li key={i} onClick={rmCls}>
                                                             <Link to={v.link}>{v.txt}</Link>
                                                         </li>
                                                     )
@@ -153,10 +164,10 @@ const Layout = () => {
                             // 회원가입, 로그인은 로그인 아닌 상태일때만
                             logSts === null &&
                             <>
-                                <li>
+                                <li onClick={rmCls}>
                                     <Link to="/signup">SIGN UP</Link>
                                 </li>
-                                <li>
+                                <li onClick={rmCls}>
                                     <Link to="/login">LOG IN</Link>
                                 </li>
                             </>
@@ -165,12 +176,14 @@ const Layout = () => {
                             // 로그아웃 버튼은 로그인 상태일때만 
                             logSts !== null &&
                             <>
-                                <li>
+                                <li onClick={rmCls}>
                                     <a href="#" onClick={logout}>LOG OUT</a>
                                 </li>
                             </>
                         }
                     </ul>
+                    {/* 햄버거 버튼 */}
+                    <button className="hambtn" onClick={chgMenu}></button>
                 </nav>
             </header>
             {/* 2. 메인영역 */}

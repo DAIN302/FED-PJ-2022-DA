@@ -43,7 +43,7 @@ export default function SwiperCat(props) {
             slidesPerView: 7,
           },
         }}
-        className="mySwiper"
+        className="mySwiper2"
       >
         {
             sdt.map((v,i)=>   
@@ -61,13 +61,13 @@ export default function SwiperCat(props) {
                     cdesc:v.cdesc,
                     facts:v.facts
                     }}>
-                    <section className="swinbx">
+                    <section className="swinbx2">
                       {/* 캐릭터이미지영역 */}
-                      <figure className="catimg">
+                      <figure className="catimg2">
                         <img src={v.tmsrc} alt={v.cname}/>
                       </figure>
-                      <div className="cattit">
-                        <h3 className="ctit">{v.cname}</h3>
+                      <div className="cattit2">
+                        <h3 className="ctit2">{v.cname}</h3>
                       </div>
                     </section>
                   </Link>
